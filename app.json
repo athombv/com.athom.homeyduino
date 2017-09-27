@@ -192,6 +192,7 @@
 				"title": {
 					"en": "Action (boolean)"
 				},
+				"droptoken": "boolean",
 				"args": [
 					{
 						"name": "device",
@@ -204,14 +205,6 @@
 						"placeholder": {
 							"en": "Action",
 							"nl": "Actie"
-						}
-					},
-					{
-						"name": "value",
-						"type": "boolean",
-						"title": {
-							"en": "Value",
-							"nl": "Waarde"
 						}
 					}
 				]
@@ -302,6 +295,7 @@
 				"title": {
 					"en": "Condition (boolean)"
 				},
+				"droptoken": "boolean",
 				"args": [
 					{
 						"name": "device",
@@ -314,14 +308,6 @@
 						"placeholder": {
 							"en": "Action",
 							"nl": "Actie"
-						}
-					},
-					{
-						"name": "value",
-						"type": "boolean",
-						"title": {
-							"en": "Value",
-							"nl": "Waarde"
 						}
 					}
 				]

@@ -149,13 +149,25 @@ class HomeyduinoDevice extends Homey.Device {
 	action(args) {
 		try {
 			var value = '';
+			
 			if (typeof args.value !== 'undefined') {
 				if (typeof args.value === 'string') {
 					value = args.value;
 				} else {
 					value = args.value.toString();
 				}
-			}	
+			} else if (typeof args.droptoken !== 'undefined') {
+				if (typeof args.droptoken === 'boolean') {
+					if (args.droptoken) { //Convert boolean to string
+						value = '1';
+					} else {
+						value = '0';
+					}
+				} else {
+					console.log("Non-boolean droptoken ignored!", args.droptoken, typeof args.droptoken);
+				}
+			}
+			
 			return this.device.query(args.action, value).then( (res) => {
 				return Promise.resolve(res);
 			}).catch( (err) => {
@@ -171,13 +183,25 @@ class HomeyduinoDevice extends Homey.Device {
 	condition(args) {
 		try {
 			var value = '';
+						
 			if (typeof args.value !== 'undefined') {
 				if (typeof args.value === 'string') {
 					value = args.value;
 				} else {
 					value = args.value.toString();
 				}
+			} else if (typeof args.droptoken !== 'undefined') {
+				if (typeof args.droptoken === 'boolean') {
+					if (args.droptoken) { //Convert boolean to string
+						value = '1';
+					} else {
+						value = '0';
+					}
+				} else {
+					console.log("Non-boolean droptoken ignored!", args.droptoken, typeof args.droptoken);
+				}
 			}
+			
 			return this.device.query(args.action, value).then( (res) => {
 				//console.log('Condition returned:',res);
 				//console.log('typeof result',typeof res);

@@ -9,6 +9,7 @@
 
 const Homey = require("homey");
 const Arduino = require("homey-arduino");
+const util = require('util');
 
 class HomeyduinoApp extends Homey.App {
 
@@ -77,18 +78,7 @@ class HomeyduinoApp extends Homey.App {
 		if (typeof args.device.condition !== 'function') {
 			return Promise.reject("Condition is not a function.");
 		}
-		
-		return args.device.condition(args);/*
-
-		return new Promise( (resolve, reject) => {		
-			args.device.condition(args).catch( (err) => {
-				console.log("onCondition error",err);
-				return reject("Could not check condition");
-			}).then((res) => {
-				return resolve(res);
-			});
-		});*/
-		
+		return args.device.condition(args);		
 	}
 }
 
