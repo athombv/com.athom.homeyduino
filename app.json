@@ -8,7 +8,7 @@
 		"en": "Make your own devices using Arduino"
 	},
 	"category": "tools",
-	"version": "1.0.0",
+	"version": "0.1.0",
 	"compatibility": ">=1.5.0",
 	"author": {
 		"name": "Renze Nicolai",
@@ -19,7 +19,7 @@
 			{
 				"id": "number_trigger",
 				"title": {
-					"en": "Arduino trigger: number"
+					"en": "Trigger (number)"
 				},
 				"args": [
 					{
@@ -49,7 +49,7 @@
 			{
 				"id": "string_trigger",
 				"title": {
-					"en": "Arduino trigger: string"
+					"en": "Trigger (text)"
 				},
 				"args": [
 					{
@@ -79,7 +79,7 @@
 			{
 				"id": "boolean_trigger",
 				"title": {
-					"en": "Arduino trigger: boolean"
+					"en": "Trigger (boolean)"
 				},
 				"args": [
 					{
@@ -109,7 +109,7 @@
 			{
 				"id": "void_trigger",
 				"title": {
-					"en": "Arduino trigger"
+					"en": "Trigger"
 				},
 				"args": [
 					{
@@ -132,7 +132,7 @@
 			{
 				"id": "number_action",
 				"title": {
-					"en": "Arduino action: number"
+					"en": "Action (number)"
 				},
 				"args": [
 					{
@@ -161,7 +161,7 @@
 			{
 				"id": "text_action",
 				"title": {
-					"en": "Arduino action: string"
+					"en": "Action (string)"
 				},
 				"args": [
 					{
@@ -190,7 +190,7 @@
 			{
 				"id": "boolean_action",
 				"title": {
-					"en": "Arduino action: boolean"
+					"en": "Action (boolean)"
 				},
 				"args": [
 					{
@@ -219,7 +219,7 @@
 			{
 				"id": "void_action",
 				"title": {
-					"en": "Arduino action"
+					"en": "Action"
 				},
 				"args": [
 					{
@@ -242,7 +242,7 @@
 			{
 				"id": "number_condition",
 				"title": {
-					"en": "Arduino action: number"
+					"en": "Condition (number)"
 				},
 				"args": [
 					{
@@ -271,7 +271,7 @@
 			{
 				"id": "text_condition",
 				"title": {
-					"en": "Arduino action: string"
+					"en": "Condition (text)"
 				},
 				"args": [
 					{
@@ -300,7 +300,7 @@
 			{
 				"id": "boolean_condition",
 				"title": {
-					"en": "Arduino action: boolean"
+					"en": "Condition (boolean)"
 				},
 				"args": [
 					{
@@ -329,7 +329,7 @@
 			{
 				"id": "void_condition",
 				"title": {
-					"en": "Arduino action"
+					"en": "Condition"
 				},
 				"args": [
 					{
@@ -369,40 +369,6 @@
 				{
 					"id": "add_devices",
 					"template": "add_devices"
-				}
-			],
-			"settings": [
-				{
-					"type": "group",
-					"label": {
-						"en": "Connection"
-					},
-					"children": [
-						{
-							"id": "name",
-							"type": "text",
-							"label": {
-								"en": "Identifier"
-							},
-							"value": "my_device"
-						},
-						{
-							"id": "ip",
-							"type": "text",
-							"label": {
-								"en": "IP address (optional)"
-							},
-							"value": ""
-						},
-						{
-							"id": "d",
-							"type": "number",
-							"label": {
-								"en": "D"
-							},
-							"value": 0
-						}
-					]
 				}
 			]
 		}
