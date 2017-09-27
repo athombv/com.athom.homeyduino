@@ -1,0 +1,410 @@
+{
+	"id": "com.athom.arduino",
+	"sdk": 2,
+	"name": {
+		"en": "Homey Arduino"
+	},
+	"description": {
+		"en": "Make your own devices using Arduino"
+	},
+	"category": "tools",
+	"version": "1.0.0",
+	"compatibility": ">=1.5.0",
+	"author": {
+		"name": "Renze Nicolai",
+		"email": "renze@athom.nl"
+	},
+	"flow": {
+		"triggers": [
+			{
+				"id": "number_trigger",
+				"title": {
+					"en": "Arduino trigger: number"
+				},
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=homeyduino"
+					},
+					{
+						"name": "trigger",
+						"type": "text",
+						"placeholder": {
+							"en": "Trigger",
+							"nl": "Trigger"
+						}
+					}
+				],
+				"tokens": [
+				{
+					"name": "value",
+					"type": "number",
+					"title": {
+						"en": "Value",
+						"nl": "Waarde"
+					}
+				}]
+			},
+			{
+				"id": "string_trigger",
+				"title": {
+					"en": "Arduino trigger: string"
+				},
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=homeyduino"
+					},
+					{
+						"name": "trigger",
+						"type": "text",
+						"placeholder": {
+							"en": "Trigger",
+							"nl": "Trigger"
+						}
+					}
+				],
+				"tokens": [
+				{
+					"name": "value",
+					"type": "string",
+					"title": {
+						"en": "Value",
+						"nl": "Waarde"
+					}
+				}]
+			},
+			{
+				"id": "boolean_trigger",
+				"title": {
+					"en": "Arduino trigger: boolean"
+				},
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=homeyduino"
+					},
+					{
+						"name": "trigger",
+						"type": "text",
+						"placeholder": {
+							"en": "Trigger",
+							"nl": "Trigger"
+						}
+					}
+				],
+				"tokens": [
+				{
+					"name": "value",
+					"type": "boolean",
+					"title": {
+						"en": "Value",
+						"nl": "Waarde"
+					}
+				}]
+			},
+			{
+				"id": "void_trigger",
+				"title": {
+					"en": "Arduino trigger"
+				},
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=homeyduino"
+					},
+					{
+						"name": "trigger",
+						"type": "text",
+						"placeholder": {
+							"en": "Trigger",
+							"nl": "Trigger"
+						}
+					}
+				]
+			}
+		],
+		"actions": [
+			{
+				"id": "number_action",
+				"title": {
+					"en": "Arduino action: number"
+				},
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=homeyduino"
+					},
+					{
+						"name": "action",
+						"type": "text",
+						"placeholder": {
+							"en": "Action",
+							"nl": "Actie"
+						}
+					},
+					{
+						"name": "value",
+						"type": "number",
+						"title": {
+							"en": "Value",
+							"nl": "Waarde"
+						}
+					}
+				]
+			},
+			{
+				"id": "text_action",
+				"title": {
+					"en": "Arduino action: string"
+				},
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=homeyduino"
+					},
+					{
+						"name": "action",
+						"type": "text",
+						"placeholder": {
+							"en": "Action",
+							"nl": "Actie"
+						}
+					},
+					{
+						"name": "value",
+						"type": "text",
+						"title": {
+							"en": "Value",
+							"nl": "Waarde"
+						}
+					}
+				]
+			},
+			{
+				"id": "boolean_action",
+				"title": {
+					"en": "Arduino action: boolean"
+				},
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=homeyduino"
+					},
+					{
+						"name": "action",
+						"type": "text",
+						"placeholder": {
+							"en": "Action",
+							"nl": "Actie"
+						}
+					},
+					{
+						"name": "value",
+						"type": "boolean",
+						"title": {
+							"en": "Value",
+							"nl": "Waarde"
+						}
+					}
+				]
+			},
+			{
+				"id": "void_action",
+				"title": {
+					"en": "Arduino action"
+				},
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=homeyduino"
+					},
+					{
+						"name": "action",
+						"type": "text",
+						"placeholder": {
+							"en": "Action",
+							"nl": "Actie"
+						}
+					}
+				]
+			}
+		],
+		"conditions": [
+			{
+				"id": "number_condition",
+				"title": {
+					"en": "Arduino action: number"
+				},
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=homeyduino"
+					},
+					{
+						"name": "action",
+						"type": "text",
+						"placeholder": {
+							"en": "Action",
+							"nl": "Actie"
+						}
+					},
+					{
+						"name": "value",
+						"type": "number",
+						"title": {
+							"en": "Value",
+							"nl": "Waarde"
+						}
+					}
+				]
+			},
+			{
+				"id": "text_condition",
+				"title": {
+					"en": "Arduino action: string"
+				},
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=homeyduino"
+					},
+					{
+						"name": "action",
+						"type": "text",
+						"placeholder": {
+							"en": "Action",
+							"nl": "Actie"
+						}
+					},
+					{
+						"name": "value",
+						"type": "text",
+						"title": {
+							"en": "Value",
+							"nl": "Waarde"
+						}
+					}
+				]
+			},
+			{
+				"id": "boolean_condition",
+				"title": {
+					"en": "Arduino action: boolean"
+				},
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=homeyduino"
+					},
+					{
+						"name": "action",
+						"type": "text",
+						"placeholder": {
+							"en": "Action",
+							"nl": "Actie"
+						}
+					},
+					{
+						"name": "value",
+						"type": "boolean",
+						"title": {
+							"en": "Value",
+							"nl": "Waarde"
+						}
+					}
+				]
+			},
+			{
+				"id": "void_condition",
+				"title": {
+					"en": "Arduino action"
+				},
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=homeyduino"
+					},
+					{
+						"name": "action",
+						"type": "text",
+						"placeholder": {
+							"en": "Action",
+							"nl": "Actie"
+						}
+					}
+				]
+			}
+			
+		]
+	},
+	"drivers": [
+		{
+			"id": "homeyduino",
+			"name": {
+				"en": "Arduino device"
+			},
+			"class": "other",
+			"capabilities": [],
+			"pair": [
+				{
+					"id": "list_devices",
+					"template": "list_devices",
+					"navigation": {
+						"next": "add_devices"
+					}
+				},
+				{
+					"id": "add_devices",
+					"template": "add_devices"
+				}
+			],
+			"settings": [
+				{
+					"type": "group",
+					"label": {
+						"en": "Connection"
+					},
+					"children": [
+						{
+							"id": "name",
+							"type": "text",
+							"label": {
+								"en": "Identifier"
+							},
+							"value": "my_device"
+						},
+						{
+							"id": "ip",
+							"type": "text",
+							"label": {
+								"en": "IP address (optional)"
+							},
+							"value": ""
+						},
+						{
+							"id": "d",
+							"type": "number",
+							"label": {
+								"en": "D"
+							},
+							"value": 0
+						}
+					]
+				}
+			]
+		}
+	]
+}
