@@ -91,17 +91,18 @@ class HomeyduinoDevice extends Homey.Device {
 		this._actions = []; //Clear actions
 		this._conditions = []; //Clear conditions
 		this.log('Api changed.');
-		info.api.forEach((type,name) => {
-			if (type=='null') { //Return type is 'null': item is action
-				this._actions.push(name);
-				this.log('Added action',name);
-			} else if (type=='Boolean') { //Return type is 'boolean' item is condition
-				this._conditions.push(name);
-				this.log('Added condition', name);
+		for (var callName in info.api) {
+			let callType = info.api[callName];
+			if (callType=='null') { //Return type is 'null': item is action
+				this._actions.push(callName);
+				this.log('Added action',callName);
+			} else if (callType=='Boolean') { //Return type is 'boolean' item is condition
+				this._conditions.push(callName);
+				this.log('Added condition', callName);
 			} else {
 				console.log('IGNORED UNKNOWN API FUNC',name,type);
 			}
-		})
+		}
 	}
 	
 	deviceUpdateLocalAddress( callback ) {
