@@ -118,7 +118,7 @@ class HomeyduinoDevice extends Homey.Device {
 				this._conditions.push(callName);
 				this.log('Added condition', callName);
 			} else {
-				console.log('IGNORED UNKNOWN API FUNC',name,type);
+				console.log('IGNORED UNKNOWN API TYPE',callName,callType);
 			}
 		}
 	}
