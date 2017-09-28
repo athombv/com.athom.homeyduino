@@ -228,7 +228,7 @@ class HomeyduinoDevice extends Homey.Device {
 				}
 			}
 			
-			return this.device.query(args.action, value).then( (res) => {
+			return this.device.query(args.condition, value).then( (res) => {
 				//console.log('Condition returned:',res);
 				//console.log('typeof result',typeof res);
 				return Promise.resolve(res);

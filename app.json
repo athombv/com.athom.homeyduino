@@ -244,7 +244,7 @@
 						"filter": "driver_id=homeyduino"
 					},
 					{
-						"name": "action",
+						"name": "condition",
 						"type": "autocomplete",
 						"placeholder": {
 							"en": "Condition",
@@ -273,7 +273,7 @@
 						"filter": "driver_id=homeyduino"
 					},
 					{
-						"name": "action",
+						"name": "condition",
 						"type": "autocomplete",
 						"placeholder": {
 							"en": "Condition",
@@ -303,7 +303,7 @@
 						"filter": "driver_id=homeyduino"
 					},
 					{
-						"name": "action",
+						"name": "condition",
 						"type": "autocomplete",
 						"placeholder": {
 							"en": "Condition",
@@ -324,7 +324,7 @@
 						"filter": "driver_id=homeyduino"
 					},
 					{
-						"name": "action",
+						"name": "condition",
 						"type": "autocomplete",
 						"placeholder": {
 							"en": "Condition",
