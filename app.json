@@ -142,7 +142,7 @@
 					},
 					{
 						"name": "action",
-						"type": "text",
+						"type": "autocomplete",
 						"placeholder": {
 							"en": "Action",
 							"nl": "Actie"
@@ -171,7 +171,7 @@
 					},
 					{
 						"name": "action",
-						"type": "text",
+						"type": "autocomplete",
 						"placeholder": {
 							"en": "Action",
 							"nl": "Actie"
@@ -201,7 +201,7 @@
 					},
 					{
 						"name": "action",
-						"type": "text",
+						"type": "autocomplete",
 						"placeholder": {
 							"en": "Action",
 							"nl": "Actie"
@@ -222,7 +222,7 @@
 					},
 					{
 						"name": "action",
-						"type": "text",
+						"type": "autocomplete",
 						"placeholder": {
 							"en": "Action",
 							"nl": "Actie"
@@ -245,10 +245,10 @@
 					},
 					{
 						"name": "action",
-						"type": "text",
+						"type": "autocomplete",
 						"placeholder": {
-							"en": "Action",
-							"nl": "Actie"
+							"en": "Condition",
+							"nl": "Voorwaarde"
 						}
 					},
 					{
@@ -274,10 +274,10 @@
 					},
 					{
 						"name": "action",
-						"type": "text",
+						"type": "autocomplete",
 						"placeholder": {
-							"en": "Action",
-							"nl": "Actie"
+							"en": "Condition",
+							"nl": "Voorwaarde"
 						}
 					},
 					{
@@ -304,10 +304,10 @@
 					},
 					{
 						"name": "action",
-						"type": "text",
+						"type": "autocomplete",
 						"placeholder": {
-							"en": "Action",
-							"nl": "Actie"
+							"en": "Condition",
+							"nl": "Voorwaarde"
 						}
 					}
 				]
@@ -325,10 +325,10 @@
 					},
 					{
 						"name": "action",
-						"type": "text",
+						"type": "autocomplete",
 						"placeholder": {
-							"en": "Action",
-							"nl": "Actie"
+							"en": "Condition",
+							"nl": "Voorwaarde"
 						}
 					}
 				]
