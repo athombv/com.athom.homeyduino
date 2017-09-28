@@ -130,7 +130,6 @@ class HomeyduinoDevice extends Homey.Device {
 				this.setAvailable();
 				this.available = true;
 				
-				this.device.setTriggerCb(this.onTriggered);
 				this.device.subscribe().then( (res) => {
 					console.log('* Subscribed to triggers: ',res);
 				}).catch( (err) => {
