@@ -33,6 +33,9 @@ class HomeyduinoDevice extends Homey.Device {
 				.then( this.log )
 				.catch( this.error );*/
 		this.available = false;
+		
+		this._actions = [];
+		this._conditions = [];
 
 		this.deviceInit();
 	}
@@ -84,6 +87,23 @@ class HomeyduinoDevice extends Homey.Device {
 		return this.DeviceName;
 	}
 	
+	onApiChange(info) {
+		this._actions = []; //Clear actions
+		this._conditions = []; //Clear conditions
+		this.log('Api changed.');
+		info.api.forEach((type,name) => {
+			if (type=='null') { //Return type is 'null': item is action
+				this._actions.push(name);
+				this.log('Added action',name);
+			} else if (type=='Boolean') { //Return type is 'boolean' item is condition
+				this._conditions.push(name);
+				this.log('Added condition', name);
+			} else {
+				console.log('IGNORED UNKNOWN API FUNC',name,type);
+			}
+		})
+	}
+	
 	deviceUpdateLocalAddress( callback ) {
 		callback = callback || function(){};
 		let cloud = Homey.ManagerCloud;
@@ -109,13 +129,20 @@ class HomeyduinoDevice extends Homey.Device {
 				this.log("Homeyduino",this.deviceName,"has become available.");
 				this.setAvailable();
 				this.available = true;
+				this.device.setApiCb(updateActionsAndConditions);
+				
 				this.device.setTriggerCb(this.onTriggered);
 				this.device.subscribe().then( (res) => {
 					console.log('* Subscribed to triggers: ',res);
 				}).catch( (err) => {
 					console.log('* Could not subscribe:', err);
 				});
+				
 				this.device.on('trigger', this.onTriggered.bind(this));
+				this.device.on('api', this.onApiChange.bind(this));
+				
+				//Fill autocompletes
+				this.onApiChange({"device":this.device, "api":this.device.getOpt('api')});
 			});
 		}
 	}
