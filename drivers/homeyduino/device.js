@@ -87,6 +87,24 @@ class HomeyduinoDevice extends Homey.Device {
 		return this.DeviceName;
 	}
 	
+	getActions() {
+		let results = [];
+		for (var action in this._actions) {
+			results.push({"name":this._actions[action]});
+			
+		}
+		return results;
+	}
+	
+	getConditions() {
+		let results = [];
+		for (var condition in this._conditions) {
+			results.push({"name":this._conditions[condition]});
+			
+		}
+		return results;
+	}
+	
 	onApiChange(info) {
 		this._actions = []; //Clear actions
 		this._conditions = []; //Clear conditions
@@ -194,7 +212,7 @@ class HomeyduinoDevice extends Homey.Device {
 				}
 			}
 			
-			return this.device.query(args.action, value).then( (res) => {
+			return this.device.query(args.action.name, value).then( (res) => {
 				return Promise.resolve(res);
 			}).catch( (err) => {
 				console.log('Command returned error:',err);
@@ -228,7 +246,7 @@ class HomeyduinoDevice extends Homey.Device {
 				}
 			}
 			
-			return this.device.query(args.condition, value).then( (res) => {
+			return this.device.query(args.condition.name, value).then( (res) => {
 				//console.log('Condition returned:',res);
 				//console.log('typeof result',typeof res);
 				return Promise.resolve(res);

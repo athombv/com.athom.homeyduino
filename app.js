@@ -35,29 +35,45 @@ class HomeyduinoApp extends Homey.App {
 		
 		let numberAction = new Homey.FlowCardAction("number_action")
 			.register()
-			.registerRunListener(this.onAction.bind(this));
+			.registerRunListener(this.onAction.bind(this))
+			.getArgument('action')
+			.registerAutocompleteListener(this.onActionAutocomplete.bind(this));
 		let textAction = new Homey.FlowCardAction("text_action")
 			.register()
-			.registerRunListener(this.onAction.bind(this));
+			.registerRunListener(this.onAction.bind(this))
+			.getArgument('action')
+			.registerAutocompleteListener(this.onActionAutocomplete.bind(this));
 		let booleanAction = new Homey.FlowCardAction("boolean_action")
 			.register()
-			.registerRunListener(this.onAction.bind(this));
+			.registerRunListener(this.onAction.bind(this))
+			.getArgument('action')
+			.registerAutocompleteListener(this.onActionAutocomplete.bind(this));
 		let voidAction = new Homey.FlowCardAction("void_action")
 			.register()
-			.registerRunListener(this.onAction.bind(this));
+			.registerRunListener(this.onAction.bind(this))
+			.getArgument('action')
+			.registerAutocompleteListener(this.onActionAutocomplete.bind(this));
 			
 		let numberCondition = new Homey.FlowCardCondition("number_condition")
 			.register()
-			.registerRunListener(this.onCondition.bind(this));
+			.registerRunListener(this.onCondition.bind(this))
+			.getArgument('condition')
+			.registerAutocompleteListener(this.onConditionAutocomplete.bind(this));
 		let textCondition = new Homey.FlowCardCondition("text_condition")
 			.register()
-			.registerRunListener(this.onCondition.bind(this));
+			.registerRunListener(this.onCondition.bind(this))
+			.getArgument('condition')
+			.registerAutocompleteListener(this.onConditionAutocomplete.bind(this));
 		let booleanCondition = new Homey.FlowCardCondition("boolean_condition")
 			.register()
-			.registerRunListener(this.onCondition.bind(this));
+			.registerRunListener(this.onCondition.bind(this))
+			.getArgument('condition')
+			.registerAutocompleteListener(this.onConditionAutocomplete.bind(this));
 		let voidCondition = new Homey.FlowCardCondition("void_condition")
 			.register()
-			.registerRunListener(this.onCondition.bind(this));
+			.registerRunListener(this.onCondition.bind(this))
+			.getArgument('condition')
+			.registerAutocompleteListener(this.onConditionAutocomplete.bind(this));
 	}
 	
 	onAction( args, state ) {
@@ -79,6 +95,26 @@ class HomeyduinoApp extends Homey.App {
 			return Promise.reject("Condition is not a function.");
 		}
 		return args.device.condition(args);		
+	}
+	
+	onActionAutocomplete(query, args) {
+		//console.log('actionautocomplete query',util.inspect(query, {depth: null}));
+		//console.log('actionautocomplete args',util.inspect(args, {depth: null}));
+		let results = args.device.getActions();
+		
+		results = results.filter( result => {
+			return result.name.toLowerCase().indexOf( query.toLowerCase() ) > -1;
+		});
+		return Promise.resolve( results );
+	}
+	
+	onConditionAutocomplete(query, args) {
+		let results = args.device.getConditions();
+		
+		results = results.filter( result => {
+			return result.name.toLowerCase().indexOf( query.toLowerCase() ) > -1;
+		});
+		return Promise.resolve( results );
 	}
 }
 
