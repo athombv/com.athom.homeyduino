@@ -129,7 +129,6 @@ class HomeyduinoDevice extends Homey.Device {
 				this.log("Homeyduino",this.deviceName,"has become available.");
 				this.setAvailable();
 				this.available = true;
-				this.device.setApiCb(updateActionsAndConditions);
 				
 				this.device.setTriggerCb(this.onTriggered);
 				this.device.subscribe().then( (res) => {
@@ -138,11 +137,11 @@ class HomeyduinoDevice extends Homey.Device {
 					console.log('* Could not subscribe:', err);
 				});
 				
-				this.device.on('trigger', this.onTriggered.bind(this));
-				this.device.on('api', this.onApiChange.bind(this));
-				
 				//Fill autocompletes
 				this.onApiChange({"device":this.device, "api":this.device.getOpt('api')});
+				
+				this.device.on('trigger', this.onTriggered.bind(this));
+				this.device.on('api', this.onApiChange.bind(this));
 			});
 		}
 	}
