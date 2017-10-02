@@ -148,6 +148,7 @@ class HomeyduinoDevice extends Homey.Device {
 				this.log("Homeyduino",this.deviceName,"has become available.");
 				this.setAvailable();
 				this.available = true;
+				this.device.setOpt('paired', true);
 				
 				this.device.subscribe().then( (res) => {
 					console.log('* Subscribed to triggers: ',res);
@@ -160,6 +161,7 @@ class HomeyduinoDevice extends Homey.Device {
 				
 				this.device.on('trigger', this.onTriggered.bind(this));
 				this.device.on('api', this.onApiChange.bind(this));
+				this.device.on('master', this.onMasterChange.bind(this));
 			});
 		}
 	}
@@ -257,6 +259,19 @@ class HomeyduinoDevice extends Homey.Device {
 		} catch(e) {
 			console.log('Exception while executing condition',e);
 			return Promise.reject('Exception while executing condition');
+		}
+	}
+	
+	onMasterChange( info ) {
+		if (this.device.getOpt('subscribed')) {
+			this.log("onMasterChange: re-subscribing...");
+			this.device.subscribe().then( (res) => {
+				console.log('* Subscribed to triggers: ',res);
+			}).catch( (err) => {
+				console.log('* Could not subscribe:', err);
+			});
+		} else {
+			this.log("onMasterChange: not subscribed");
 		}
 	}
 }
