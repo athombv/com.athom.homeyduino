@@ -109,16 +109,17 @@ class HomeyduinoDevice extends Homey.Device {
 		this._actions = []; //Clear actions
 		this._conditions = []; //Clear conditions
 		this.log('Api changed.');
-		for (var callName in info.api) {
-			let callType = info.api[callName];
-			if (callType=='null') { //Return type is 'null': item is action
+		for (var callId in info.api) {
+			let callName = info.api[callId]['name'];
+			let callType = info.api[callId]['type'];
+			if (callType=='act') {
 				this._actions.push(callName);
 				this.log('Added action',callName);
-			} else if (callType=='Boolean') { //Return type is 'boolean' item is condition
+			} else if (callType=='con') {
 				this._conditions.push(callName);
 				this.log('Added condition', callName);
 			} else {
-				console.log('IGNORED UNKNOWN API TYPE',callName,callType);
+				console.log('IGNORED UNKNOWN API TYPE',callType,callName);
 			}
 		}
 	}
@@ -214,7 +215,7 @@ class HomeyduinoDevice extends Homey.Device {
 				}
 			}
 			
-			return this.device.query(args.action.name, value).then( (res) => {
+			return this.device.query(args.action.name, 'act', value).then( (res) => {
 				return Promise.resolve(res);
 			}).catch( (err) => {
 				console.log('Command returned error:',err);
@@ -248,7 +249,7 @@ class HomeyduinoDevice extends Homey.Device {
 				}
 			}
 			
-			return this.device.query(args.condition.name, value).then( (res) => {
+			return this.device.query(args.condition.name, 'con', value).then( (res) => {
 				//console.log('Condition returned:',res);
 				//console.log('typeof result',typeof res);
 				return Promise.resolve(res);

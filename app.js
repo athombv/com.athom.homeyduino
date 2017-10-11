@@ -28,8 +28,9 @@ class HomeyduinoApp extends Homey.App {
 			console.log('* API:');
 			let api = device.getOpt('api');
 			for (var call in api) {
-				var rettype = api[call];
-				console.log(' - '+call+' ('+rettype+')');
+				var retname = api[call]['name'];
+				var rettype = api[call]['type'];
+				console.log(' - '+call+'. '+rettype+': '+retname);
 			}
 		}).start();
 		
