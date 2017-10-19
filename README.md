@@ -7,3 +7,9 @@ Feedback is welcome, but do not expect to receive any support for this project. 
 This Homey app allows you easily to connect your own Arduino based creations with your Homey using ethernet or WiFi.
 
 This app is ment to be used in combination with the Homey Arduino library.
+
+# Usage
+
+Download the Homey Arduino library from it's repository (https://github.com/athombv/homey-arduino-library) and add the library to Arduino (Sketch -> Include Library -> Add .ZIP Library...).
+
+Then clone this repository recursively ( git clone --recursive "https://github.com/athombv/com.athom.arduino") and deploy the app to your Homey (athom project --install)
