@@ -12,25 +12,28 @@ const Arduino = require("homey-arduino");
 const util = require('util');
 
 class HomeyduinoApp extends Homey.App {
-
+	
 	onInit() {
 		//Start discovery broadcast
 		this.discovery = new Arduino.ArduinoDiscovery({
-			debug: false,
+			debugEmit: true,
 			broadcastInterval: 10 * 1000 //Every 10 seconds
 		});
 		
+		this.discovery.on('debug', this.onDiscoveryDebug.bind(this));
+		
 		this.discovery.on('discover', device => {
-			console.log('New device:');
-			console.log('* ID:', device.getOpt('id'));
-			console.log('* Address:',device.getOpt('address')+':'+device.getOpt('port'));
-			console.log('* Local webserver port: ', device.getOpt('localPort'));
-			console.log('* API:');
+			/*this.log('New device:');
+			this.log('* ID:', device.getOpt('id'));
+			this.log('* Address:',device.getOpt('address')+':'+device.getOpt('port'));
+			this.log('* Local webserver port: ', device.getOpt('localPort'));
+			this.log('* API:');
 			let api = device.getOpt('api');
 			for (var call in api) {
-				var rettype = api[call];
-				console.log(' - '+call+' ('+rettype+')');
-			}
+				var retname = api[call]['name'];
+				var rettype = api[call]['type'];
+				this.log(' - '+call+'. '+rettype+': '+retname);
+			}*/
 		}).start();
 		
 		let numberAction = new Homey.FlowCardAction("number_action")
@@ -76,16 +79,21 @@ class HomeyduinoApp extends Homey.App {
 			.registerAutocompleteListener(this.onConditionAutocomplete.bind(this));
 	}
 	
+	onDiscoveryDebug(text) {
+		if (typeof text == "array") text = text.join(" ");
+		this.log('[njs-discovery]',text);
+	}
+	
 	onAction( args, state ) {
 		if (typeof args.device.action !== 'function') {
 			return Promise.reject("Action is not a function.");
 		}
 		return args.device.action(args).then( (res) => {
-			console.log("onAction ok",res);
-			console.log("onAction typeof",typeof res);
+			this.log("onAction ok",res);
+			this.log("onAction typeof",typeof res);
 			return Promise.resolve(res);
 		}).catch( (err) => {
-			console.log("onAction error",err);
+			this.log("onAction error",err);
 			return Promise.reject(err);
 		});
 	}
@@ -98,22 +106,26 @@ class HomeyduinoApp extends Homey.App {
 	}
 	
 	onActionAutocomplete(query, args) {
-		//console.log('actionautocomplete query',util.inspect(query, {depth: null}));
-		//console.log('actionautocomplete args',util.inspect(args, {depth: null}));
 		let results = args.device.getActions();
+				
+		//if (!results.includes(query)) results.push({"name":query});
 		
 		results = results.filter( result => {
 			return result.name.toLowerCase().indexOf( query.toLowerCase() ) > -1;
 		});
+		
 		return Promise.resolve( results );
 	}
 	
 	onConditionAutocomplete(query, args) {
 		let results = args.device.getConditions();
 		
+		//if (!results.includes(query)) results.push({"name":query});
+		
 		results = results.filter( result => {
 			return result.name.toLowerCase().indexOf( query.toLowerCase() ) > -1;
 		});
+				
 		return Promise.resolve( results );
 	}
 }
