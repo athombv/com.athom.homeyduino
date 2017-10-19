@@ -17,6 +17,55 @@
 	"flow": {
 		"triggers": [
 			{
+				"id": "debug_trigger",
+				"title": {
+					"en": "Trigger (debug)"
+				},
+				"args": [
+					{
+						"name": "device",
+						"type": "device",
+						"filter": "driver_id=homeyduino"
+					}
+				],
+				"tokens": [
+				{
+					"name": "number",
+					"type": "number",
+					"title": {
+						"en": "Number"
+					}
+				},
+				{
+					"name": "string",
+					"type": "string",
+					"title": {
+						"en": "String"
+					}
+				},
+				{
+					"name": "boolean",
+					"type": "boolean",
+					"title": {
+						"en": "Boolean"
+					}
+				},				{
+					"name": "trigger",
+					"type": "string",
+					"title": {
+						"en": "Trigger",
+						"nl": "Trigger"
+					}
+				},				{
+					"name": "type",
+					"type": "string",
+					"title": {
+						"en": "Type",
+						"nl": "Type"
+					}
+				}]
+			},
+			{
 				"id": "number_trigger",
 				"title": {
 					"en": "Trigger (number)"
@@ -29,7 +78,7 @@
 					},
 					{
 						"name": "trigger",
-						"type": "text",
+						"type": "autocomplete",
 						"placeholder": {
 							"en": "Trigger",
 							"nl": "Trigger"
@@ -59,7 +108,7 @@
 					},
 					{
 						"name": "trigger",
-						"type": "text",
+						"type": "autocomplete",
 						"placeholder": {
 							"en": "Trigger",
 							"nl": "Trigger"
@@ -89,7 +138,7 @@
 					},
 					{
 						"name": "trigger",
-						"type": "text",
+						"type": "autocomplete",
 						"placeholder": {
 							"en": "Trigger",
 							"nl": "Trigger"
@@ -119,7 +168,7 @@
 					},
 					{
 						"name": "trigger",
-						"type": "text",
+						"type": "autocomplete",
 						"placeholder": {
 							"en": "Trigger",
 							"nl": "Trigger"
