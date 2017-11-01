@@ -1,0 +1,223 @@
+{
+  "name": "Arduino Leonardo",
+  "icon": "uno.svg",
+  "network": {
+    "Ethernet shield v2":{
+      "needmac": true
+    },
+   "Ethernet shield v1":{
+      "needmac": true
+    }
+  },
+  "pins": {
+    "0": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": false,
+        "out": false
+      }
+    },
+    "1": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": false,
+        "out": false
+      }
+    },
+    "2": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": false,
+        "out": false
+      }
+    },
+    "3": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": false,
+        "out": true
+      }
+    },
+    "4": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": false,
+        "out": false
+      }
+    },
+    "5": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": false,
+        "out": true
+      }
+    },
+    "6": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": false,
+        "out": true
+      }
+    },
+    "7": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": false,
+        "out": false
+      }
+    },
+    "8": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": false,
+        "out": false
+      }
+    },
+    "9": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": false,
+        "out": true
+      }
+    },
+    "10": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": false,
+        "out": true
+      }
+    },
+    "11": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": false,
+        "out": true
+      }
+    },
+    "12": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": false,
+        "out": false
+      }
+    },
+    "13": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": false,
+        "out": false
+      }
+    },
+    "A0": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": true,
+        "out": false
+      }
+    },
+    "A1": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": true,
+        "out": false
+      }
+    },
+    "A2": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": true,
+        "out": false
+      }
+    },
+    "A3": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": true,
+        "out": false
+      }
+    },
+    "A4": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": true,
+        "out": false
+      }
+    },
+    "A5": {
+      "digital": {
+        "in": true,
+        "out": true
+      },
+      "analog": {
+        "in": true,
+        "out": false
+      }
+    }
+  },
+  "special": {
+    "Serial": {
+      "pins": ["0", "1"]
+    },
+    "i2c": {
+      "pins": ["2", "3"]
+    }
+    
+  }
+} 

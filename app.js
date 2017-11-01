@@ -81,6 +81,21 @@ class HomeyduinoApp extends Homey.App {
 	
 	onDiscoveryDebug(text) {
 		if (typeof text == "array") text = text.join(" ");
+		if (typeof text == "object") {
+			var obj = text
+			text = ""
+			var elem = ""
+			var i = 0
+			while(true) {
+				elem = obj[i];
+				i++;
+				if (typeof elem=="string") {
+					text = text + elem + " ";
+				} else {
+					break;
+				}
+			}
+		}
 		this.log('[njs-discovery]',text);
 	}
 	
