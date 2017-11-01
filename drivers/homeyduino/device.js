@@ -152,6 +152,7 @@ class HomeyduinoDevice extends Homey.Device {
 				//User needs to remove the device and pair again to update capabilities!
 				//It DOES update the listeners
 				this.registerCapabilityListener(callName, this.capability.bind(this, callName));
+				this.updateCapabilityValue(callName);
 			} else {
 				this.log('Warning: ignored API',callName,'because type',callType,'is unknown.');
 			}
@@ -160,6 +161,21 @@ class HomeyduinoDevice extends Homey.Device {
 	
 	getCapabilities() {
 		return this._capabilities;
+	}
+	
+	updateCapabilityValue(capability) {
+		this.device.query(capability, 'cap', '', true).then( (value) => {
+			if (typeof value != "undefined") {
+				this.log("Set initial capabilty value of",capability,"to",typeof value,value);
+				this.setCapabilityValue(capability, value).catch( (err) => {
+					this.log("Could not set initial capability value:",err);
+				});
+			} else {
+				this.log("No initial value available for capability",capability);
+			}
+		}).catch( (err) => {
+			this.log('Get capability value returned error:',err);
+		});
 	}
 		
 	/*updateCapabilities() {
@@ -222,7 +238,22 @@ class HomeyduinoDevice extends Homey.Device {
 	}
 	
 	onDeviceDebug(text) {
-		if (typeof text == "array") text = text.join(" ");
+		if (typeof text == "array") text = text.join(" "); //Array to string
+		if (typeof text == "object") { //Object to string
+			var obj = text
+			text = ""
+			var elem = ""
+			var i = 0
+			while(true) {
+				elem = obj[i];
+				i++;
+				if (typeof elem=="string") {
+					text = text + elem + " ";
+				} else {
+					break;
+				}
+			}
+		}
 		this.log('[njs-device]',text);
 	}
 	

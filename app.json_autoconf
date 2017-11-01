@@ -1,0 +1,14 @@
+,
+		{
+			"id": "autoconf",
+			"name": {
+				"en": "Autoconf"
+			},
+			"class": "other",
+			"capabilities": [],
+			"pair": [
+				{
+					"id": "start"
+				}
+			]
+		} 
