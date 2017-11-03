@@ -1,0 +1,48 @@
+<div id="error" style="display:none;">
+	<p data-i18n="manager.drivers.www.window_close"></p>
+</div>
+
+<script type="text/javascript">
+Homey.setTitle( __('manager.drivers.www.title_adding') );
+
+if (window.showManualForm) {
+	var device_ip = document.getElementById("manual-form").elements['ip'].value;
+	
+	var pairInfo = {"ip":device_ip};
+
+	Homey.emit( 'pairManually', pairInfo, function ( err, result ) {
+		console.log("addManualDeviceResult",result,err);
+		if (err) {
+			console.log("pairManually returned error: "+err);
+			Homey.setTitle( __('pair.manual.error_title') );
+			$('div#error').prepend('<p>' + err.toString() + '</p>');
+			$('div#error').show();
+			hideLoading();
+			Homey.setNavigationClose();
+		} else {
+			var id = JSON.stringify(result.data);
+			window.selected_devices.push(id);
+			window.found_devices[id] = result;
+			//console.log("Added manually added device to list",result);
+			goToNextStep();
+		}
+	});	
+} else {
+	if( window.selected_devices.length > 0 ) {
+		goToNextStep();
+	} else {
+		Homey.done();
+	}
+}
+
+function goToNextStep() {
+	hideLoading();
+	Homey.showView("rc_cfg_board");
+}
+
+function hideLoading() {
+	$('.verify-manual-input-loading').fadeOut(200);
+}
+</script>
+
+<i class="loading verify-manual-input-loading fa fa-cog fa-spin"></i>

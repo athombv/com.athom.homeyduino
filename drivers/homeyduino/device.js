@@ -5,12 +5,63 @@ const Arduino = require("homey-arduino");
 const util = require('util');
 
 class HomeyduinoDevice extends Homey.Device {
+	
+	constructor(...args) {
+		super(...args);
+		
+		this.onArduinoEmit = this.onArduinoEmit.bind(this);
+		this.onApiChange = this.onApiChange.bind(this);
+		this.onMasterChange = this.onMasterChange.bind(this);
+		this.onDeviceDebug = this.onDeviceDebug.bind(this);
+		this.onNetworkChange = this.onNetworkChange.bind(this);
+	}
 
 	onInit() {
 		this.deviceName = this.getName();
-		let settings = this.getSettings();	
+		let settings = this.getSettings();
 		
-		//this.log("onInit() for",this.deviceName);
+		this.log("typeof settings.id =",typeof settings.id);
+		
+		if ((typeof settings.id == "undefined")||(settings.id=="not-set-default-value")) {
+			/* This code is here because older versions of this app stored the
+			 * device id in the device data and not in the device settings.
+			 * (it is only needed to let people "upgrade" from earlier pre-releases)
+			 */
+			this.log("WARNING: DEVICE ID FETCHED USING OLD METHOD");
+			let data = this.getData();
+			if (typeof data.id == "undefined") {
+				this.log("Device ID: not set. No fallback!");
+				this.deviceId = "unknown";
+			} else {
+				this.log("Device ID: fallback to data value...");
+				this.deviceId = data.id;
+				
+				this.log("(Adding ID to device settings!)");
+				settings.id = data.id;
+				this.setSettings(settings);
+			}
+		} else {
+			this.deviceId = settings.id;
+		}
+		
+		/*if ((typeof settings.id == "undefined")||(settings.id=="not-set-default-value")) {
+			this.log("ERROR: DETECTED OLD HOMEYDUINO DEVICE ENTRY. PLEASE REMOVE AND ADD AGAIN!");
+			return;
+		}
+		
+		this.deviceId = settings.id;*/
+		
+		if (typeof settings.polling != 'undefined') {
+			this.polling = settings.polling;
+		} else {
+			this.polling = false;
+		}
+				
+		if (typeof settings.ip != 'undefined') {
+			this.ipAddress = settings.ip;
+		} else {
+			this.ipAddress = '0.0.0.0';
+		}
 		
 		this.trigger = [];
 		this.trigger.debug = new Homey.FlowCardTriggerDevice("debug_trigger").register();
@@ -43,6 +94,7 @@ class HomeyduinoDevice extends Homey.Device {
 		this._triggers = [];
 		this._capabilities = [];
 
+		this.listening = false;
 		this.deviceInit();
 	}
 	
@@ -92,7 +144,7 @@ class HomeyduinoDevice extends Homey.Device {
 	}
 
 	onDeleted() {
-		
+		this.removeListeners();
 	}
 	
 	available() {
@@ -153,6 +205,8 @@ class HomeyduinoDevice extends Homey.Device {
 				//It DOES update the listeners
 				this.registerCapabilityListener(callName, this.capability.bind(this, callName));
 				this.updateCapabilityValue(callName);
+			} else if (callType=='rc') {
+				this.log('Info: detected RC interface', callName);
 			} else {
 				this.log('Warning: ignored API',callName,'because type',callType,'is unknown.');
 			}
@@ -202,19 +256,57 @@ class HomeyduinoDevice extends Homey.Device {
 		});
 	}
 	
+	removeListeners() {
+		if (this.listening) {
+			this.listening = false;
+			this.device.removeListener('emit', this.onArduinoEmit);
+			this.device.removeListener('api', this.onApiChange);
+			this.device.removeListener('master', this.onMasterChange);
+			this.device.removeListener('debug', this.onDeviceDebug);
+			this.device.removeListener('network', this.onNetworkChange);
+			this.log("Removed event listeners.");
+		} else {
+			this.log("Not listening.");
+		}
+	}
+	
+	onNetworkChange(info) {
+		this.ipAddress = info.address;
+		let settings = this.getSettings();
+		settings.ip = this.ipAddress;
+		this.setSettings(settings);
+	}
+	
 	deviceInit() {
-		this.device = Homey.app.discovery.getDevice(this.getData().id);
+		if (this.listening) {
+			//First remove the listeners
+			this.removeListeners();
+		}
+		this.log("Searching for Arduino device "+this.deviceId+"...");
+		this.device = Homey.app.discovery.getDevice(this.deviceId);
 		
 		//this.log(util.inspect(this.device, {depth: null}));
 		
 		if ( this.device instanceof Error ) {
-			this.log("Homeyduino",this.deviceName,"is unavailable.");
+			this.log("Device ",this.deviceId," is not available.");
 			this.setUnavailable("Offline");
 			this.available = false;
+			
+			if (this.polling) {
+				this.log("Polling is enabled for device",this.deviceId," at IP ",this.ipAddress);
+				Homey.app.discovery.poll(this.ipAddress, (err, res) => {
+					if (err) {
+						this.log("Poll returned error:",err);
+					} else {
+						this.log("Poll success!");
+					}
+				});
+			}
+			
 		} else {
 			this.deviceUpdateLocalAddress( (err, res) => {
 				if (err) this.log("Could not get local address: ",err);
-				this.log("Homeyduino",this.deviceName,"has become available.");
+				this.log("Device ",this.deviceId," is available.");
 				this.setAvailable();
 				this.available = true;
 				this.device.setOpt('paired', true);
@@ -229,10 +321,12 @@ class HomeyduinoDevice extends Homey.Device {
 				this.onApiChange({"device":this.device, "api":this.device.getOpt('api')});
 				
 				//Add listeners
-				this.device.on('emit', this.onArduinoEmit.bind(this));
-				this.device.on('api', this.onApiChange.bind(this));
-				this.device.on('master', this.onMasterChange.bind(this));
-				this.device.on('debug', this.onDeviceDebug.bind(this));
+				this.device.on('emit', this.onArduinoEmit);
+				this.device.on('api', this.onApiChange);
+				this.device.on('master', this.onMasterChange);
+				this.device.on('debug', this.onDeviceDebug);
+				this.device.on('network', this.onNetworkChange);
+				this.listening = true;
 			});
 		}
 	}
@@ -299,11 +393,28 @@ class HomeyduinoDevice extends Homey.Device {
 		}
 	}
 	
-	onSettings( newSettingsObj, oldSettingsObj, changedKeysArr, callback ) {
-		/*this.p = newSettingsObj.p;
-		this.i = newSettingsObj.i;
-		this.d = newSettingsObj.d;
-		this.currentOutput = 0;*/
+	onSettings( oldSettings, newSettings, changedKeysArr, callback ) {
+		var reinit = false;
+		if (oldSettings.id != newSettings.id){
+			this.log("Device ID changed in settings. Calling deviceInit with new device "+newSettings.id+"...");
+			this.deviceId = newSettings.id;
+			reinit = true;
+		}
+
+		if (oldSettings.polling != newSettings.polling){
+			this.log('Polling changed to',newSettings.polling);
+			this.polling = newSettings.polling;
+			if ( ! this.device instanceof Error ) this.device.setOpt('polling', this.polling);
+		}
+		
+		if (oldSettings.ip != newSettings.ip){
+			this.log('IP address changed to',newSettings.ip);
+			this.ipAddress = newSettings.ip;
+		}
+					
+		if (reinit) {
+			this.deviceInit();
+		}
 		callback( null, true );
 	}
 	

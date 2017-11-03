@@ -1,0 +1,67 @@
+<div id="error" style="display:none;">
+	<p data-i18n="manager.drivers.www.window_close"></p>
+</div>
+
+<div id="manual-form-container" style="display:none;">
+	<form id="manual-form">
+		Please enter the IPv4 address of the device you want to connect with.
+		<table style="width: 100%">
+		<tr><td>IP address</td><td><input type="text" name="ip" /></td></tr>
+		</table>
+	</form>
+</div>
+
+<script type="text/javascript">
+Homey.setTitle( __('manager.drivers.www.title_adding') );
+var normalDevices = [];
+window.showManualForm = false;
+console.log("Input:",window.selected_devices);
+if( window.selected_devices.length > 0 ) {
+	try {
+		console.log("there are devices in the selected list");
+		window.selected_devices.forEach(function(selected_device) {
+			var device = window.found_devices[ selected_device ];
+			if (typeof device.data.special !== 'undefined') {
+				if (device.data.special=="message") {
+					throw 'MessageInDevicesListException';
+				}
+				if (device.data.special=="manual") {
+					//console.log("MANUAL DEVICE WAS SELECTED");
+					window.showManualForm = true;
+				}
+			} else {
+				//console.log("Normal device was selected:",device);
+				normalDevices.push(selected_device);
+			}
+		});
+	} catch (e) {
+		if ( e!== 'MessageInDevicesListException') {
+			throw e;
+		} else {
+			$('#error').prepend('<p>Message submitted as device?! Should not have happened, sorry! Please close the wizard and try again.</p>');
+			$('#error').show();
+			hideLoading();
+			Homey.setNavigationClose();
+		}
+	}
+	window.selected_devices = normalDevices;
+	
+	if (!window.showManualForm) {
+		console.log("Forwarded to next view:",window.selected_devices);
+		hideLoading();
+		Homey.showView("verify_manual_input");
+	} else {
+		Homey.setTitle( __('pair.manual.title') );
+		$('div#manual-form-container').show();
+		hideLoading();
+	}
+} else {
+	Homey.done();
+}
+
+function hideLoading() {
+	$('.add-manually-loading').fadeOut(200);
+}
+</script>
+
+<i class="loading add-manually-loading fa fa-cog fa-spin"></i>

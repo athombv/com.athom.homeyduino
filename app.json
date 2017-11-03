@@ -395,15 +395,78 @@
 			"capabilities": [],
 			"pair": [
 				{
-					"id": "list_devices",
-					"template": "list_devices",
+					"id": "custom_list_devices",
 					"navigation": {
-						"next": "add_devices"
+						"next": "add_manually"
+					},
+					"options": {
+                        "singular": true
+                    }
+				},
+				{
+					"id": "add_manually",
+					"navigation": {
+						"prev": "custom_list_devices",
+						"next": "verify_manual_input"
 					}
+				},
+				{
+					"id": "verify_manual_input"
+				},
+				{
+					"id": "rc_cfg_board",
+					"navigation": {
+						"prev": "custom_list_devices",
+						"next": "rc_cfg_pins"
+					}
+				},
+				{
+					"id": "rc_cfg_pins",
+					"navigation": {
+						"prev": "rc_cfg_board",
+						"next": "rc_apply"
+					}
+				},
+				{
+					"id": "rc_apply"
 				},
 				{
 					"id": "add_devices",
 					"template": "add_devices"
+				}
+			],
+			"settings": [
+				{
+					"type": "group",
+					"label": {
+						"en": "Device settings"
+					},
+					"children": [
+						{
+							"id": "id",
+							"type": "text",
+							"label": {
+								"en": "Device identifier"
+							},
+							"value": "not-set-default-value"
+						},
+						{
+							"id": "ip",
+							"type": "text",
+							"label": {
+								"en": "IP address"
+							},
+							"value": "0.0.0.0"
+						},
+						{
+							"id": "polling",
+							"type": "checkbox",
+							"label": {
+								"en": "Enable polling over TCP"
+							},
+							"value": false
+						}
+					]
 				}
 			]
 		}

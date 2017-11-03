@@ -1,0 +1,83 @@
+{
+	"pins": [{
+			"name": "0",
+			"modes": ["di", "dip", "dit", "ditp", "do"]
+		},
+		{
+			"name": "1",
+			"modes": ["di", "dip", "dit", "ditp", "do"]
+		},
+		{
+			"name": "2",
+			"modes": ["di", "dip", "dit", "ditp", "do"]
+		},
+		{
+			"name": "3",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ao"]
+		},
+		{
+			"name": "4",
+			"notAvailable": "SD card SPI chip-select"
+		},
+		{
+			"name": "5",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ao"]
+		},
+		{
+			"name": "6",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ao"]
+		},
+		{
+			"name": "7",
+			"modes": ["di", "dip", "dit", "ditp", "do"]
+		},
+		{
+			"name": "8",
+			"modes": ["di", "dip", "dit", "ditp", "do"]
+		},
+		{
+			"name": "9",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ao"]
+		},
+		{
+			"name": "10",
+			"notAvailable": "Wiznet SPI chip-select"
+		},
+		{
+			"name": "11",
+			"notAvailable": "SPI MOSI"
+		},
+		{
+			"name": "12",
+			"notAvailable": "SPI MISO"
+		},
+		{
+			"name": "13",
+			"notAvailable": "SPI SCK"
+		},
+		{
+			"name": "A0",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"]
+		},
+		{
+			"name": "A1",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"]
+		},
+		{
+			"name": "A2",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"]
+		},
+		{
+			"name": "A3",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"]
+		},
+		{
+			"name": "A4",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"]
+		},
+		{
+			"name": "A5",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"]
+		}
+	]
+}

@@ -1,0 +1,222 @@
+<div id="error" style="display:none;">
+	<p data-i18n="manager.drivers.www.window_close"></p>
+</div>
+
+<ul id="devices-list"></ul>
+
+<script type="text/html" id="devices-list-template">
+	<li class="device" style="{{:style}}">
+		{{if overrideContent}}
+			{{:overrideContent}}
+		{{else}}
+			<label for='device-{{:~stringify(data)}}' class="name">
+				<div class="overlay"></div>
+				{{if icon}}
+					<span class="icon" style="-webkit-mask-image: url({{:icon}})"></span>
+				{{/if}}
+				{{if _icon}}
+					<span class="icon" style="-webkit-mask-image: url({{:_icon}})"></span>
+				{{/if}}
+				{{if overrideName}}
+					<input class="name" type="hidden" value="{{:name}}" tabindex="-1" />
+					{{:overrideName}}
+				{{else}}
+					<input class="name" value="{{:name}}" tabindex="-1" />
+				{{/if}}
+				
+			</label>
+			{{if overrideCheckbox}}
+				{{:overrideCheckbox}}
+			{{else}}
+				<label for='device-{{:~stringify(data)}}' class="checkbox">
+					<input id='device-{{:~stringify(data)}}' data-data='{{:~stringify(data)}}' name="device" type="{{:~inputType}}" tabindex="{{:#index+1}}" />
+				</label>
+			{{/if}}
+		{{/if}}
+	</li>
+</script>
+
+<script type="text/javascript">
+
+var messageNoDevicesFound = {
+	"name": "message",
+	"data": {"special": "message"},
+	"overrideContent": Homey.__('pair.device_list.no_devices_detected'),
+	"style": "background-color: #FFCCCC; color: #000000; height: 115px; line-height: 16px; padding: 10px",
+	"notSelectable": true
+};
+
+let optionManual = {
+	"name": "manual",
+	"data": {"special": "manual"},
+	"overrideName": Homey.__('pair.device_list.manually_add'),
+	"style": "",
+	"icon": "../../../assets/icon_gauge.svg"
+}
+
+window.found_devices = {};
+window.selected_devices = []; // array of stringified device_data objects
+var inputType;
+var found_devices_list = [];
+var shiftKeyPressed = false;
+$(document).on('keyup keydown', function(e){
+	shiftKeyPressed = e.shiftKey
+});
+
+Homey.getOptions(function( err, viewOptions ) {
+	if( viewOptions && viewOptions.singular === true ) {
+		inputType = 'radio';
+	} else {
+		inputType = 'checkbox';
+	}
+	$(document).on('change', '#devices-list .checkbox input', function(e){
+		console.log("change",this);
+		if( shiftKeyPressed ) {
+	
+			var checkAll = $(this).prop('checked');
+	
+			$('#devices-list .checkbox input').not(this).each(function(){
+				$(this).prop('checked', checkAll)
+				selectDevice( this, checkAll );
+			})
+	
+		}
+	
+		selectDevice( this, $(this).prop('checked') );
+	
+	});
+	
+	Homey.emit('list_devices', false, function( err, devices ){
+		if( err ) {
+			$('#error').prepend('<p>' + err.toString() + '</p>');
+			$('#error').show();
+			hideLoading();
+			Homey.setNavigationClose();
+			found_devices_list = [];
+			render_devices();
+			return;
+		}
+	
+		devices = devices.filter(filterDevices);
+		found_devices_list = found_devices_list.concat(devices);
+		
+		if (found_devices_list.length < 1) {
+		  found_devices_list.push(messageNoDevicesFound);
+		}
+		
+		found_devices_list.push(optionManual);
+		
+		if( found_devices_list.length > 0 ) {
+			Homey.setTitle( __('pair.device_list.title') );
+			render_devices();
+		} else {
+			Homey.setTitle( __('manager.drivers.www.title_nonew') );
+			Homey.setNavigationClose();
+			hideLoading();
+			$('#error').show();
+		}
+	
+	});
+	
+	Homey.on('list_devices', function( devices, callback ){
+	
+		if( $('#error').is(':visible') ) return;
+	
+		devices
+			.filter(filterDevices)
+			.forEach(function(device){
+	
+				// find possibly duplicate
+				var duplicateIndex = findDuplicateDevice( device );
+				if( duplicateIndex > -1 ) {
+					found_devices_list[ duplicateIndex ] = device;
+				} else {
+					found_devices_list.push( device );
+				}
+	
+			});
+	
+		if( found_devices_list.length > 0 ) {
+			Homey.setTitle( __('manager.drivers.www.title_select') );
+			render_devices();
+		}
+	
+		callback( null, true );
+	})
+	
+});
+function render_devices() {
+	if( found_devices_list.length > 0 ) hideLoading();
+	
+	var selectedDeviceIndexes = [];
+	$('#devices-list li').each(function(i){
+		if( $(this).find('.checkbox input:checked').length ) {
+			selectedDeviceIndexes.push(i);
+		}
+	});
+	// render the views framework
+		
+	var devices_render = $('#devices-list-template').render( found_devices_list, {
+		stringify: JSON.stringify,
+		inputType: inputType
+	});
+			
+	$('#devices-list').html( devices_render );
+	found_devices_list.forEach(function(found_device){
+		window.found_devices[ JSON.stringify(found_device.data) ] = found_device;
+	})
+	selectedDeviceIndexes.forEach(function(selectedDeviceIndex){
+		$('#devices-list li:nth-child(' + (selectedDeviceIndex+1) + ') .checkbox input').prop('checked', true)
+	})
+	
+	if( inputType === 'radio' ) {
+		if( $('#devices-list li .checkbox input:checked').length < 1 ) {
+			if ((typeof found_devices_list[0]["notSelectable"] != 'undefined')&&(found_devices_list[0]["notSelectable"])) {
+				$('#devices-list li:nth-child(2) .checkbox input').prop('checked', true);
+				selectDevice( $('#devices-list li:nth-child(2) .checkbox input'), true );
+			} else {
+				$('#devices-list li:first-child .checkbox input').prop('checked', true);
+				selectDevice( $('#devices-list li:first-child .checkbox input'), true );
+			}
+		}
+	}
+}
+function selectDevice( element, checked ) {
+	var device_data = $(element).attr('data-data');
+	if( checked ) {
+		if(inputType === 'radio'){
+            window.selected_devices = [device_data];
+        } else {
+            window.selected_devices.push(device_data);
+        }
+	} else {
+		window.selected_devices = window.selected_devices.filter(function(selected_device){
+			return (selected_device != device_data);
+	})
+	}
+	$(element)
+		.closest('.device')
+		.toggleClass( 'selected', checked )
+}
+function hideLoading() {
+	$('.list-devices-loading').fadeOut(200);
+}
+function filterDevices(device){
+	return typeof device.data !== 'undefined';
+}
+
+function filterMessagesFromDevices(device){
+	return device.data.special !== 'message';
+}
+
+function findDuplicateDevice( device ) {
+	var index = -1;
+	for( var i = 0; i < found_devices_list.length; i++ ) {
+		if( JSON.stringify(found_devices_list[i].data) === JSON.stringify(device.data) )
+			return i;
+	}
+	return index;
+}
+</script>
+
+<i class="loading list-devices-loading fa fa-cog fa-spin"></i> 

@@ -1,10 +1,65 @@
 {
 	"pair": {
-		"title": "Homeyduino device",
-		"instruction": "",
-		"name": "Name",
-		"button": {
-			"add": "Add device"
+		"device_list": {
+			"title": "Add a Homeyduino device...",
+			"instruction": "",
+			"name": "Name",
+			"button": {
+				"add": "Add device"
+			},
+			"no_devices_detected": "<span style='font-size: 20px; line-height: 30px;'>Automatic discovery found no new devices</span><br />If you just plugged in your Arduino project then close the pairing wizard, wait about 30 seconds, then try opening the pairing wizard again. If no devices show up at all then please check if your router allows UDP broadcast messages. If UDP broadcasting is disabled then please enable it to allow for the automatic discovery to function.",
+			"manually_add": "&nbsp;Manually add a device..."
+		},
+		"manual": {
+			"title": "Manually add a device...",
+			"error_title": "An error occurred",
+			"ip_field_empty": "The ip address field can not be empty.",
+			"device_unreachable": "The device could not be reached!",
+			"error_timeout": "A timeout occurred while connecting to the device. Please check that your device is connected to the network."
+		},
+		"rc": {
+			"board": {
+				"title": "Select board type",
+				"info": "The device you are pairing with is set-up for remote configuration. Please provide the board type to continue setting up your device.",
+				"label": "Board type",
+				"bug": {
+					"title": "You've found a bug!",
+					"message": "An internal error occured. Can not continue."
+				},
+				"unknown": {
+					"title": "Unknown board type",
+					"message": "Your board is of an unknown type. Please send us the following information in a Github issue to allow us to add support for your board:"
+				},
+				"jsonError": {
+					"title": "An error occurred",
+					"message": "Something went wrong while fetching or parsing the boards list. Can not continue."
+				}
+			},
+			"pins": {
+				"title": "I/O configuration",
+				"info": "Please configure the pins of your %name%.",
+				"mode": {
+					"di": "Digital input",
+					"dip": "Digital input with pull-up",
+					"dit": "Digital input with trigger",
+					"ditp": "Digital input with pull-up and trigger",
+					"do": "Digital output",
+					"ao": "Analog output / PWM output",
+					"ai": "Analog input",
+					"aip": "Analog input with pull-up",
+					"ait": "Analog input with trigger",
+					"aitp": "Analog input with pull-up and trigger"
+				},
+				"jsonError": {
+					"title": "An error occurred",
+					"message": "Something went wrong while fetching or parsing the board information file for the board you selected. Can not continue."
+				}
+			},
+			"apply": {
+				"error": {
+					"title": "An error occurred"
+				}
+			}
 		}
 	}
 }
