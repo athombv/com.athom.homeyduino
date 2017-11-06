@@ -1,223 +1,113 @@
 {
-  "name": "Arduino Leonardo",
-  "icon": "uno.svg",
-  "network": {
-    "Ethernet shield v2":{
-      "needmac": true
-    },
-   "Ethernet shield v1":{
-      "needmac": true
-    }
-  },
-  "pins": {
-    "0": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": false,
-        "out": false
-      }
-    },
-    "1": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": false,
-        "out": false
-      }
-    },
-    "2": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": false,
-        "out": false
-      }
-    },
-    "3": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": false,
-        "out": true
-      }
-    },
-    "4": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": false,
-        "out": false
-      }
-    },
-    "5": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": false,
-        "out": true
-      }
-    },
-    "6": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": false,
-        "out": true
-      }
-    },
-    "7": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": false,
-        "out": false
-      }
-    },
-    "8": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": false,
-        "out": false
-      }
-    },
-    "9": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": false,
-        "out": true
-      }
-    },
-    "10": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": false,
-        "out": true
-      }
-    },
-    "11": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": false,
-        "out": true
-      }
-    },
-    "12": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": false,
-        "out": false
-      }
-    },
-    "13": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": false,
-        "out": false
-      }
-    },
-    "A0": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": true,
-        "out": false
-      }
-    },
-    "A1": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": true,
-        "out": false
-      }
-    },
-    "A2": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": true,
-        "out": false
-      }
-    },
-    "A3": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": true,
-        "out": false
-      }
-    },
-    "A4": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": true,
-        "out": false
-      }
-    },
-    "A5": {
-      "digital": {
-        "in": true,
-        "out": true
-      },
-      "analog": {
-        "in": true,
-        "out": false
-      }
-    }
-  },
-  "special": {
-    "Serial": {
-      "pins": ["0", "1"]
-    },
-    "i2c": {
-      "pins": ["2", "3"]
-    }
-    
-  }
-} 
+	"pins": [{
+			"name": "0",
+			"modes": ["di", "dip", "dit", "ditp", "do"]
+		},
+		{
+			"name": "1",
+			"modes": ["di", "dip", "dit", "ditp", "do"]
+		},
+		{
+			"name": "2",
+			"modes": ["di", "dip", "dit", "ditp", "do"]
+		},
+		{
+			"name": "3",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ao"],
+			"range": {
+				"ao": 255
+			}
+		},
+		{
+			"name": "4",
+			"notAvailable": "SD card SPI chip-select"
+		},
+		{
+			"name": "5",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ao"],
+			"range": {
+				"ao": 255
+			}
+		},
+		{
+			"name": "6",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ao"],
+			"range": {
+				"ao": 255
+			}
+		},
+		{
+			"name": "7",
+			"modes": ["di", "dip", "dit", "ditp", "do"]
+		},
+		{
+			"name": "8",
+			"modes": ["di", "dip", "dit", "ditp", "do"]
+		},
+		{
+			"name": "9",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ao"],
+			"range": {
+				"ao": 255
+			}
+		},
+		{
+			"name": "10",
+			"notAvailable": "Wiznet SPI chip-select"
+		},
+		{
+			"name": "11",
+			"notAvailable": "SPI MOSI"
+		},
+		{
+			"name": "12",
+			"notAvailable": "SPI MISO"
+		},
+		{
+			"name": "13",
+			"notAvailable": "SPI SCK"
+		},
+		{
+			"name": "A0",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
+			"range": {
+				"ai": 1023
+			}
+		},
+		{
+			"name": "A1",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
+			"range": {
+				"ai": 1023
+			}
+		},
+		{
+			"name": "A2",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
+			"range": {
+				"ai": 1023
+			}
+		},
+		{
+			"name": "A3",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
+			"range": {
+				"ai": 1023
+			}
+		},
+		{
+			"name": "A4",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
+			"range": {
+				"ai": 1023
+			}
+		},
+		{
+			"name": "A5",
+			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
+			"range": {
+				"ai": 1023
+			}
+		}
+	]
+}

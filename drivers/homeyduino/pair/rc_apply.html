@@ -17,9 +17,13 @@ if (window.rcApply) {
 	var form = document.getElementById("rc-pins-form");
 	for (var key in form.elements) {
 		if ((key.startsWith("pin-"))&&(!key.endsWith("-name"))&&(!key.endsWith("-range"))) {
+			//console.log("Processing key",key);
 			var mode = form.elements[key].value;
+			//console.log("Processing MODE = ",mode);
 			var name = key.replace("pin-","");
+			//console.log("Processing NAME = ",name);
 			var flowName = form.elements[key+"-name"].value;
+			//console.log("Processing FLOWNAME = ",flowName);
 			var range = null;
 			var rangeElement = form.elements[key+"-range"];
 			if (typeof rangeElement !== 'undefined') {
