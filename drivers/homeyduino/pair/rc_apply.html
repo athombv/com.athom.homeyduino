@@ -11,20 +11,25 @@ if (window.rcApply) {
 	var device = window.found_devices[deviceKey];
 	var settings = device.settings;
 	console.log("Settings before RC",settings);
-	
+
 	var pins = [];
-	
+
 	var form = document.getElementById("rc-pins-form");
 	for (var key in form.elements) {
-		if ((key.startsWith("pin-"))&&(!key.endsWith("-name"))) {
+		if ((key.startsWith("pin-"))&&(!key.endsWith("-name"))&&(!key.endsWith("-range"))) {
 			var mode = form.elements[key].value;
 			var name = key.replace("pin-","");
 			var flowName = form.elements[key+"-name"].value;
-			console.log('Adding pin config',name,flowName,mode);
-			pins.push({"name":name,"mode":mode,"flowName":flowName});
+			var range = null;
+			var rangeElement = form.elements[key+"-range"];
+			if (typeof rangeElement !== 'undefined') {
+				range = JSON.parse(rangeElement.value);
+			}
+			console.log('Adding pin config',name,flowName,mode,range);
+			pins.push({"name":name,"mode":mode,"flowName":flowName,"range":range});
 		}
 	}
-	
+
 	settings["rc"] = {
 		"board": {
 			"name": window.rcBoardName,
@@ -32,7 +37,7 @@ if (window.rcApply) {
 		},
 		"pins": pins
 	};
-	
+
 	console.log("Settings after RC",settings);
 	device.settings = settings;
 	window.found_devices[deviceKey] = device;

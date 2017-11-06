@@ -44,11 +44,11 @@
 	var bselect = document.getElementById("rc-board-form").elements['boardType'];
 	var folder = bselect.value;
 	var name = bselect[bselect.selectedIndex].text;
-	
+
 	window.rcApply = true;
 	window.rcBoardFolder = folder;
 	window.rcBoardName = name;
-		
+
 	openFile("rc/"+folder+"/board.svg", 2000, function(err, res) {
 		var svg = "&nbsp";
 		if (err) {
@@ -58,14 +58,14 @@
 			var svgObject = res.xhr.responseXML.documentElement;
 			svg = XMLS.serializeToString(svgObject);
 		}
-		
+
 		window.rcBoardSvg = svg;
-		
-		console.log("Loading board json...");		
+
+		console.log("Loading board json...");
 		$.getJSON('rc/'+folder+'/board.json').done(function(data) {
 			console.log("Got board.json");
 			var pins = renderPins(data.pins);
-			window.rcBoardInfo = data;			
+			window.rcBoardInfo = data;
 			var form = {
 				"information": __('pair.rc.pins.info').replace('%name%', name),
 				"pins": pins,
@@ -87,19 +87,26 @@
 			Homey.setNavigationClose();
 		});
 	});
-	
+
 function modeName(mode) {
 	return __('pair.rc.pins.mode.'+mode);
 }
-	
+
 function renderPins(pins) {
 	var ioSettings = "<tr><td>Pin</td><td>Name</td><td>Mode</td></tr>";
 	for (var key in pins) {
 		var pin = pins[key];
-		ioSettings += "<tr><td>"+pin.name+"</td><td><input type='text' size='8' name='pin-"+pin.name+"-name' value='pin"+pin.name+"'/></td><td>";
-		
+		ioSettings += "<tr><td>"+pin.name+"</td><td>";
+
+		if (typeof pin.notAvailable != 'undefined') {
+			ioSettings += "&nbsp;";
+		} else {
+			ioSettings += "<input type='text' size='8' name='pin-"+pin.name+"-name' value='pin"+pin.name+"'/>";
+		}
+
+		ioSettings += "</td><td>";
+
 		if (typeof pin.modes != 'undefined') {
-		
 			ioSettings += "<select name='pin-"+pin.name+"' onclick='updateAllPinFunctions();'>";
 			var selected = ' selected';
 			for (var modeKey in pin.modes) {
@@ -109,11 +116,15 @@ function renderPins(pins) {
 			}
 			ioSettings += "</select>";
 		}
-		
+
 		if (typeof pin.notAvailable != 'undefined') {
 			ioSettings += "<i>"+pin.notAvailable+"</i>";
 		}
-		
+
+		if (typeof pin.range != 'undefined') {
+			ioSettings += "<input type='hidden' name='pin-"+pin.name+"-range' value='"+JSON.stringify(pin.range)+"'/>";
+		}
+
 		ioSettings += "</td></tr>";
 	}
 	return ioSettings;
@@ -153,7 +164,7 @@ function setPinFunction(id, state) {
 			break;
 		case 'aip':
 			color = "#FFFF00";
-			break;	
+			break;
 		case 'ait':
 			color = "#5555FF";
 			break;
@@ -220,7 +231,7 @@ function openFile(url, timeout, callback) {
     xhr.timeout = timeout;
     xhr.send(null);
 }
-	
+
 function hideLoading() {
 	$('.rc-pins-loading').fadeOut(200);
 }
