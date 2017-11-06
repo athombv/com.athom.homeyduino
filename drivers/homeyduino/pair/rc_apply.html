@@ -1,0 +1,76 @@
+<div id="error" style="display:none;">
+	<p data-i18n="manager.drivers.www.window_close"></p>
+</div>
+
+<script type="text/javascript">
+Homey.setTitle( __('manager.drivers.www.title_adding') );
+
+if (window.rcApply) {
+	//Apply RC parameters to settings of RC capable device
+	var deviceKey = window.rcDevice;
+	var device = window.found_devices[deviceKey];
+	var settings = device.settings;
+	console.log("Settings before RC",settings);
+
+	var pins = [];
+
+	var form = document.getElementById("rc-pins-form");
+	for (var key in form.elements) {
+		if ((key.startsWith("pin-"))&&(!key.endsWith("-name"))&&(!key.endsWith("-range"))) {
+			//console.log("Processing key",key);
+			var mode = form.elements[key].value;
+			//console.log("Processing MODE = ",mode);
+			var name = key.replace("pin-","");
+			//console.log("Processing NAME = ",name);
+			var flowName = form.elements[key+"-name"].value;
+			//console.log("Processing FLOWNAME = ",flowName);
+			var range = null;
+			var rangeElement = form.elements[key+"-range"];
+			if (typeof rangeElement !== 'undefined') {
+				range = JSON.parse(rangeElement.value);
+			}
+			console.log('Adding pin config',name,flowName,mode,range);
+			pins.push({"name":name,"mode":mode,"flowName":flowName,"range":range});
+		}
+	}
+
+	settings["rc"] = {
+		"board": {
+			"name": window.rcBoardName,
+			"folder": window.rcBoardFolder
+		},
+		"pins": pins
+	};
+
+	console.log("Settings after RC",settings);
+	device.settings = settings;
+	window.found_devices[deviceKey] = device;
+	goToNextStep();
+} else {
+	//Just continue the pairing wizard normally
+	if( window.selected_devices.length > 0 ) {
+		goToNextStep();
+	} else {
+		Homey.done();
+	}
+}
+
+function goToNextStep() {
+	hideLoading();
+	Homey.showView("add_devices");
+}
+
+function failWithError(err) {
+	Homey.setTitle( __('pair.rc.apply.error.title') );
+	$('div#error').prepend(err);
+	$('div#error').show();
+	hideLoading();
+	Homey.setNavigationClose();
+}
+
+function hideLoading() {
+	$('.rc-apply-loading').fadeOut(200);
+}
+</script>
+
+<i class="loading rc-apply-loading fa fa-cog fa-spin"></i>
