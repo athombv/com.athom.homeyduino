@@ -22,7 +22,7 @@
 		"numAnalogInputs": 12
 	}],
 	"esp8266": [{
-		"name": "Generic ESP8266 module",
+		"name": "Generic ESP8266",
 		"folder": "esp8266/generic",
 		"numDigitalPins": 17,
 		"numAnalogPins": 1
@@ -34,18 +34,36 @@
 		"numAnalogPins": 1
 	},
 	{
+		"name": "WeMos D1 R1",
+		"folder": "esp8266/wemos_d1",
+		"numDigitalPins": 17,
+		"numAnalogPins": 1
+	},
+	{
 		"name": "WeMos D1 R2",
-		"folder": "esp8266/wemosd1r2",
+		"folder": "esp8266/wemos_d1-r2_mini",
 		"numDigitalPins": 17,
 		"numAnalogPins": 1
 	},
 	{
 		"name": "WeMos D1 mini",
-		"folder": "esp8266/wemosd1mini",
+		"folder": "esp8266/wemos_d1-r2_mini",
+		"numDigitalPins": 17,
+		"numAnalogPins": 1
+	},
+	{
+		"name": "Sparkfun Thing",
+		"folder": "esp8266/thing",
 		"numDigitalPins": 17,
 		"numAnalogPins": 1
 	}],
 	"esp32": [{
+		"name": "Generic ESP32",
+		"folder": "esp32/generic",
+		"numDigitalPins": 40,
+		"numAnalogPins": 16
+	},
+	{
 		"name": "ESP32 Dev Module",
 		"folder": "esp32/devmodule",
 		"numDigitalPins": 40,
