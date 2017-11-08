@@ -371,7 +371,7 @@ class HomeyduinoDevice extends Homey.Device {
 
 	rcConfigure() {
 		let settings = this.getSettings();
-		if (typeof settings.rc === undefined) return;
+		if (typeof settings.rc === "undefined") return;
 		this.log("Configuring RC parameters...");
 		this.log(" * Board:",settings.rc.board.name);
 
