@@ -85,7 +85,10 @@ class HomeyduinoDriver extends Homey.Driver {
 
 			var deviceDescriptor = {
 					"name": deviceName,
-					"data": { /* nothing here */ },
+					"data": { /* only used during pair wizard */
+						"id": deviceName,
+						"ip": deviceAddress
+					},
 					"settings": {
 						"id": deviceName,
 						"ip": deviceAddress,
@@ -162,7 +165,10 @@ class HomeyduinoDriver extends Homey.Driver {
 
 				var deviceDescriptor = {
 					"name": deviceName,
-					"data": { /* nothing here */ },
+					"data": { /* only used during pair wizard */
+						"id": deviceName,
+						"ip": deviceAddress
+					},
 					"settings": {
 						"id": deviceName,
 						"ip": deviceAddress,

@@ -1,11 +1,12 @@
 {
-	"id": "com.athom.arduino",
+	"id": "com.athom.homeyduino",
 	"sdk": 2,
 	"name": {
-		"en": "Arduino"
+		"en": "Homeyduino"
 	},
 	"description": {
-		"en": "Make your own devices using Arduino"
+		"en": "Make your own devices using Arduino",
+		"nl": "Maak je eigen apparaten met Arduino"
 	},
 	"category": "tools",
 	"version": "0.1.0",
@@ -651,8 +652,8 @@
 		{
 			"id": "homeyduino",
 			"name": {
-				"en": "Homeyduino",
-				"nl": "Homeyduino"
+				"en": "Arduino",
+				"nl": "Arduino"
 			},
 			"class": "other",
 			"capabilities": [],
