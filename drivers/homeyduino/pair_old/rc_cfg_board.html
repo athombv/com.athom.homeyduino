@@ -31,7 +31,6 @@
 	}
 	
 	if (!needRcStep) {
-		hideLoading();
 		console.log("No RC features needed, adding devices...");
 		Homey.showView("add_devices");
 	} else {
@@ -39,7 +38,6 @@
 		var boardTypeOptions = "";
 		$.getJSON('rc/boards.json').done(function(data) {
 			if (typeof data[device.arch] != 'undefined') {
-				var amountOfOptions = 0;
 				for(var board in data[device.arch]) {
 					console.log("Board",data[device.arch][board].name,data[device.arch][board].numDigitalPins,data[device.arch][board].numAnalogInputs, (device.numDigitalPins==data[device.arch][board].numDigitalPins), (device.numAnalogInputs==data[device.arch][board].numAnalogInputs));
 					if ((device.numDigitalPins==data[device.arch][board].numDigitalPins)&&(device.numAnalogInputs==data[device.arch][board].numAnalogInputs)) {
@@ -48,7 +46,6 @@
 						var option = "<option value='"+folder+"'>"+name+"</option>";
 						console.log("Adding board:",option);
 						boardTypeOptions+=option;
-						amountOfOptions++;
 					}
 				}
 			}
@@ -76,16 +73,8 @@
 				};
 				var form_render = $('#rc-board-form-template').render([form]);
 				$('div#rc-board-form-container').html(form_render);
-				
-				if (amountOfOptions>1) {
-					//More than one option: show form
-					$('div#rc-board-form-container').show();
-					hideLoading();
-				} else {
-					//Directly continue to pins
-					hideLoading();
-					Homey.showView("rc_cfg_pins");
-				}
+				$('div#rc-board-form-container').show();
+				hideLoading();
 			}
 		}).fail(function(jqxhr, textStatus, error) {
 			Homey.setTitle( __('pair.rc.board.jsonError.title') );

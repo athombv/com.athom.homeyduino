@@ -49,9 +49,6 @@ class HomeyduinoDriver extends Homey.Driver {
 			let deviceClass = device.getOpt('class');
 			let deviceType = device.getOpt('type');
 			let deviceApi = device.getOpt('api');
-			let deviceArch = device.getOpt('arch');
-			let deviceNumDigitalPins = parseInt(device.getOpt('numDigitalPins'));
-			let deviceNumAnalogInputs = parseInt(device.getOpt('numAnalogInputs'));
 			let deviceAddress = device.getOpt('address');
 
 			/* Filter: show only homeyduino devices */
@@ -68,7 +65,18 @@ class HomeyduinoDriver extends Homey.Driver {
 			/* Get capabilities from device API */
 
 			var deviceRc = false;
-
+			var deviceArch = 'unknown';
+			var deviceNumDigitalPins = 0;
+			var deviceNumAnalogInputs = 0;
+			
+			if (device.hasRc()) {
+				let rcInfo = device.getOpt('rc');
+				deviceRc = true;
+				deviceArch = rcInfo.arch;
+				deviceNumDigitalPins = rcInfo.numDigitalPins;
+				deviceNumAnalogInputs = rcInfo.numAnalogInputs;
+			}
+			
 			let capabilities = [];
 			for (var id in deviceApi) {
 				let name = deviceApi[id].name;
@@ -76,9 +84,9 @@ class HomeyduinoDriver extends Homey.Driver {
 				if (type=="cap") {
 					capabilities.push(name);
 				}
-				if (type=="rc") {
+				/*if (type=="rc") { //Also works, but we now have the hasRc function...
 					deviceRc = true;
-				}
+				}*/
 			}
 
 			/* Create deviceDescriptor */
@@ -140,9 +148,26 @@ class HomeyduinoDriver extends Homey.Driver {
 				let deviceClass = device.getOpt('class');
 				let deviceType = device.getOpt('type');
 				let deviceApi = device.getOpt('api');
-				let deviceArch = device.getOpt('arch');
-				let deviceNumDigitalPins = parseInt(device.getOpt('numDigitalPins'));
-				let deviceNumAnalogInputs = parseInt(device.getOpt('numAnalogInputs'));
+				
+				
+				var deviceRc = false;
+				var deviceArch = 'unknown';
+				var deviceNumDigitalPins = 0;
+				var deviceNumAnalogInputs = 0;
+				
+				if (device.hasRc()) {
+					let rcInfo = device.getOpt('rc');
+					this.log("RC",rcInfo,rcInfo.arch);
+					
+					
+					deviceRc = true;
+					deviceArch = rcInfo.arch;
+					deviceNumDigitalPins = rcInfo.numDigitalPins;
+					deviceNumAnalogInputs = rcInfo.numAnalogInputs;
+				} else {
+					this.log("No RC");
+				}
+				
 				let deviceAddress = data.ip;
 
 				/* Get capabilities from device API */
@@ -177,6 +202,7 @@ class HomeyduinoDriver extends Homey.Driver {
 					"class": deviceClass,
 					"capabilities": capabilities,
 					"api": deviceApi,
+					
 					"rc": deviceRc,
 					"arch": deviceArch,
 					"numDigitalPins": deviceNumDigitalPins,

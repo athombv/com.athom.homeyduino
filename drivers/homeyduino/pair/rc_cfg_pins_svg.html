@@ -1,0 +1,240 @@
+<div id="error" style="display:none;">
+	<p data-i18n="manager.drivers.www.window_close"></p>
+</div>
+
+<div id="rc-pins-form-container" style="display:none;"></div>
+
+<style type="text/css">
+.pins {
+	float: left;
+	/*background-color: #FF0000;*/
+	overflow-x: hidden;
+	overflow-y: auto;
+	height: 420px; /* (note-to-self: find better solution) */
+	width: 360px;
+}
+
+.pins table {
+	width: 100%;
+}
+
+.board {
+	float: right;
+	width: 200px;
+	/*background-color: #00FF00;*/
+}
+
+.board svg {
+	max-height: 300px;
+	width: 100%;
+}
+</style>
+
+<script type="text/html" id="rc-pins-form-template">
+	<form id="rc-pins-form">
+		{{:information}}
+		<br />
+		<div class="pins"><table style="width: 100%">{{:pins}}</table></div>
+		<div class="board">{{:svg}}</div>
+	</form>
+</script>
+
+<script type="text/javascript">
+	Homey.setTitle( __('pair.rc.pins.title') );
+	var bselect = document.getElementById("rc-board-form").elements['boardType'];
+	var folder = bselect.value;
+	var name = bselect[bselect.selectedIndex].text;
+
+	window.rcApply = true;
+	window.rcBoardFolder = folder;
+	window.rcBoardName = name;
+
+	openFile("rc/"+folder+"/board.svg", 2000, function(err, res) {
+		var svg = "&nbsp";
+		if (err) {
+			svg = "Error while loading: "+err;
+		} else {
+			var XMLS = new XMLSerializer();
+			var svgObject = res.xhr.responseXML.documentElement;
+			svg = XMLS.serializeToString(svgObject);
+		}
+
+		window.rcBoardSvg = svg;
+
+		console.log("Loading board json...");
+		$.getJSON('rc/'+folder+'/board.json').done(function(data) {
+			console.log("Got board.json");
+			var pins = renderPins(data.pins);
+			window.rcBoardInfo = data;
+			var form = {
+				"information": __('pair.rc.pins.info').replace('%name%', name),
+				"pins": pins,
+				"svg": svg
+			};
+			var form_render = $('#rc-pins-form-template').render([form]);
+			$('div#rc-pins-form-container').html(form_render);
+			console.log("Form: ",form_render);
+			$('div#rc-pins-form-container').show();
+			updateAllPinFunctions();
+			console.log("DONE");
+			hideLoading();
+		}).fail(function(jqxhr, textStatus, error) {
+			Homey.setTitle( __('pair.rc.pins.jsonError.title') );
+			var error = '<p>'+__('pair.rc.pins.jsonError.message')+'</p>';
+			$('div#error').prepend(error);
+			$('div#error').show();
+			hideLoading();
+			Homey.setNavigationClose();
+		});
+	});
+
+function modeName(mode) {
+	return __('pair.rc.pins.mode.'+mode);
+}
+
+function renderPins(pins) {
+	var ioSettings = "<tr><td>Pin</td><td>Name</td><td>Mode</td></tr>";
+	for (var key in pins) {
+		var pin = pins[key];
+		ioSettings += "<tr><td>"+pin.name+"</td><td>";
+
+		if (typeof pin.notAvailable != 'undefined') {
+			ioSettings += "&nbsp;";
+		} else {
+			ioSettings += "<input type='text' size='8' name='pin-"+pin.name+"-name' value='pin"+pin.name+"'/>";
+		}
+
+		ioSettings += "</td><td>";
+
+		if (typeof pin.modes != 'undefined') {
+			ioSettings += "<select name='pin-"+pin.name+"' onclick='updateAllPinFunctions();'>";
+			var selected = ' selected';
+			for (var modeKey in pin.modes) {
+				var mode = pin.modes[modeKey];
+				ioSettings += "<option value='"+mode+"'"+selected+">"+modeName(mode)+"</option>";
+				selected = ''; //Only the first item is selected by default
+			}
+			ioSettings += "</select>";
+		}
+
+		if (typeof pin.notAvailable != 'undefined') {
+			ioSettings += "<i>"+pin.notAvailable+"</i>";
+		}
+
+		if (typeof pin.range != 'undefined') {
+			ioSettings += "<input type='hidden' name='pin-"+pin.name+"-range' value='"+JSON.stringify(pin.range)+"'/>";
+		}
+
+		ioSettings += "</td></tr>";
+	}
+	return ioSettings;
+}
+
+
+function updateAllPinFunctions() {
+	var form = document.getElementById("rc-pins-form");
+	for (var key in form.elements) {
+		if ((key.startsWith("pin-"))&&(!key.endsWith("-name"))) {
+			var func = form.elements[key].value;
+			setPinFunction(key.toLowerCase(), func);
+		}
+	}
+}
+
+function setPinFunction(id, state) {
+	var color = '';
+	switch (state) {
+		case 'di':
+			color = "#005500";
+			break;
+		case 'dip':
+			color = "#00FF00";
+			break;
+		case 'dit':
+			color = "#005555";
+			break;
+		case 'ditp':
+			color = "#00FFFF";
+			break;
+		case 'do':
+			color = "#FF0000";
+			break;
+		case 'ai':
+			color = "#555500";
+			break;
+		case 'aip':
+			color = "#FFFF00";
+			break;
+		case 'ait':
+			color = "#5555FF";
+			break;
+		case 'aitp':
+			color = "#FFFFFF";
+			break;
+		case 'ao':
+			color = "#FF00FF";
+			break;
+		default:
+			color = "#000000";
+	}
+	idSetColor(id, color);
+}
+
+function svgSetColor(elem, color) {
+	if ((typeof elem == undefined)||(elem==null)) return;
+	elem.childNodes.forEach((item)=>{
+		//console.log(item);
+		//console.log(item.tagName);
+		if (item.tagName=="g") {
+			//console.log("group (recursive...)");
+			svgSetColor(item, color);
+		} else if (item.tagName=="path") {
+			//console.log(item.childNodes);
+			item.setAttribute("style", "fill: "+color+";stroke: none;fill-opacity: 1;");
+		} else {
+			console.log("unknown ("+item.tagName+") element");
+		}
+	})
+}
+
+function idSetColor(id, color) {
+	var elem = document.getElementById(id);
+	if ((typeof elem != undefined)&&(elem!=null)) {
+		svgSetColor(elem, color);
+	} else {
+		console.log("Ignored idSetColor:",id,"is not defined!");
+	}
+}
+
+function setPinColor(pin, color) {
+	idSetColor("pin-"+pin, color);
+}
+
+function openFile(url, timeout, callback) {
+    var args = Array.prototype.slice.call(arguments, 3);
+    var xhr = new XMLHttpRequest();
+    xhr.ontimeout = function () {
+        console.error("The request for " + url + " timed out.");
+        callback("The request for " + url + " timed out.", null);
+    };
+    xhr.onload = () => {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+				console.log("openFile("+url+"): OK");
+                callback(null,{xhr, args});
+            } else {
+				console.log("openFile("+url+"): "+xhr.statusText);
+            }
+        }
+    };
+    xhr.open("GET", url, true);
+    xhr.timeout = timeout;
+    xhr.send(null);
+}
+
+function hideLoading() {
+	$('.rc-pins-loading').fadeOut(200);
+}
+</script>
+
+<i class="loading rc-pins-loading fa fa-cog fa-spin"></i>
