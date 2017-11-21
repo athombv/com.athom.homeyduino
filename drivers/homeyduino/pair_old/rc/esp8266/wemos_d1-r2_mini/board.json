@@ -1,0 +1,55 @@
+{
+	"pins": [
+		{
+			"name": "D0",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D1",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D2",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D3",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D4",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D5",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D6",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D7",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D8",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "RX",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "TX",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "A0",
+			"modes": ["ai", "ait"],
+			"range": {
+				"ai": 1023
+			}
+		}
+	]
+}
