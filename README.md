@@ -51,7 +51,7 @@ To be able to use the Homeyduino library in an existing sketch you just have to 
 
 Navigate to the libraries folder in the Arduino folder on your computer. Then find the file "Homey.h" in the homey directory. Open this file using a text editor and remove the ```//``` marker from the ```//#define HOMEY_USE_ETHERNET_V1``` line so that it becomes ```#define HOMEY_USE_ETHERNET_V1``` to switch to ethernet shield v1 support instead of ethernet shield v2 support.
 
-##Examples
+## Examples
 
 Examples can be found in the [examples directory]() of the Arduino library.
 
