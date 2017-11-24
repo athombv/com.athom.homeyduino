@@ -1,3 +1,0 @@
-[submodule "node_modules/homey-arduino"]
-	path = node_modules/homey-arduino
-	url = https://github.com/athombv/node-homey-arduino.git
