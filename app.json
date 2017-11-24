@@ -15,6 +15,10 @@
 		"name": "Athom BV",
 		"email": "renze@athom.nl"
 	},
+	"images": {
+        "large": "/assets/images/large.jpg",
+        "small": "/assets/images/small.jpg"
+    },
 	"flow": {
 		"triggers": [
 			{
@@ -654,6 +658,10 @@
 			"name": {
 				"en": "Arduino",
 				"nl": "Arduino"
+			},
+			"images": {
+				"large": "/assets/images/large.jpg",
+				"small": "/assets/images/small.jpg"
 			},
 			"class": "other",
 			"capabilities": [],
