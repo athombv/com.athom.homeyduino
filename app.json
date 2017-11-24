@@ -660,8 +660,8 @@
 				"nl": "Arduino"
 			},
 			"images": {
-				"large": "/assets/images/large.jpg",
-				"small": "/assets/images/small.jpg"
+				"large": "/assets/images/driver_large.jpg",
+				"small": "/assets/images/driver_small.jpg"
 			},
 			"class": "other",
 			"capabilities": [],
