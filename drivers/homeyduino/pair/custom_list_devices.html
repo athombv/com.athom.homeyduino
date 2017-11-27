@@ -23,6 +23,9 @@
 				{{else}}
 					<input class="name" value="{{:name}}" tabindex="-1" />
 				{{/if}}
+				{{if outdated}}
+					<i>Library out-of-date ({{:libVersion}})!</i>
+				{{/if}}
 				
 			</label>
 			{{if overrideCheckbox}}
