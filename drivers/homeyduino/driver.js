@@ -46,6 +46,15 @@ class HomeyduinoDriver extends Homey.Driver {
 
 			var device = arduinoDevices[deviceKey];
 			let deviceName = device.getOpt('id');
+			
+			var libVersion = device.libVersion();
+			
+			var outdated = false;
+			if (libVersion!=Homey.manifest.version) {
+				this.log("Warning: Device "+deviceName+" uses an outdated library version (Lib: "+libVersion+", App: "+Homey.manifest.version+")");
+				outdated = true;
+			}
+			
 			let deviceClass = device.getOpt('class');
 			let deviceType = device.getOpt('type');
 			let deviceApi = device.getOpt('api');
@@ -110,7 +119,9 @@ class HomeyduinoDriver extends Homey.Driver {
 					"rc": deviceRc,
 					"arch": deviceArch,
 					"numDigitalPins": deviceNumDigitalPins,
-					"numAnalogInputs": deviceNumAnalogInputs
+					"numAnalogInputs": deviceNumAnalogInputs,
+					"outdated": outdated,
+					"libVersion": libVersion
 			};
 			
 			if (deviceType=="sonoff") {
