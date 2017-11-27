@@ -52,8 +52,9 @@ class HomeyduinoDriver extends Homey.Driver {
 			let deviceAddress = device.getOpt('address');
 
 			/* Filter: show only homeyduino devices */
+			//(And also show Sonoff devices running Homeyduino firmware...)
 
-			if (deviceType!="homeyduino") {
+			if ((deviceType!="homeyduino")&&(deviceType!="sonoff")) {
 				this.log("Not showing device "+deviceName+" because type '"+deviceType+"' is not supported by this app.");
 				continue;
 			}
@@ -102,6 +103,7 @@ class HomeyduinoDriver extends Homey.Driver {
 						"ip": deviceAddress,
 						"polling": false
 					},
+					"type": deviceType,
 					"class": deviceClass,
 					"capabilities": capabilities,
 					"api": deviceApi,
@@ -110,6 +112,13 @@ class HomeyduinoDriver extends Homey.Driver {
 					"numDigitalPins": deviceNumDigitalPins,
 					"numAnalogInputs": deviceNumAnalogInputs
 			};
+			
+			if (deviceType=="sonoff") {
+				//this.log("Device is Sonoff device, adding icon...");
+				deviceDescriptor.icon = "icon_sonoff.svg";
+			}/* else {
+				this.log("device is not sonoff");
+			}*/
 
 			/* Add device to list */
 

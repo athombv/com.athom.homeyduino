@@ -124,8 +124,7 @@ Homey.getOptions(function( err, viewOptions ) {
 	
 		devices
 			.filter(filterDevices)
-			.forEach(function(device){
-	
+			.forEach(function(device){				
 				// find possibly duplicate
 				var duplicateIndex = findDuplicateDevice( device );
 				if( duplicateIndex > -1 ) {
