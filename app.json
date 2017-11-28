@@ -9,15 +9,15 @@
 		"nl": "Maak je eigen apparaten met Arduino"
 	},
 	"category": "tools",
-	"version": "0.9.3",
+	"version": "0.9.4",
 	"compatibility": ">=1.5.0",
 	"author": {
-		"name": "Athom BV",
+		"name": "Athom B.V.",
 		"email": "renze@athom.nl"
 	},
 	"images": {
-        "large": "/assets/images/large.jpg",
-        "small": "/assets/images/small.jpg"
+        "large": "/assets/images/large.png",
+        "small": "/assets/images/small.png"
     },
 	"flow": {
 		"triggers": [
@@ -660,8 +660,8 @@
 				"nl": "Arduino"
 			},
 			"images": {
-				"large": "/assets/images/driver_large.jpg",
-				"small": "/assets/images/driver_small.jpg"
+				"large": "/assets/images/driver_large.png",
+				"small": "/assets/images/driver_small.png"
 			},
 			"class": "other",
 			"capabilities": [],
