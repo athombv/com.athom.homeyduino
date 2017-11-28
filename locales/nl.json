@@ -7,7 +7,7 @@
 			"button": {
 				"add": "Voeg apparaat toe"
 			},
-			"no_devices_detected": "<span style='font-size: 20px; line-height: 30px;'>Geen apparaten gevonden</span><br />Indien u uw Arduino project net heeft aangesloten kunt u het beste deze wizard sluiten, ongeveer 30 seconden wachten en dan de wizard opnieuw openen. Als er dan nog steeds geen apparaten gevonden zijn zou u kunnen controleren of uw router "UDP broadcast" pakketten toestaat. Als "UDP broadcast" pakketten geblokkeerd worden kan Homeyduino apparaten nooit automatisch vinden.",
+			"no_devices_detected": "<span style='font-size: 20px; line-height: 30px;'>Geen apparaten gevonden</span><br />Indien u uw Arduino project net heeft aangesloten kunt u het beste deze wizard sluiten, ongeveer 30 seconden wachten en dan de wizard opnieuw openen. Als er dan nog steeds geen apparaten gevonden zijn zou u kunnen controleren of uw router \"UDP broadcast\" pakketten toestaat. Als \"UDP broadcast\" pakketten geblokkeerd worden kan Homeyduino apparaten nooit automatisch vinden.",
 			"manually_add": "&nbsp;Handmatig een apparaat toevoegen..."
 		},
 		"manual": {
