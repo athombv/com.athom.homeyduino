@@ -68,6 +68,6 @@ The network protocol is described [here]().
 Before submitting a bug or feature request please read our [contributing guidelines](CONTRIBUTING.md).
 
 
-#License and credits
+# License and credits
 
 This software is licensed under the [GPLv3 license](LICENSE).

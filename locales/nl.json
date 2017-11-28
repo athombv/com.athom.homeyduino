@@ -1,0 +1,65 @@
+{
+	"pair": {
+		"device_list": {
+			"title": "Voeg een Homeyduino apparaat toe...",
+			"instruction": "",
+			"name": "Naam",
+			"button": {
+				"add": "Voeg apparaat toe"
+			},
+			"no_devices_detected": "<span style='font-size: 20px; line-height: 30px;'>Geen apparaten gevonden</span><br />Indien u uw Arduino project net heeft aangesloten kunt u het beste deze wizard sluiten, ongeveer 30 seconden wachten en dan de wizard opnieuw openen. Als er dan nog steeds geen apparaten gevonden zijn zou u kunnen controleren of uw router "UDP broadcast" pakketten toestaat. Als "UDP broadcast" pakketten geblokkeerd worden kan Homeyduino apparaten nooit automatisch vinden.",
+			"manually_add": "&nbsp;Handmatig een apparaat toevoegen..."
+		},
+		"manual": {
+			"title": "Handmatig een apparaat toevoegen...",
+			"error_title": "Er trad een fout op",
+			"ip_field_empty": "Het IP addres veld kan niet leeg zijn.",
+			"device_unreachable": "Kan niet communiceren met het apparaat!",
+			"error_timeout": "A timeout occurred while connecting to the device. Please check that your device is connected to the network."
+		},
+		"rc": {
+			"board": {
+				"title": "Selecteer type apparaat",
+				"info": "The device you are pairing with is set-up for remote configuration. Please provide the board type to continue setting up your device.",
+				"label": "Apparaat type",
+				"bug": {
+					"title": "Er trad een fout op",
+					"message": "Er trad een fout op in de configuratiewizard"
+				},
+				"unknown": {
+					"title": "Unknown board type",
+					"message": "Your board is of an unknown type. Please send us the following information in a Github issue to allow us to add support for your board:"
+				},
+				"jsonError": {
+					"title": "Er trad een fout op",
+					"message": "Something went wrong while fetching or parsing the boards list. Can not continue."
+				}
+			},
+			"pins": {
+				"title": "I/O instellingen",
+				"info": "Hier kunt u de aansluitingen van uw %name% configureren.",
+				"mode": {
+					"di": "Digitale ingang",
+					"dip": "Digitale ingang met pull-up",
+					"dit": "Digitale ingang with trigger",
+					"ditp": "Digitale ingang met pull-up en trigger",
+					"do": "Digitale uitgang",
+					"ao": "Analoge uitgang / PWM uitgang",
+					"ai": "Analoge ingang",
+					"aip": "Analoge ingang met pull-up",
+					"ait": "Analoge ingang with trigger",
+					"aitp": "Analoge ingang met pull-up en trigger"
+				},
+				"jsonError": {
+					"title": "Er trad een fout op",
+					"message": "Er ging iets mis tijdens het lezen van het configuratiebestand voor uw apparaat."
+				}
+			},
+			"apply": {
+				"error": {
+					"title": "Er trad een fout op"
+				}
+			}
+		}
+	}
+}
