@@ -63,7 +63,7 @@ class HomeyduinoDevice extends Homey.Device {
 			this.ipAddress = '0.0.0.0';
 		}
 
-		this.trigger = [];
+		this.trigger = {};
 		this.trigger.debug = new Homey.FlowCardTriggerDevice("debug_trigger").register();
 		this.trigger.debug.registerRunListener(this.runDebugTrigger);
 
@@ -87,12 +87,12 @@ class HomeyduinoDevice extends Homey.Device {
 		this.trigger.void.getArgument('trigger')
 			.registerAutocompleteListener(this.onTriggerAutocomplete.bind(this));
 
-		this.trigger.rc_digital = new Homey.FlowCardTriggerDevice("rc_digital_trigger").register(); //TBD
+		this.trigger.rc_digital = new Homey.FlowCardTriggerDevice("rc_digital_trigger").register();
 		this.trigger.rc_digital.registerRunListener(this.runRcTrigger);
 		this.trigger.rc_digital.getArgument('pin')
 			.registerAutocompleteListener(this.onRcDigitalTriggerAutocomplete.bind(this));
 
-		this.trigger.rc_analog = new Homey.FlowCardTriggerDevice("rc_analog_trigger").register(); //TBD
+		this.trigger.rc_analog = new Homey.FlowCardTriggerDevice("rc_analog_trigger").register();
 		this.trigger.rc_analog.registerRunListener(this.runRcTrigger);
 		this.trigger.rc_analog.getArgument('pin')
 				.registerAutocompleteListener(this.onRcAnalogTriggerAutocomplete.bind(this));
@@ -118,36 +118,24 @@ class HomeyduinoDevice extends Homey.Device {
 	}
 
 	runNumberTrigger( args, state, callback ) {
-		/*console.log("runNumberTrigger");
-		console.log("ARGS",util.inspect(args, {depth: null}));
-		console.log("STATE",util.inspect(state, {depth: null}));*/
 		if (args.trigger.value && state.name && args.trigger.value == state.name) {
 			return callback(null,true);
 		}
 		return callback(null,false);
 	}
 	runStringTrigger( args, state, callback ) {
-		/*console.log("runStringTrigger");
-		console.log("ARGS",util.inspect(args, {depth: null}));
-		console.log("STATE",util.inspect(state, {depth: null}));*/
 		if (args.trigger.value && state.name && args.trigger.value == state.name) {
 			return callback(null,true);
 		}
 		return callback(null,false);
 	}
 	runBooleanTrigger( args, state, callback ) {
-		/*console.log("runBooleanTrigger");
-		console.log("ARGS",util.inspect(args, {depth: null}));
-		console.log("STATE",util.inspect(state, {depth: null}));*/
 		if (args.trigger.value && state.name && args.trigger.value == state.name) {
 			return callback(null,true);
 		}
 		return callback(null,false);
 	}
 	runVoidTrigger( args, state, callback ) {
-		/*console.log("runVoidTrigger");
-		console.log("ARGS",util.inspect(args, {depth: null}));
-		console.log("STATE",util.inspect(state, {depth: null}));*/
 		if (args.trigger.value && state.name && args.trigger.value == state.name) {
 			return callback(null,true);
 		}
@@ -157,14 +145,11 @@ class HomeyduinoDevice extends Homey.Device {
 		if (args.pin.value && state.pin && args.pin.value == state.pin) {
 			return callback(null,true);
 		}
-		//if (args.pin.value && state.pin) {
-			this.log("runRcTrigger: ",args.pin.value,state.pin);
-		//}
 		return callback(null,false);
 	}
 
 	onAdded() {
-
+		//Do nothing.
 	}
 
 	onDeleted() {
@@ -324,20 +309,6 @@ class HomeyduinoDevice extends Homey.Device {
 		});
 	}
 
-	/*updateCapabilities() {
-		this._opts.capabilities = [];
-		for (var id in this._opts.api) {
-			let name = this._opts.api[id]['name'];
-			let type = this._opts.api[id]['type'];
-			if (type=='cap') {
-				this._opts.capabilities.push(name);
-				this.log('Info: added capability',name);
-			} else {
-				this.log('Warning: API',callName,'because type',callType,'is not capability.');
-			}
-		}
-	}*/
-
 	deviceUpdateLocalAddress( callback ) {
 		callback = callback || function(){};
 		let cloud = Homey.ManagerCloud;
@@ -398,14 +369,10 @@ class HomeyduinoDevice extends Homey.Device {
 	}
 
 	rcModeSet(pins, res = null) {
-		//if (res!=null) this.log('RC MODE SET RESULT: ',res); //Doesn't happen.
-
 		if (pins.length<1) {
 			this.log("All RC pins have been configured succesfully!");
 			return;
 		}
-
-		//this.log("rcModeSet called with",pins,res);
 
 		let pin = pins.shift();
 		let cfg = pin.name+"="+pin.mode;
@@ -422,13 +389,10 @@ class HomeyduinoDevice extends Homey.Device {
 
 	deviceInit() {
 		if (this.listening) {
-			//First remove the listeners
-			this.removeListeners();
+			this.removeListeners(); //First remove the listeners
 		}
 		this.log("Searching for Arduino device "+this.deviceId+"...");
 		this.device = Homey.app.discovery.getDevice(this.deviceId);
-
-		//this.log(util.inspect(this.device, {depth: null}));
 
 		if ( this.device instanceof Error ) {
 			this.log("Device ",this.deviceId," is not available.");
