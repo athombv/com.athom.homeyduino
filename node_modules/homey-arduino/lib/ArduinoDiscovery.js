@@ -20,7 +20,7 @@ class ArduinoDiscovery extends events.EventEmitter {
 		}, opts);
 
 		this._scanning = false;
-		this._devices = {};
+		this._devices = [];
 		this._foundAddresses = [];
 
 		this._deleteAfterTimeoutInterval = setInterval(this._deleteAfterTimeout.bind(this), this._opts.timeoutInterval);

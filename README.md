@@ -57,7 +57,7 @@ Examples can be found in the [examples directory]() of the Arduino library.
 
 ## API reference
 
-The API reference is included with the Arduino library and can be found [here]().
+The API reference is included with the Arduino library and can be found [here](https://github.com/athombv/homey-arduino-library/blob/master/docs/api.md).
 
 ## Network protocol
 
