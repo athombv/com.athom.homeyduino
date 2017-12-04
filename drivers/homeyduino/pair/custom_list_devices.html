@@ -26,7 +26,7 @@
 				{{if outdated}}
 					<i>Library out-of-date ({{:libVersion}})!</i>
 				{{/if}}
-				
+
 			</label>
 			{{if overrideCheckbox}}
 				{{:overrideCheckbox}}
@@ -49,7 +49,7 @@ var messageNoDevicesFound = {
 	"notSelectable": true
 };
 
-let optionManual = {
+var optionManual = {
 	"name": "manual",
 	"data": {"special": "manual"},
 	"overrideName": Homey.__('pair.device_list.manually_add'),
@@ -75,20 +75,20 @@ Homey.getOptions(function( err, viewOptions ) {
 	$(document).on('change', '#devices-list .checkbox input', function(e){
 		console.log("change",this);
 		if( shiftKeyPressed ) {
-	
+
 			var checkAll = $(this).prop('checked');
-	
+
 			$('#devices-list .checkbox input').not(this).each(function(){
 				$(this).prop('checked', checkAll)
 				selectDevice( this, checkAll );
 			})
-	
+
 		}
-	
+
 		selectDevice( this, $(this).prop('checked') );
-	
+
 	});
-	
+
 	Homey.emit('list_devices', false, function( err, devices ){
 		if( err ) {
 			$('#error').prepend('<p>' + err.toString() + '</p>');
@@ -99,16 +99,16 @@ Homey.getOptions(function( err, viewOptions ) {
 			render_devices();
 			return;
 		}
-	
+
 		devices = devices.filter(filterDevices);
 		found_devices_list = found_devices_list.concat(devices);
-		
+
 		if (found_devices_list.length < 1) {
 		  found_devices_list.push(messageNoDevicesFound);
 		}
-		
+
 		found_devices_list.push(optionManual);
-		
+
 		if( found_devices_list.length > 0 ) {
 			Homey.setTitle( __('pair.device_list.title') );
 			render_devices();
@@ -118,16 +118,16 @@ Homey.getOptions(function( err, viewOptions ) {
 			hideLoading();
 			$('#error').show();
 		}
-	
+
 	});
-	
+
 	Homey.on('list_devices', function( devices, callback ){
-	
+
 		if( $('#error').is(':visible') ) return;
-	
+
 		devices
 			.filter(filterDevices)
-			.forEach(function(device){				
+			.forEach(function(device){
 				// find possibly duplicate
 				var duplicateIndex = findDuplicateDevice( device );
 				if( duplicateIndex > -1 ) {
@@ -135,21 +135,21 @@ Homey.getOptions(function( err, viewOptions ) {
 				} else {
 					found_devices_list.push( device );
 				}
-	
+
 			});
-	
+
 		if( found_devices_list.length > 0 ) {
 			Homey.setTitle( __('manager.drivers.www.title_select') );
 			render_devices();
 		}
-	
+
 		callback( null, true );
 	})
-	
+
 });
 function render_devices() {
 	if( found_devices_list.length > 0 ) hideLoading();
-	
+
 	var selectedDeviceIndexes = [];
 	$('#devices-list li').each(function(i){
 		if( $(this).find('.checkbox input:checked').length ) {
@@ -157,12 +157,12 @@ function render_devices() {
 		}
 	});
 	// render the views framework
-		
+
 	var devices_render = $('#devices-list-template').render( found_devices_list, {
 		stringify: JSON.stringify,
 		inputType: inputType
 	});
-			
+
 	$('#devices-list').html( devices_render );
 	found_devices_list.forEach(function(found_device){
 		window.found_devices[ JSON.stringify(found_device.data) ] = found_device;
@@ -170,7 +170,7 @@ function render_devices() {
 	selectedDeviceIndexes.forEach(function(selectedDeviceIndex){
 		$('#devices-list li:nth-child(' + (selectedDeviceIndex+1) + ') .checkbox input').prop('checked', true)
 	})
-	
+
 	if( inputType === 'radio' ) {
 		if( $('#devices-list li .checkbox input:checked').length < 1 ) {
 			if ((typeof found_devices_list[0]["notSelectable"] != 'undefined')&&(found_devices_list[0]["notSelectable"])) {
@@ -221,4 +221,4 @@ function findDuplicateDevice( device ) {
 }
 </script>
 
-<i class="loading list-devices-loading fa fa-cog fa-spin"></i> 
+<i class="loading list-devices-loading fa fa-cog fa-spin"></i>

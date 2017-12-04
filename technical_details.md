@@ -136,3 +136,6 @@ Types of events:
 | trg  | Actions                                                |
 | cap  | Capabilities (send updated value from device to Homey) |
 | raw  | Reserved for custom events (ignored by Homeyduino app) |
+
+## 4. Remote configuration
+The remote configuration feature of Homeyduino consists of an API provided by the device in combination with
