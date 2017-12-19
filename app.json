@@ -254,7 +254,8 @@
 					"title": {
 						"en": "Value",
 						"nl": "Waarde"
-					}
+					},
+					"example": 0
 				}]
 			}
 		],
