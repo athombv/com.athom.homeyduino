@@ -29,7 +29,7 @@ Want to help with development of Homeyduino? Do you experience problems while us
  * [Sonoff basic](https://github.com/athombv/homey-arduino-library/blob/master/examples/Devices/Sonoff_Basic/Sonoff_Basic.ino)
 
 ## Remote configuration
-The [remote configuration](https://github.com/athombv/homey-arduino-library/blob/master/examples/Remote_configuration/Remote_configuration.ino) sketch allows you to configure your Arduino board from within the pairing wizard, no programming skills required. Compatible with select Arduino, ESP8266 and ESP32 boards.
+The [remote configuration](https://github.com/athombv/homey-arduino-library/blob/master/examples/Remote_configuration/Remote_configuration.ino) sketch allows you to configure your Arduino board from within the pairing wizard, no programming skills required. Compatible with select Arduino, ESP8266 and ESP32 boards. More information on this feature can be found [here](https://github.com/athombv/homey-arduino-library/blob/master/docs/usage.md#2-remote-configuration).
 
 ## Technical details
 * [Arduino library API reference](https://github.com/athombv/homey-arduino-library/blob/master/docs/api.md)

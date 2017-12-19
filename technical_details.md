@@ -138,4 +138,6 @@ Types of events:
 | raw  | Reserved for custom events (ignored by Homeyduino app) |
 
 ## 4. Remote configuration
-The remote configuration feature of Homeyduino consists of an API provided by the device in combination with
+The remote configuration feature of Homeyduino consists of an API provided by the device in combination with an addition to the pairing wizard, which adds the device configuration to the device settings, from which it is applied again whenever necessary.
+
+The remote configuration API is part of the Arduino libary and described [here](https://github.com/athombv/homey-arduino-library/tree/master/docs/api.md#remote-configuration).

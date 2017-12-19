@@ -9,7 +9,7 @@
 		"nl": "Maak je eigen apparaten met Arduino"
 	},
 	"category": "tools",
-	"version": "0.9.6",
+	"version": "0.9.7",
 	"compatibility": ">=1.5.0",
 	"author": {
 		"name": "Athom B.V.",
@@ -40,35 +40,41 @@
 					"type": "number",
 					"title": {
 						"en": "Number"
-					}
+					},
+					"example": 0
 				},
 				{
 					"name": "string",
 					"type": "string",
 					"title": {
 						"en": "String"
-					}
+					},
+					"example": "hello"
 				},
 				{
 					"name": "boolean",
 					"type": "boolean",
 					"title": {
 						"en": "Boolean"
-					}
-				},				{
+					},
+					"example": false
+				},
+				{
 					"name": "trigger",
 					"type": "string",
 					"title": {
 						"en": "Trigger",
 						"nl": "Trigger"
-					}
+					},
+					"example": "my-trigger"
 				},				{
 					"name": "type",
 					"type": "string",
 					"title": {
 						"en": "Type",
 						"nl": "Type"
-					}
+					},
+					"example": "number"
 				}]
 			},
 			{
@@ -99,7 +105,8 @@
 					"title": {
 						"en": "Value",
 						"nl": "Waarde"
-					}
+					},
+					"example": 0
 				}]
 			},
 			{
@@ -130,7 +137,8 @@
 					"title": {
 						"en": "Value",
 						"nl": "Waarde"
-					}
+					},
+					"example": "hello"
 				}]
 			},
 			{
@@ -161,7 +169,8 @@
 					"title": {
 						"en": "Value",
 						"nl": "Waarde"
-					}
+					},
+					"example": false
 				}]
 			},
 			{
@@ -245,7 +254,8 @@
 					"title": {
 						"en": "Value",
 						"nl": "Waarde"
-					}
+					},
+					"example": 0
 				}]
 			}
 		],
