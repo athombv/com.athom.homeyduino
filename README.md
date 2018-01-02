@@ -21,9 +21,9 @@ Want to help with development of Homeyduino? Do you experience problems while us
 ## Examples (finished projects with documentation)
 
  * [Automatic planter](https://github.com/athombv/homey-arduino-library/blob/master/examples/Example%20projects/Automatic_planter/project.md)
- * [DHT11 temperature and humidity sensor](https://github.com/athombv/homey-arduino-library/blob/master/examples/Example%20projects/dht11/project.md)
- * [NFC reader](https://github.com/athombv/homey-arduino-library/blob/master/examples/Example%20projects/nfc_reader/project.md)
- * [Simon says](https://github.com/athombv/homey-arduino-library/blob/master/examples/Example%20projects/Simon_says/project.md)
+ * [DHT11 temperature and humidity sensor](https://github.com/athombv/homey-arduino-library/tree/master/examples/Example%20projects/dht11)
+ * [NFC reader](https://github.com/athombv/homey-arduino-library/blob/master/examples/Example%20projects/nfc_reader)
+ * [Simon says](https://github.com/athombv/homey-arduino-library/blob/master/examples/Example%20projects/Simon_says)
 
 ## Firmware (finished firmware for certain devices available on the market)
  * [Sonoff basic](https://github.com/athombv/homey-arduino-library/blob/master/examples/Devices/Sonoff_Basic/Sonoff_Basic.ino)
