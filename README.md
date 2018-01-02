@@ -20,7 +20,7 @@ Want to help with development of Homeyduino? Do you experience problems while us
 
 ## Examples (finished projects with documentation)
 
- * [Automatic planter](https://github.com/athombv/homey-arduino-library/blob/master/examples/Example%20projects/Automatic_planter/project.md)
+ * [Automatic plant waterer](https://github.com/athombv/homey-arduino-library/tree/master/examples/Example%20projects/Automatic_plant_waterer)
  * [DHT11 temperature and humidity sensor](https://github.com/athombv/homey-arduino-library/tree/master/examples/Example%20projects/dht11)
  * [NFC reader](https://github.com/athombv/homey-arduino-library/blob/master/examples/Example%20projects/nfc_reader)
  * [Simon says](https://github.com/athombv/homey-arduino-library/blob/master/examples/Example%20projects/Simon_says)
