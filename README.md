@@ -16,7 +16,7 @@ Want to help with development of Homeyduino? Do you experience problems while us
  * Arduino board with an ethernet v2 shield: [source](https://github.com/athombv/homey-arduino-library/blob/master/examples/Getting%20started/Ethernet_shield_2/Ethernet_shield_2.ino) and [documentation](https://github.com/athombv/homey-arduino-library/blob/master/docs/usage.md#the-basics)
  * Arduino board with an ethernet v1 shield: [source](https://github.com/athombv/homey-arduino-library/blob/master/examples/Getting%20started/Legacy_ethernet_shield/Legacy_ethernet_shield.ino) and [documentation](https://github.com/athombv/homey-arduino-library/blob/master/docs/usage.md#using-the-legacy-arduino-ethernet-shield-v1)
  * ESP8266 based boards: [source](https://github.com/athombv/homey-arduino-library/blob/master/examples/Getting%20started/ESP8266/ESP8266.ino) and [documentation](https://github.com/athombv/homey-arduino-library/blob/master/docs/usage.md#the-basics)
- * ESP32 based boards: [source](https://github.com/athombv/homey-arduino-library/tree/master/examples/Getting%20started/ESP32) and [documentation](https://github.com/athombv/homey-arduino-library/blob/master/docs/usage.md#the-basics)
+ * ESP32 based boards: [source](https://github.com/athombv/homey-arduino-library/blob/master/examples/Getting%20started/ESP32/ESP32.ino) and [documentation](https://github.com/athombv/homey-arduino-library/blob/master/docs/usage.md#the-basics)
 
 ## Examples (finished projects with documentation)
 
