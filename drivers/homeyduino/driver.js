@@ -1,3 +1,10 @@
+/*
+ * Project: Homeyduino
+ * Author: Renze Nicolai <renze@rnplus.nl>
+ * License: GPLv3
+ *
+ */
+
 "use strict";
 
 const Homey = require('homey');
@@ -142,7 +149,7 @@ class HomeyduinoDriver extends Homey.Driver {
     onPair( socket ) {
 	    super.onPair( socket );
         socket.on('pairManually', ( data, callback ) => {
-			if (data.ip=="") return callback(Homey.__("pair.manual.ip_field_empty"), null);
+			if (data.ip==="") return callback(Homey.__("pair.manual.ip_field_empty"), null);
 
 			this.log("onPair: Polling...");
 			Homey.app.discovery.poll(data.ip, (err, res) => {
@@ -192,7 +199,7 @@ class HomeyduinoDriver extends Homey.Driver {
 
 				/* Get capabilities from device API */
 
-				var deviceRc = false;
+				//var deviceRc = false;
 
 				let capabilities = [];
 				for (var id in deviceApi) {
@@ -201,9 +208,9 @@ class HomeyduinoDriver extends Homey.Driver {
 					if (type=="cap") {
 						capabilities.push(name);
 					}
-					if (type=="rc") {
+					/*if (type=="rc") {
 						deviceRc = true;
-					}
+					}*/
 				}
 
 				/* create deviceDescriptor */

@@ -1,7 +1,7 @@
 /*
  * Project: Homeyduino
- * Version: 1.0.0
  * Author: Renze Nicolai <renze@rnplus.nl>
+ * License: GPLv3
  *
  */
 
@@ -17,24 +17,12 @@ class HomeyduinoApp extends Homey.App {
 		//Start discovery broadcast
 		this.discovery = new Arduino.ArduinoDiscovery({
 			debugEmit: true,
-			broadcastInterval: 10 * 1000 //Every 10 seconds
+			broadcastInterval: 15 * 1000 //Every 15 seconds
 		});
 
 		this.discovery.on('debug', this.onDiscoveryDebug.bind(this));
 
-		this.discovery.on('discover', device => {
-			/*this.log('New device:');
-			this.log('* ID:', device.getOpt('id'));
-			this.log('* Address:',device.getOpt('address')+':'+device.getOpt('port'));
-			this.log('* Local webserver port: ', device.getOpt('localPort'));
-			this.log('* API:');
-			let api = device.getOpt('api');
-			for (var call in api) {
-				var retname = api[call]['name'];
-				var rettype = api[call]['type'];
-				this.log(' - '+call+'. '+rettype+': '+retname);
-			}*/
-		}).start();
+		this.discovery.on('discover', device => {}).start();
 
 		let numberAction = new Homey.FlowCardAction("number_action")
 			.register()
@@ -202,8 +190,6 @@ class HomeyduinoApp extends Homey.App {
 
 	onActionAutocomplete(query, args) {
 		let results = args.device.getActions();
-
-		//if (!results.includes(query)) results.push({"name":query});
 
 		results = results.filter( result => {
 			return result.name.toLowerCase().indexOf( query.toLowerCase() ) > -1;
