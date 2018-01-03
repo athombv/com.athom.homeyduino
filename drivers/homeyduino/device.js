@@ -1,3 +1,10 @@
+/*
+ * Project: Homeyduino
+ * Author: Renze Nicolai <renze@rnplus.nl>
+ * License: GPLv3
+ *
+ */
+
 "use strict";
 
 const Homey = require("homey");
@@ -520,7 +527,7 @@ class HomeyduinoDevice extends Homey.Device {
 			}
 		}
 
-		if (pin==null) {
+		if (pin===null) {
 			this.log("rcAnalogInputMap(",name,") error: unknown pin");
 			return output;
 		}
@@ -549,7 +556,7 @@ class HomeyduinoDevice extends Homey.Device {
 				break;
 			}
 		}
-		if (pin==null) {
+		if (pin===null) {
 			this.log("rcGetAnalogInputFlownameForRealName: unknown pin");
 			return 'invalid_pin';
 		}
@@ -564,7 +571,7 @@ class HomeyduinoDevice extends Homey.Device {
 				break;
 			}
 		}
-		if (pin==null) {
+		if (pin===null) {
 			this.log("rcGetDigitalInputFlownameForRealName: unknown pin");
 			return 'invalid_pin';
 		}
@@ -691,7 +698,7 @@ class HomeyduinoDevice extends Homey.Device {
 			var pin = args.pin.value;
 			var value = args.value.toString();
 
-			if (args.pin.range!=null) {
+			if (args.pin.range!==null) {
 				value = value * args.pin.range; //Map range 0.00 - 1.00 to Arduino range
 			} else {
 				this.log("rcAnalogAction",args,"NO RANGE");
@@ -769,7 +776,7 @@ class HomeyduinoDevice extends Homey.Device {
 			var pin = args.pin.value;
 			var compareTo = args.value.toString();
 
-			if (args.pin.range!=null) {
+			if (args.pin.range!==null) {
 				compareTo = compareTo * args.pin.range; //Map range 0.00 - 1.00 to Arduino range
 			} else {
 				this.log("rcAnalogCondition",args,"NO RANGE");
