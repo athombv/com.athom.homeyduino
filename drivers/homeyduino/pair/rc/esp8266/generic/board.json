@@ -67,7 +67,7 @@
 		{
 			"name": "16",
 			"modes": ["di", "dit", "do"]
-		}
+		},
 		{
 			"name": "A0",
 			"modes": ["ai", "ait"],
