@@ -1,6 +1,6 @@
 # Homeyduino
 
-This Homey app allows you easily to connect your own Arduino based creations with your Homey using ethernet or WiFi. Connecting your own creations with Homey has never been easier: just install the app and downlod the [Homeyduino Arduino library](https://github.com/athombv/homey-arduino-library) to get started!
+This Homey app allows you to easily connect your own Arduino based creations with your Homey using ethernet or WiFi. Connecting your own creations with Homey has never been easier: just install the app and download the [Homeyduino Arduino library](https://github.com/athombv/homey-arduino-library) to get started!
 
 ## Welcome
 
@@ -38,7 +38,7 @@ The [remote configuration](https://github.com/athombv/homey-arduino-library/blob
 
 ## License and credits
 
-Homeyduino is a product developed by Renze Nicolai as part of his internship project for the Electrical Engineering study at Saxion university for applied sciences.
+Homeyduino is a product developed by [Renze Nicolai](https://github.com/renzenicolai) as part of his internship project for the Electrical Engineering study at Saxion University of Applied Sciences.
 
 The Homeyduino app and Arduino library are licensed under the [GPLv3 license](LICENSE).
 
