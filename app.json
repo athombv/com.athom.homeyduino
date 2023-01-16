@@ -1,6 +1,6 @@
 {
   "id": "com.athom.homeyduino",
-  "sdk": 2,
+  "sdk": 3,
   "name": {
     "en": "Homeyduino"
   },
@@ -9,8 +9,8 @@
     "nl": "Maak je eigen apparaten met Arduino"
   },
   "category": "tools",
-  "version": "1.0.3",
-  "compatibility": ">=1.5.0",
+  "version": "2.0.0",
+  "compatibility": ">=5.0.0",
   "author": {
     "name": "Athom B.V.",
     "email": "renze@athom.nl"
@@ -85,6 +85,10 @@
           "en": "Trigger [number]",
           "nl": "Trigger [getal]"
         },
+        "titleFormatted": {
+          "en": "Trigger [number] equals [[trigger]]",
+          "nl": "Trigger [getal] gelijk aan [[trigger]]"
+        },
         "args": [
           {
             "name": "device",
@@ -117,6 +121,10 @@
         "title": {
           "en": "Trigger [text]",
           "nl": "Trigger [tekst]"
+        },
+        "titleFormatted": {
+          "en": "Trigger [text] equals [[trigger]]",
+          "nl": "Trigger [tekst] gelijk aan [[trigger]]"
         },
         "args": [
           {
@@ -151,6 +159,10 @@
           "en": "Trigger [boolean]",
           "nl": "Trigger [boolean]"
         },
+        "titleFormatted": {
+          "en": "Trigger [boolean] equals [[trigger]]",
+          "nl": "Trigger [boolean] gelijk aan [[trigger]]"
+        },
         "args": [
           {
             "name": "device",
@@ -184,6 +196,10 @@
           "en": "Trigger",
           "nl": "Trigger"
         },
+        "titleFormatted": {
+          "en": "Trigger [[trigger]]",
+          "nl": "Trigger [[trigger]]"
+        },
         "args": [
           {
             "name": "device",
@@ -205,6 +221,10 @@
         "title": {
           "en": "Digital input",
           "nl": "Digitale ingang"
+        },
+        "titleFormatted": {
+          "en": "Digital input: [[pin]]",
+          "nl": "Digitale ingang: [[pin]]"
         },
         "args": [
           {
@@ -237,6 +257,10 @@
         "title": {
           "en": "Analog input",
           "nl": "Analoge ingang"
+        },
+        "titleFormatted": {
+          "en": "Analog input: [[pin]]",
+          "nl": "Analoge ingang: [[pin]]"
         },
         "args": [
           {
@@ -273,6 +297,10 @@
           "en": "Action [number]",
           "nl": "Actie [getal]"
         },
+        "titleFormatted": {
+          "en": "[[action]] [number] equals [[value]]",
+          "nl": "[[action]] [getal] gelijk aan [[value]]"
+        },
         "args": [
           {
             "name": "device",
@@ -302,6 +330,10 @@
         "title": {
           "en": "Action [text]",
           "nl": "Actie [tekst]"
+        },
+        "titleFormatted": {
+          "en": "[[action]] [text] equals [[value]]",
+          "nl": "[[action]] tekst gelijk aan [[value]]"
         },
         "args": [
           {
@@ -333,6 +365,10 @@
           "en": "Action [boolean]",
           "nl": "Actie [boolean]"
         },
+        "titleFormatted": {
+          "en": "[[action]] [boolean] equals [[droptoken]]",
+          "nl": "[[action]] [boolean] gelijk aan [[droptoken]]"
+        },
         "droptoken": "boolean",
         "args": [
           {
@@ -356,6 +392,10 @@
           "en": "Action",
           "nl": "Actie"
         },
+        "titleFormatted": {
+          "en": "[[action]] Action (void)",
+          "nl": "[[action]] Actie (leeg)"
+        },
         "args": [
           {
             "name": "device",
@@ -377,6 +417,10 @@
         "title": {
           "en": "Digital output",
           "nl": "Digitale uitgang"
+        },
+        "titleFormatted": {
+          "en": "Digital output: [[pin]] equals [[droptoken]]",
+          "nl": "Digitale uitgang: [[pin]] gelijk aan [[droptoken]]"
         },
         "droptoken": "boolean",
         "args": [
@@ -401,6 +445,10 @@
           "en": "Digital output: ON",
           "nl": "Digitale uitgang: AAN"
         },
+        "titleFormatted": {
+          "en": "Digital output: [[pin]] equals ON",
+          "nl": "Digitale uitgang: [[pin]] gelijk aan AAN"
+        },
         "args": [
           {
             "name": "device",
@@ -423,6 +471,10 @@
           "en": "Digital output: OFF",
           "nl": "Digitale uitgang: UIT"
         },
+        "titleFormatted": {
+          "en": "Digital output: [[pin]] equals OFF",
+          "nl": "Digitale uitgang: [[pin]] equals UIT"
+        },
         "args": [
           {
             "name": "device",
@@ -444,6 +496,10 @@
         "title": {
           "en": "Analog output",
           "nl": "Analoge uitgang"
+        },
+        "titleFormatted": {
+          "en": "Analog output: [[pin]] equals [[value]]",
+          "nl": "Analoge uitgang: [[pin]] gelijk aan [[value]]"
         },
         "args": [
           {
@@ -480,6 +536,10 @@
           "en": "Condition [number]",
           "nl": "Conditie [getal]"
         },
+        "titleFormatted": {
+          "en": "[[condition]] [number] equals [[value]]",
+          "nl": "[[condition]] [nummer] gelijk aan [[value]]"
+        },
         "args": [
           {
             "name": "device",
@@ -509,6 +569,10 @@
         "title": {
           "en": "Condition [text]",
           "nl": "Conditie [tekst]"
+        },
+        "titleFormatted": {
+          "en": "[[condition]] [text] equals [[value]]",
+          "nl": "[[condition]] [teskt] gelijk aan [[value]]"
         },
         "args": [
           {
@@ -540,6 +604,10 @@
           "en": "Condition [boolean]",
           "nl": "Conditie [boolean]"
         },
+        "titleFormatted": {
+          "en": "[[condition]] [boolean] equals [[droptoken]]",
+          "nl": "[[condition]] [boolean] gelijk aan [[droptoken]]"
+        },
         "droptoken": "boolean",
         "args": [
           {
@@ -563,6 +631,10 @@
           "en": "Condition",
           "nl": "Conditie"
         },
+        "titleFormatted": {
+          "en": "Condition [[condition]]",
+          "nl": "Conditie [[condition]]"
+        },
         "args": [
           {
             "name": "device",
@@ -585,6 +657,10 @@
           "en": "Digital pin",
           "nl": "Digitale pin"
         },
+        "titleFormatted": {
+          "en": "Digital input: [[pin]]",
+          "nl": "Digitale ingang: [[pin]]"
+        },
         "args": [
           {
             "name": "device",
@@ -606,6 +682,10 @@
         "title": {
           "en": "Analog input !{{greater|less}} than",
           "nl": "Analoge ingang !{{hoger|lager}} dan"
+        },
+        "titleFormatted": {
+          "en": "Digital input: [[pin]] !{{greater|less}} than [[value]]",
+          "nl": "Digitale ingang: [[pin]] !{{greater|less}} dan [[value]]"
         },
         "args": [
           {
@@ -639,6 +719,10 @@
         "title": {
           "en": "Analog input equals",
           "nl": "Analoge ingang equals"
+        },
+        "titleFormatted": {
+          "en": "Analog input: [[pin]] equals [[value]]",
+          "nl": "Analoge ingang: [[pin]] gelijk aan [[value]]"
         },
         "args": [
           {

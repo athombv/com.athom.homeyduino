@@ -14,8 +14,10 @@ const events = require('events');
 
 class HomeyduinoDriver extends Homey.Driver {
 
-	onInit() {
-		Homey.app.discovery.on('discover', (arduinoDevice) => {
+	async onInit() {
+		console.log('onInit driver...');
+
+		this.homey.app.discovery.on('discover', (arduinoDevice) => {
 			this.log("onDiscoverDevice",arduinoDevice.getOpt('id'));
 			let devices = this.getDevices();
 
@@ -40,16 +42,15 @@ class HomeyduinoDriver extends Homey.Driver {
 				this.log('Device has not been paired.');
 			}
 		});
-
 	}
 
-	onPairListDevices( data, callback ) {
+	async onPairListDevices( data ) {
         let deviceList = [];
-		let arduinoDevices = Homey.app.discovery.getDevices();
+		let arduinoDevices = this.homey.app.discovery.getDevices();
 
 		for (var deviceKey in arduinoDevices) {
 
-			/* Collect device information */
+			// Collect device information
 
 			var device = arduinoDevices[deviceKey];
 			let deviceName = device.getOpt('id');
@@ -57,8 +58,8 @@ class HomeyduinoDriver extends Homey.Driver {
 			var libVersion = device.libVersion();
 			
 			var outdated = false;
-			if (libVersion!=Homey.manifest.version) {
-				this.log("Warning: Device "+deviceName+" uses an outdated library version (Lib: "+libVersion+", App: "+Homey.manifest.version+")");
+			if (libVersion!=this.homey.manifest.version) {
+				this.log("Warning: Device "+deviceName+" uses an outdated library version (Lib: "+libVersion+", App: "+this.homey.manifest.version+")");
 				outdated = true;
 			}
 			
@@ -67,7 +68,7 @@ class HomeyduinoDriver extends Homey.Driver {
 			let deviceApi = device.getOpt('api');
 			let deviceAddress = device.getOpt('address');
 
-			/* Filter: show only homeyduino devices */
+			// Filter: show only homeyduino devices
 			//(And also show Sonoff devices running Homeyduino firmware...)
 
 			if ((deviceType!="homeyduino")&&(deviceType!="sonoff")) {
@@ -79,7 +80,7 @@ class HomeyduinoDriver extends Homey.Driver {
 			// then please change the deviceType in both the Arduino library and your app to avoid conflicts with
 			// this app and it's devices
 
-			/* Get capabilities from device API */
+			// Get capabilities from device API
 
 			var deviceRc = false;
 			var deviceArch = 'unknown';
@@ -101,16 +102,16 @@ class HomeyduinoDriver extends Homey.Driver {
 				if (type=="cap") {
 					capabilities.push(name);
 				}
-				/*if (type=="rc") { //Also works, but we now have the hasRc function...
-					deviceRc = true;
-				}*/
+			//	if (type=="rc") { //Also works, but we now have the hasRc function...
+			//		deviceRc = true;
+			//	}
 			}
 
-			/* Create deviceDescriptor */
+			// Create deviceDescriptor
 
 			var deviceDescriptor = {
 					"name": deviceName,
-					"data": { /* only used during pair wizard */
+					"data": { // only used during pair wizard
 						"id": deviceName,
 						"ip": deviceAddress
 					},
@@ -134,40 +135,41 @@ class HomeyduinoDriver extends Homey.Driver {
 			if (deviceType=="sonoff") {
 				//this.log("Device is Sonoff device, adding icon...");
 				deviceDescriptor.icon = "icon_sonoff.svg";
-			}/* else {
-				this.log("device is not sonoff");
-			}*/
+			}// else {
+			//	this.log("device is not sonoff");
+			//}
 
-			/* Add device to list */
+			// Add device to list
 
 			deviceList.push(deviceDescriptor);
 		}
-
-        callback( null, deviceList );
+		
+        return (deviceList);
     }
 
-    onPair( socket ) {
-	    super.onPair( socket );
-        socket.on('pairManually', ( data, callback ) => {
-			if (data.ip==="") return callback(Homey.__("pair.manual.ip_field_empty"), null);
+    async onPair(session) {
+	    super.onPair( session );
+        session.setHandler("pairManually", async ( data ) => {
+        //session.setHandler("pairManually", async function ( data ) {
+			if (data.ip==="") return (Homey.__("pair.manual.ip_field_empty"));
 
 			this.log("onPair: Polling...");
-			Homey.app.discovery.poll(data.ip, (err, res) => {
+			this.homey.app.discovery.poll(data.ip, (err, res) => {
 				//this.log("onPair: Poll result ", err, res);
 				if (err) {
 					//First try to give back usefull information
 					if (typeof err == 'object') {
 						if (typeof err.message == 'string') {
 							if (err.message=='ETIMEDOUT') {
-								return callback(Homey.__('pair.manual.error_timeout'), null);
+								return (Homey.__('pair.manual.error_timeout'));
 							} else {
-								return callback(err.message, null);
+								return (err.message);
 							}
 						}
 					}
 					//Then just return whatever we got...
-					return callback( err, null);
-				}
+					return (err);
+				};
 				//this.log("onPair: success");
 
 				var device = res;
@@ -193,11 +195,11 @@ class HomeyduinoDriver extends Homey.Driver {
 					deviceNumAnalogInputs = rcInfo.numAnalogInputs;
 				} else {
 					this.log("No RC");
-				}
+				};
 				
 				let deviceAddress = data.ip;
 
-				/* Get capabilities from device API */
+				//Get capabilities from device API 
 
 				//var deviceRc = false;
 
@@ -208,16 +210,15 @@ class HomeyduinoDriver extends Homey.Driver {
 					if (type=="cap") {
 						capabilities.push(name);
 					}
-					/*if (type=="rc") {
-						deviceRc = true;
-					}*/
-				}
+				//	if (type=="rc") {
+				//	deviceRc = true;
+				//	}
+				};
 
-				/* create deviceDescriptor */
-
+				// create deviceDescriptor
 				var deviceDescriptor = {
 					"name": deviceName,
-					"data": { /* only used during pair wizard */
+					"data": { // only used during pair wizard
 						"id": deviceName,
 						"ip": deviceAddress
 					},
@@ -235,7 +236,7 @@ class HomeyduinoDriver extends Homey.Driver {
 					"numDigitalPins": deviceNumDigitalPins,
 					"numAnalogInputs": deviceNumAnalogInputs
 				};
-				return callback( null, deviceDescriptor );
+				return (deviceDescriptor);
 			});
         });
     }

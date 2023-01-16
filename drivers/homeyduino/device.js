@@ -23,7 +23,8 @@ class HomeyduinoDevice extends Homey.Device {
 		this.onNetworkChange = this.onNetworkChange.bind(this);
 	}
 
-	onInit() {
+	async onInit() {
+		console.log('onInit device...');
 		this.deviceName = this.getName();
 		let settings = this.getSettings();
 
@@ -71,38 +72,38 @@ class HomeyduinoDevice extends Homey.Device {
 		}
 
 		this.trigger = {};
-		this.trigger.debug = new Homey.FlowCardTriggerDevice("debug_trigger").register();
+		this.trigger.debug = this.homey.flow.getDeviceTriggerCard("debug_trigger");
 		this.trigger.debug.registerRunListener(this.runDebugTrigger);
 
-		this.trigger.number = new Homey.FlowCardTriggerDevice("number_trigger").register();
+		this.trigger.number = this.homey.flow.getDeviceTriggerCard("number_trigger");
 		this.trigger.number.registerRunListener(this.runNumberTrigger);
 		this.trigger.number.getArgument('trigger')
 			.registerAutocompleteListener(this.onTriggerAutocomplete.bind(this));
 
-		this.trigger.string = new Homey.FlowCardTriggerDevice("string_trigger").register();
+		this.trigger.string = this.homey.flow.getDeviceTriggerCard("string_trigger");
 		this.trigger.string.registerRunListener(this.runStringTrigger);
 		this.trigger.string.getArgument('trigger')
 			.registerAutocompleteListener(this.onTriggerAutocomplete.bind(this));
 
-		this.trigger.boolean = new Homey.FlowCardTriggerDevice("boolean_trigger").register();
+		this.trigger.boolean = this.homey.flow.getDeviceTriggerCard("boolean_trigger");
 		this.trigger.boolean.registerRunListener(this.runBooleanTrigger);
 		this.trigger.boolean.getArgument('trigger')
 			.registerAutocompleteListener(this.onTriggerAutocomplete.bind(this));
 
-		this.trigger.void = new Homey.FlowCardTriggerDevice("void_trigger").register();
+		this.trigger.void = this.homey.flow.getDeviceTriggerCard("void_trigger");
 		this.trigger.void.registerRunListener(this.runVoidTrigger);
 		this.trigger.void.getArgument('trigger')
 			.registerAutocompleteListener(this.onTriggerAutocomplete.bind(this));
 
-		this.trigger.rc_digital = new Homey.FlowCardTriggerDevice("rc_digital_trigger").register();
+		this.trigger.rc_digital = this.homey.flow.getDeviceTriggerCard("rc_digital_trigger");
 		this.trigger.rc_digital.registerRunListener(this.runRcTrigger);
 		this.trigger.rc_digital.getArgument('pin')
 			.registerAutocompleteListener(this.onRcDigitalTriggerAutocomplete.bind(this));
 
-		this.trigger.rc_analog = new Homey.FlowCardTriggerDevice("rc_analog_trigger").register();
+		this.trigger.rc_analog = this.homey.flow.getDeviceTriggerCard("rc_analog_trigger");
 		this.trigger.rc_analog.registerRunListener(this.runRcTrigger);
 		this.trigger.rc_analog.getArgument('pin')
-				.registerAutocompleteListener(this.onRcAnalogTriggerAutocomplete.bind(this));
+			.registerAutocompleteListener(this.onRcAnalogTriggerAutocomplete.bind(this));
 
 		this.available = false;
 
@@ -316,14 +317,11 @@ class HomeyduinoDevice extends Homey.Device {
 		});
 	}
 
-	deviceUpdateLocalAddress( callback ) {
-		callback = callback || function(){};
-		let cloud = Homey.ManagerCloud;
-		cloud.getLocalAddress( (err, localAddress) => {
-			if ( err ) return callback( err, null );
-			this.device.setLocalAddress(localAddress.split(':')[0]);
-			return callback( null, localAddress.split(':')[0]);
-		});
+	async deviceUpdateLocalAddress( address ) {
+		let cloud = this.homey.cloud;
+		let ipAddressLocal = await cloud.getLocalAddress();
+		this.device.setLocalAddress(ipAddressLocal.split(':')[0]);
+		return address( null, ipAddressLocal.split(':')[0]);		
 	}
 
 	removeListeners() {
@@ -399,7 +397,7 @@ class HomeyduinoDevice extends Homey.Device {
 			this.removeListeners(); //First remove the listeners
 		}
 		this.log("Searching for Arduino device "+this.deviceId+"...");
-		this.device = Homey.app.discovery.getDevice(this.deviceId);
+		this.device = this.homey.app.discovery.getDevice(this.deviceId);
 
 		if ( this.device instanceof Error ) {
 			this.log("Device ",this.deviceId," is not available.");
@@ -408,7 +406,7 @@ class HomeyduinoDevice extends Homey.Device {
 
 			if (this.polling) {
 				this.log("Polling is enabled for device",this.deviceId," at IP ",this.ipAddress);
-				Homey.app.discovery.poll(this.ipAddress, (err, res) => {
+				this.homey.app.discovery.poll(this.ipAddress, (err, res) => {
 					if (err) {
 						this.log("Poll returned error:",err);
 					} else {
