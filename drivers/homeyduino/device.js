@@ -591,7 +591,8 @@ class HomeyduinoDevice extends Homey.Device {
 		}
 	}
 
-	onSettings( oldSettings, newSettings, changedKeysArr, callback ) {
+
+	async onSettings({ oldSettings, newSettings, changedKeysArr }) {
 		var reinit = false;
 		if (oldSettings.id != newSettings.id){
 			this.log("Device ID changed in settings. Calling deviceInit with new device "+newSettings.id+"...");
@@ -624,7 +625,6 @@ class HomeyduinoDevice extends Homey.Device {
 			this.deviceInit();
 		}
 
-		callback( null, true );
 	}
 
 	action(args) {
