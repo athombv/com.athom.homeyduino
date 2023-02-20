@@ -1,10 +1,10 @@
+
 /*
  * Project: Homeyduino
  * Author: Renze Nicolai <renze@rnplus.nl>
  * License: GPLv3
  *
  */
-
 "use strict";
 
 const Homey = require('homey');

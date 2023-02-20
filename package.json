@@ -1,0 +1,14 @@
+{
+  "name": "du.du",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {},
+  "devDependencies": {
+    "@tsconfig/node12": "^1.0.11",
+    "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.3",
+    "@types/node": "^18.13.0"
+  },
+  "dependencies": {
+    "homey-arduino": "^1.0.0"
+  }
+}
