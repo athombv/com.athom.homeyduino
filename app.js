@@ -1,19 +1,22 @@
+
 /*
  * Project: Homeyduino
  * Author: Renze Nicolai <renze@rnplus.nl>
  * License: GPLv3
  *
  */
-
 "use strict";
 
-const Homey = require("homey");
+const Homey = require('homey');
 const Arduino = require("homey-arduino");
 const util = require('util');
 
 class HomeyduinoApp extends Homey.App {
 
-	onInit() {
+	async onInit() {
+
+		console.log('onInit HomeyduinoApp...');
+
 		//Start discovery broadcast
 		this.discovery = new Arduino.ArduinoDiscovery({
 			debugEmit: true,
@@ -24,79 +27,64 @@ class HomeyduinoApp extends Homey.App {
 
 		this.discovery.on('discover', device => {}).start();
 
-		let numberAction = new Homey.FlowCardAction("number_action")
-			.register()
+		const numberAction = this.homey.flow.getActionCard("number_action")
 			.registerRunListener(this.onAction.bind(this))
 			.getArgument('action')
 			.registerAutocompleteListener(this.onActionAutocomplete.bind(this));
-		let textAction = new Homey.FlowCardAction("text_action")
-			.register()
+		const textAction = this.homey.flow.getActionCard("text_action")
 			.registerRunListener(this.onAction.bind(this))
 			.getArgument('action')
 			.registerAutocompleteListener(this.onActionAutocomplete.bind(this));
-		let booleanAction = new Homey.FlowCardAction("boolean_action")
-			.register()
+		const booleanAction = this.homey.flow.getActionCard("boolean_action")
 			.registerRunListener(this.onAction.bind(this))
 			.getArgument('action')
 			.registerAutocompleteListener(this.onActionAutocomplete.bind(this));
-		let voidAction = new Homey.FlowCardAction("void_action")
-			.register()
+		const voidAction = this.homey.flow.getActionCard("void_action")
 			.registerRunListener(this.onAction.bind(this))
 			.getArgument('action')
 			.registerAutocompleteListener(this.onActionAutocomplete.bind(this));
-		let rcDigitalAction = new Homey.FlowCardAction("rc_digital_action")
-			.register()
+		const rcDigitalAction = this.homey.flow.getActionCard("rc_digital_action")
 			.registerRunListener(this.onRcDigitalAction.bind(this,'token'))
 			.getArgument('pin')
 			.registerAutocompleteListener(this.onRcDigitalActionAutocomplete.bind(this));
-			let rcDigitalActionOn = new Homey.FlowCardAction("rc_digital_action_on")
-				.register()
-				.registerRunListener(this.onRcDigitalAction.bind(this,'on'))
-				.getArgument('pin')
-				.registerAutocompleteListener(this.onRcDigitalActionAutocomplete.bind(this));
-			let rcDigitalActionOff = new Homey.FlowCardAction("rc_digital_action_off")
-				.register()
-				.registerRunListener(this.onRcDigitalAction.bind(this,'off'))
-				.getArgument('pin')
-				.registerAutocompleteListener(this.onRcDigitalActionAutocomplete.bind(this));
-			let rcAnalogAction = new Homey.FlowCardAction("rc_analog_action")
-				.register()
-				.registerRunListener(this.onRcAnalogAction.bind(this))
-				.getArgument('pin')
-				.registerAutocompleteListener(this.onRcAnalogActionAutocomplete.bind(this));
+   		const rcDigitalActionOn = this.homey.flow.getActionCard("rc_digital_action_on")
+   			.registerRunListener(this.onRcDigitalAction.bind(this,'on'))
+   			.getArgument('pin')
+   			.registerAutocompleteListener(this.onRcDigitalActionAutocomplete.bind(this));
+   		const rcDigitalActionOff = this.homey.flow.getActionCard("rc_digital_action_off")
+   			.registerRunListener(this.onRcDigitalAction.bind(this,'off'))
+   			.getArgument('pin')
+   			.registerAutocompleteListener(this.onRcDigitalActionAutocomplete.bind(this));
+   		const rcAnalogAction = this.homey.flow.getActionCard("rc_analog_action")
+   			.registerRunListener(this.onRcAnalogAction.bind(this))
+   			.getArgument('pin')
+   			.registerAutocompleteListener(this.onRcAnalogActionAutocomplete.bind(this));
 
-		let numberCondition = new Homey.FlowCardCondition("number_condition")
-			.register()
+		const numberCondition = this.homey.flow.getConditionCard("number_condition")
 			.registerRunListener(this.onCondition.bind(this))
 			.getArgument('condition')
 			.registerAutocompleteListener(this.onConditionAutocomplete.bind(this));
-		let textCondition = new Homey.FlowCardCondition("text_condition")
-			.register()
+		const textCondition = this.homey.flow.getConditionCard("text_condition")
 			.registerRunListener(this.onCondition.bind(this))
 			.getArgument('condition')
 			.registerAutocompleteListener(this.onConditionAutocomplete.bind(this));
-		let booleanCondition = new Homey.FlowCardCondition("boolean_condition")
-			.register()
+		const booleanCondition = this.homey.flow.getConditionCard("boolean_condition")
 			.registerRunListener(this.onCondition.bind(this))
 			.getArgument('condition')
 			.registerAutocompleteListener(this.onConditionAutocomplete.bind(this));
-		let voidCondition = new Homey.FlowCardCondition("void_condition")
-			.register()
+		const voidCondition = this.homey.flow.getConditionCard("void_condition")
 			.registerRunListener(this.onCondition.bind(this))
 			.getArgument('condition')
 			.registerAutocompleteListener(this.onConditionAutocomplete.bind(this));
-		let rcDigitalCondition = new Homey.FlowCardCondition("rc_digital_condition")
-			.register()
+		const rcDigitalCondition = this.homey.flow.getConditionCard("rc_digital_condition")
 			.registerRunListener(this.onRcDigitalCondition.bind(this))
 			.getArgument('pin')
 			.registerAutocompleteListener(this.onRcDigitalConditionAutocomplete.bind(this));
-		let rcAnalogGreaterCondition = new Homey.FlowCardCondition("rc_analog_greater_condition")
-			.register()
+		const rcAnalogGreaterCondition = this.homey.flow.getConditionCard("rc_analog_greater_condition")
 			.registerRunListener(this.onRcAnalogCondition.bind(this,false))
 			.getArgument('pin')
 			.registerAutocompleteListener(this.onRcAnalogConditionAutocomplete.bind(this));
-		let rcAnalogEqualsCondition = new Homey.FlowCardCondition("rc_analog_equals_condition")
-			.register()
+		const rcAnalogEqualsCondition = this.homey.flow.getConditionCard("rc_analog_equals_condition")
 			.registerRunListener(this.onRcAnalogCondition.bind(this,true))
 			.getArgument('pin')
 			.registerAutocompleteListener(this.onRcAnalogConditionAutocomplete.bind(this));
@@ -250,6 +238,7 @@ class HomeyduinoApp extends Homey.App {
 
 		return Promise.resolve( results );
 	}
+
 }
 
 module.exports = HomeyduinoApp;
