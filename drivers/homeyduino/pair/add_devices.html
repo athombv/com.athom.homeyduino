@@ -1,0 +1,23 @@
+<script type="text/javascript">
+console.log('window.found_devices', JSON.stringify(window.found_devices, false, 2))  
+
+var devices = Object.values(window.found_devices).filter(function(device){
+  return device.data.id;
+});
+
+var total = devices.length;
+var done = 0;
+
+if(total > 0) {
+  devices.forEach(function(device){
+    Homey.addDevice(device, function(err, result){
+      done++;
+      if( total === done ) {
+        Homey.done();
+      }
+    })
+  });
+} else {
+  Homey.done();
+}
+</script>

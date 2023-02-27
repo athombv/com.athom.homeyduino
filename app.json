@@ -1,759 +1,765 @@
 {
-	"id": "com.athom.homeyduino",
-	"sdk": 2,
-	"name": {
-		"en": "Homeyduino"
-	},
-	"description": {
-		"en": "Make your own devices using Arduino",
-		"nl": "Maak je eigen apparaten met Arduino"
-	},
-	"category": "tools",
-	"version": "1.0.2",
-	"compatibility": ">=1.5.0",
-	"author": {
-		"name": "Athom B.V.",
-		"email": "renze@athom.nl"
-	},
-	"images": {
-        "large": "/assets/images/large.png",
-        "small": "/assets/images/small.png"
-    },
-	"flow": {
-		"triggers": [
-			{
-				"id": "debug_trigger",
-				"title": {
-					"en": "All triggers",
-					"nl": "Alle triggers"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					}
-				],
-				"tokens": [
-				{
-					"name": "number",
-					"type": "number",
-					"title": {
-						"en": "Number"
-					},
-					"example": 0
-				},
-				{
-					"name": "string",
-					"type": "string",
-					"title": {
-						"en": "String"
-					},
-					"example": "hello"
-				},
-				{
-					"name": "boolean",
-					"type": "boolean",
-					"title": {
-						"en": "Boolean"
-					},
-					"example": false
-				},
-				{
-					"name": "trigger",
-					"type": "string",
-					"title": {
-						"en": "Trigger",
-						"nl": "Trigger"
-					},
-					"example": "my-trigger"
-				},				{
-					"name": "type",
-					"type": "string",
-					"title": {
-						"en": "Type",
-						"nl": "Type"
-					},
-					"example": "number"
-				}]
-			},
-			{
-				"id": "number_trigger",
-				"title": {
-					"en": "Trigger [number]",
-					"nl": "Trigger [getal]"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "trigger",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Trigger",
-							"nl": "Trigger"
-						}
-					}
-				],
-				"tokens": [
-				{
-					"name": "value",
-					"type": "number",
-					"title": {
-						"en": "Value",
-						"nl": "Waarde"
-					},
-					"example": 0
-				}]
-			},
-			{
-				"id": "string_trigger",
-				"title": {
-					"en": "Trigger [text]",
-					"nl": "Trigger [tekst]"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "trigger",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Trigger",
-							"nl": "Trigger"
-						}
-					}
-				],
-				"tokens": [
-				{
-					"name": "value",
-					"type": "string",
-					"title": {
-						"en": "Value",
-						"nl": "Waarde"
-					},
-					"example": "hello"
-				}]
-			},
-			{
-				"id": "boolean_trigger",
-				"title": {
-					"en": "Trigger [boolean]",
-					"nl": "Trigger [boolean]"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "trigger",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Trigger",
-							"nl": "Trigger"
-						}
-					}
-				],
-				"tokens": [
-				{
-					"name": "value",
-					"type": "boolean",
-					"title": {
-						"en": "Value",
-						"nl": "Waarde"
-					},
-					"example": false
-				}]
-			},
-			{
-				"id": "void_trigger",
-				"title": {
-					"en": "Trigger",
-					"nl": "Trigger"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "trigger",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Trigger",
-							"nl": "Trigger"
-						}
-					}
-				]
-			},
-			{
-				"id": "rc_digital_trigger",
-				"title": {
-					"en": "Digital input",
-					"nl": "Digitale ingang"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "pin",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Pin",
-							"nl": "Pin"
-						}
-					}
-				],
-				"tokens": [
-				{
-					"name": "value",
-					"type": "boolean",
-					"title": {
-						"en": "Value",
-						"nl": "Waarde"
-					}
-				}]
-			},
-			{
-				"id": "rc_analog_trigger",
-				"title": {
-					"en": "Analog input",
-					"nl": "Analoge ingang"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "pin",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Pin",
-							"nl": "Pin"
-						}
-					}
-				],
-				"tokens": [
-				{
-					"name": "value",
-					"type": "number",
-					"title": {
-						"en": "Value",
-						"nl": "Waarde"
-					},
-					"example": 0
-				}]
-			}
-		],
-		"actions": [
-			{
-				"id": "number_action",
-				"title": {
-					"en": "Action [number]",
-					"nl": "Actie [getal]"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "action",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Action",
-							"nl": "Actie"
-						}
-					},
-					{
-						"name": "value",
-						"type": "number",
-						"title": {
-							"en": "Value",
-							"nl": "Waarde"
-						}
-					}
-				]
-			},
-			{
-				"id": "text_action",
-				"title": {
-					"en": "Action [text]",
-					"nl": "Actie [tekst]"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "action",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Action",
-							"nl": "Actie"
-						}
-					},
-					{
-						"name": "value",
-						"type": "text",
-						"title": {
-							"en": "Value",
-							"nl": "Waarde"
-						}
-					}
-				]
-			},
-			{
-				"id": "boolean_action",
-				"title": {
-					"en": "Action [boolean]",
-					"nl": "Actie [boolean]"
-				},
-				"droptoken": "boolean",
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "action",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Action",
-							"nl": "Actie"
-						}
-					}
-				]
-			},
-			{
-				"id": "void_action",
-				"title": {
-					"en": "Action",
-					"nl": "Actie"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "action",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Action",
-							"nl": "Actie"
-						}
-					}
-				]
-			},
-			{
-				"id": "rc_digital_action",
-				"title": {
-					"en": "Digital output",
-					"nl": "Digitale uitgang"
-				},
-				"droptoken": "boolean",
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "pin",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Pin",
-							"nl": "Pin"
-						}
-					}
-				]
-			},
-			{
-				"id": "rc_digital_action_on",
-				"title": {
-					"en": "Digital output: ON",
-					"nl": "Digitale uitgang: AAN"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "pin",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Pin",
-							"nl": "Pin"
-						}
-					}
-				]
-			},
-			{
-				"id": "rc_digital_action_off",
-				"title": {
-					"en": "Digital output: OFF",
-					"nl": "Digitale uitgang: UIT"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "pin",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Pin",
-							"nl": "Pin"
-						}
-					}
-				]
-			},
-			{
-				"id": "rc_analog_action",
-				"title": {
-					"en": "Analog output",
-					"nl": "Analoge uitgang"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "pin",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Pin",
-							"nl": "Pin"
-						}
-					},
-					{
-						"name": "value",
-						"type": "range",
-						"min": 0,
-						"max": 1,
-						"step": 0.0001,
-						"title": {
-							"en": "Value",
-							"nl": "Waarde"
-						}
-					}
-				]
-			}
-		],
-		"conditions": [
-			{
-				"id": "number_condition",
-				"title": {
-					"en": "Condition [number]",
-					"nl": "Conditie [getal]"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "condition",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Condition",
-							"nl": "Voorwaarde"
-						}
-					},
-					{
-						"name": "value",
-						"type": "number",
-						"title": {
-							"en": "Value",
-							"nl": "Waarde"
-						}
-					}
-				]
-			},
-			{
-				"id": "text_condition",
-				"title": {
-					"en": "Condition [text]",
-					"nl": "Conditie [tekst]"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "condition",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Condition",
-							"nl": "Voorwaarde"
-						}
-					},
-					{
-						"name": "value",
-						"type": "text",
-						"title": {
-							"en": "Value",
-							"nl": "Waarde"
-						}
-					}
-				]
-			},
-			{
-				"id": "boolean_condition",
-				"title": {
-					"en": "Condition [boolean]",
-					"nl": "Conditie [boolean]"
-				},
-				"droptoken": "boolean",
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "condition",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Condition",
-							"nl": "Voorwaarde"
-						}
-					}
-				]
-			},
-			{
-				"id": "void_condition",
-				"title": {
-					"en": "Condition",
-					"nl": "Conditie"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "condition",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Condition",
-							"nl": "Voorwaarde"
-						}
-					}
-				]
-			},
-			{
-				"id": "rc_digital_condition",
-				"title": {
-					"en": "Digital pin",
-					"nl": "Digitale pin"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "pin",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Pin",
-							"nl": "Pin"
-						}
-					}
-				]
-			},
-			{
-				"id": "rc_analog_greater_condition",
-				"title": {
-					"en": "Analog input !{{greater|less}} than",
-					"nl": "Analoge ingang !{{hoger|lager}} dan"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "pin",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Pin",
-							"nl": "Pin"
-						}
-					},
-					{
-						"name": "value",
-						"type": "range",
-						"min": 0,
-						"max": 1,
-						"step": 0.01,
-						"title": {
-							"en": "Value",
-							"nl": "Waarde"
-						}
-					}
-				]
-			},
-			{
-				"id": "rc_analog_equals_condition",
-				"title": {
-					"en": "Analog input equals",
-					"nl": "Analoge ingang equals"
-				},
-				"args": [
-					{
-						"name": "device",
-						"type": "device",
-						"filter": "driver_id=homeyduino"
-					},
-					{
-						"name": "pin",
-						"type": "autocomplete",
-						"placeholder": {
-							"en": "Pin",
-							"nl": "Pin"
-						}
-					},
-					{
-						"name": "value",
-						"type": "range",
-						"min": 0,
-						"max": 1,
-						"step": 0.01,
-						"title": {
-							"en": "Value",
-							"nl": "Waarde"
-						}
-					}
-				]
-			}
-		]
-	},
-	"drivers": [
-		{
-			"id": "homeyduino",
-			"name": {
-				"en": "Arduino",
-				"nl": "Arduino"
-			},
-			"images": {
-				"large": "/assets/images/driver_large.png",
-				"small": "/assets/images/driver_small.png"
-			},
-			"class": "other",
-			"capabilities": [],
-			"pair": [
-				{
-					"id": "custom_list_devices",
-					"navigation": {
-						"next": "add_manually"
-					},
-					"options": {
-                        "singular": true
-                    }
-				},
-				{
-					"id": "add_manually",
-					"navigation": {
-						"prev": "custom_list_devices",
-						"next": "verify_manual_input"
-					}
-				},
-				{
-					"id": "verify_manual_input"
-				},
-				{
-					"id": "rc_cfg_board",
-					"navigation": {
-						"prev": "custom_list_devices",
-						"next": "rc_cfg_pins"
-					}
-				},
-				{
-					"id": "rc_cfg_pins",
-					"navigation": {
-						"prev": "rc_cfg_board",
-						"next": "rc_apply"
-					}
-				},
-				{
-					"id": "rc_apply"
-				},
-				{
-					"id": "add_devices",
-					"template": "add_devices"
-				}
-			],
-			"settings": [
-				{
-					"type": "group",
-					"label": {
-						"en": "Device settings"
-					},
-					"children": [
-						{
-							"id": "id",
-							"type": "text",
-							"label": {
-								"en": "Device identifier",
-								"nl": "Unieke naam"
-							},
-							"value": "not-set-default-value"
-						},
-						{
-							"id": "ip",
-							"type": "text",
-							"label": {
-								"en": "IP address",
-								"nl": "IP adres"
-							},
-							"value": "0.0.0.0"
-						},
-						{
-							"id": "polling",
-							"type": "checkbox",
-							"label": {
-								"en": "Enable polling over TCP",
-								"nl": "Actief zoeken over TCP"
-							},
-							"value": false
-						}
-					]
-				}
-			]
-		}
-	]
+  "id": "com.athom.homeyduino",
+  "sdk": 2,
+  "name": {
+    "en": "Homeyduino"
+  },
+  "description": {
+    "en": "Make your own devices using Arduino",
+    "nl": "Maak je eigen apparaten met Arduino"
+  },
+  "category": "tools",
+  "version": "1.0.3",
+  "compatibility": ">=1.5.0",
+  "author": {
+    "name": "Athom B.V.",
+    "email": "renze@athom.nl"
+  },
+  "images": {
+    "large": "/assets/images/large.png",
+    "small": "/assets/images/small.png"
+  },
+  "flow": {
+    "triggers": [
+      {
+        "id": "debug_trigger",
+        "title": {
+          "en": "All triggers",
+          "nl": "Alle triggers"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "number",
+            "type": "number",
+            "title": {
+              "en": "Number"
+            },
+            "example": 0
+          },
+          {
+            "name": "string",
+            "type": "string",
+            "title": {
+              "en": "String"
+            },
+            "example": "hello"
+          },
+          {
+            "name": "boolean",
+            "type": "boolean",
+            "title": {
+              "en": "Boolean"
+            },
+            "example": false
+          },
+          {
+            "name": "trigger",
+            "type": "string",
+            "title": {
+              "en": "Trigger",
+              "nl": "Trigger"
+            },
+            "example": "my-trigger"
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "title": {
+              "en": "Type",
+              "nl": "Type"
+            },
+            "example": "number"
+          }
+        ]
+      },
+      {
+        "id": "number_trigger",
+        "title": {
+          "en": "Trigger [number]",
+          "nl": "Trigger [getal]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "trigger",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Trigger",
+              "nl": "Trigger"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Value",
+              "nl": "Waarde"
+            },
+            "example": 0
+          }
+        ]
+      },
+      {
+        "id": "string_trigger",
+        "title": {
+          "en": "Trigger [text]",
+          "nl": "Trigger [tekst]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "trigger",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Trigger",
+              "nl": "Trigger"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "value",
+            "type": "string",
+            "title": {
+              "en": "Value",
+              "nl": "Waarde"
+            },
+            "example": "hello"
+          }
+        ]
+      },
+      {
+        "id": "boolean_trigger",
+        "title": {
+          "en": "Trigger [boolean]",
+          "nl": "Trigger [boolean]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "trigger",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Trigger",
+              "nl": "Trigger"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "value",
+            "type": "boolean",
+            "title": {
+              "en": "Value",
+              "nl": "Waarde"
+            },
+            "example": false
+          }
+        ]
+      },
+      {
+        "id": "void_trigger",
+        "title": {
+          "en": "Trigger",
+          "nl": "Trigger"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "trigger",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Trigger",
+              "nl": "Trigger"
+            }
+          }
+        ]
+      },
+      {
+        "id": "rc_digital_trigger",
+        "title": {
+          "en": "Digital input",
+          "nl": "Digitale ingang"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "pin",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Pin",
+              "nl": "Pin"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "value",
+            "type": "boolean",
+            "title": {
+              "en": "Value",
+              "nl": "Waarde"
+            }
+          }
+        ]
+      },
+      {
+        "id": "rc_analog_trigger",
+        "title": {
+          "en": "Analog input",
+          "nl": "Analoge ingang"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "pin",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Pin",
+              "nl": "Pin"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Value",
+              "nl": "Waarde"
+            },
+            "example": 0
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "number_action",
+        "title": {
+          "en": "Action [number]",
+          "nl": "Actie [getal]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "action",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Action",
+              "nl": "Actie"
+            }
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Value",
+              "nl": "Waarde"
+            }
+          }
+        ]
+      },
+      {
+        "id": "text_action",
+        "title": {
+          "en": "Action [text]",
+          "nl": "Actie [tekst]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "action",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Action",
+              "nl": "Actie"
+            }
+          },
+          {
+            "name": "value",
+            "type": "text",
+            "title": {
+              "en": "Value",
+              "nl": "Waarde"
+            }
+          }
+        ]
+      },
+      {
+        "id": "boolean_action",
+        "title": {
+          "en": "Action [boolean]",
+          "nl": "Actie [boolean]"
+        },
+        "droptoken": "boolean",
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "action",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Action",
+              "nl": "Actie"
+            }
+          }
+        ]
+      },
+      {
+        "id": "void_action",
+        "title": {
+          "en": "Action",
+          "nl": "Actie"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "action",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Action",
+              "nl": "Actie"
+            }
+          }
+        ]
+      },
+      {
+        "id": "rc_digital_action",
+        "title": {
+          "en": "Digital output",
+          "nl": "Digitale uitgang"
+        },
+        "droptoken": "boolean",
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "pin",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Pin",
+              "nl": "Pin"
+            }
+          }
+        ]
+      },
+      {
+        "id": "rc_digital_action_on",
+        "title": {
+          "en": "Digital output: ON",
+          "nl": "Digitale uitgang: AAN"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "pin",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Pin",
+              "nl": "Pin"
+            }
+          }
+        ]
+      },
+      {
+        "id": "rc_digital_action_off",
+        "title": {
+          "en": "Digital output: OFF",
+          "nl": "Digitale uitgang: UIT"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "pin",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Pin",
+              "nl": "Pin"
+            }
+          }
+        ]
+      },
+      {
+        "id": "rc_analog_action",
+        "title": {
+          "en": "Analog output",
+          "nl": "Analoge uitgang"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "pin",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Pin",
+              "nl": "Pin"
+            }
+          },
+          {
+            "name": "value",
+            "type": "range",
+            "min": 0,
+            "max": 1,
+            "step": 0.0001,
+            "title": {
+              "en": "Value",
+              "nl": "Waarde"
+            }
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "number_condition",
+        "title": {
+          "en": "Condition [number]",
+          "nl": "Conditie [getal]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "condition",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Condition",
+              "nl": "Voorwaarde"
+            }
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Value",
+              "nl": "Waarde"
+            }
+          }
+        ]
+      },
+      {
+        "id": "text_condition",
+        "title": {
+          "en": "Condition [text]",
+          "nl": "Conditie [tekst]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "condition",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Condition",
+              "nl": "Voorwaarde"
+            }
+          },
+          {
+            "name": "value",
+            "type": "text",
+            "title": {
+              "en": "Value",
+              "nl": "Waarde"
+            }
+          }
+        ]
+      },
+      {
+        "id": "boolean_condition",
+        "title": {
+          "en": "Condition [boolean]",
+          "nl": "Conditie [boolean]"
+        },
+        "droptoken": "boolean",
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "condition",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Condition",
+              "nl": "Voorwaarde"
+            }
+          }
+        ]
+      },
+      {
+        "id": "void_condition",
+        "title": {
+          "en": "Condition",
+          "nl": "Conditie"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "condition",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Condition",
+              "nl": "Voorwaarde"
+            }
+          }
+        ]
+      },
+      {
+        "id": "rc_digital_condition",
+        "title": {
+          "en": "Digital pin",
+          "nl": "Digitale pin"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "pin",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Pin",
+              "nl": "Pin"
+            }
+          }
+        ]
+      },
+      {
+        "id": "rc_analog_greater_condition",
+        "title": {
+          "en": "Analog input !{{greater|less}} than",
+          "nl": "Analoge ingang !{{hoger|lager}} dan"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "pin",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Pin",
+              "nl": "Pin"
+            }
+          },
+          {
+            "name": "value",
+            "type": "range",
+            "min": 0,
+            "max": 1,
+            "step": 0.01,
+            "title": {
+              "en": "Value",
+              "nl": "Waarde"
+            }
+          }
+        ]
+      },
+      {
+        "id": "rc_analog_equals_condition",
+        "title": {
+          "en": "Analog input equals",
+          "nl": "Analoge ingang equals"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=homeyduino"
+          },
+          {
+            "name": "pin",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Pin",
+              "nl": "Pin"
+            }
+          },
+          {
+            "name": "value",
+            "type": "range",
+            "min": 0,
+            "max": 1,
+            "step": 0.01,
+            "title": {
+              "en": "Value",
+              "nl": "Waarde"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "id": "homeyduino",
+      "name": {
+        "en": "Arduino",
+        "nl": "Arduino"
+      },
+      "images": {
+        "large": "/assets/images/driver_large.png",
+        "small": "/assets/images/driver_small.png"
+      },
+      "class": "other",
+      "capabilities": [],
+      "pair": [
+        {
+          "id": "custom_list_devices",
+          "navigation": {
+            "next": "add_manually"
+          },
+          "options": {
+            "singular": true
+          }
+        },
+        {
+          "id": "add_manually",
+          "navigation": {
+            "prev": "custom_list_devices",
+            "next": "verify_manual_input"
+          }
+        },
+        {
+          "id": "verify_manual_input"
+        },
+        {
+          "id": "rc_cfg_board",
+          "navigation": {
+            "prev": "custom_list_devices",
+            "next": "rc_cfg_pins"
+          }
+        },
+        {
+          "id": "rc_cfg_pins",
+          "navigation": {
+            "prev": "rc_cfg_board",
+            "next": "rc_apply"
+          }
+        },
+        {
+          "id": "rc_apply"
+        },
+        {
+          "id": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Device settings"
+          },
+          "children": [
+            {
+              "id": "id",
+              "type": "text",
+              "label": {
+                "en": "Device identifier",
+                "nl": "Unieke naam"
+              },
+              "value": "not-set-default-value"
+            },
+            {
+              "id": "ip",
+              "type": "text",
+              "label": {
+                "en": "IP address",
+                "nl": "IP adres"
+              },
+              "value": "0.0.0.0"
+            },
+            {
+              "id": "polling",
+              "type": "checkbox",
+              "label": {
+                "en": "Enable polling over TCP",
+                "nl": "Actief zoeken over TCP"
+              },
+              "value": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
