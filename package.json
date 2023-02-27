@@ -1,5 +1,5 @@
 {
-  "name": "du.du",
+  "name": "com.athom.homeyduino",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {},
@@ -9,6 +9,10 @@
     "@types/node": "^18.13.0"
   },
   "dependencies": {
-    "homey-arduino": "^1.0.0"
+    "body-parser": "^1.18.1",
+    "express": "^4.15.5",
+    "promise-retry": "^1.1.1",
+    "request": "^2.82.0",
+    "request-promise-native": "^1.0.5"
   }
 }

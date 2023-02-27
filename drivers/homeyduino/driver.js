@@ -8,9 +8,6 @@
 "use strict";
 
 const Homey = require('homey');
-const Arduino = require("homey-arduino");
-const util = require('util');
-const events = require('events');
 
 class HomeyduinoDriver extends Homey.Driver {
 

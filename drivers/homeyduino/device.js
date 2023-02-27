@@ -8,8 +8,6 @@
 "use strict";
 
 const Homey = require("homey");
-const Arduino = require("homey-arduino");
-const util = require('util');
 
 class HomeyduinoDevice extends Homey.Device {
 
