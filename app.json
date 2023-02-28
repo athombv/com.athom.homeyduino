@@ -19,6 +19,9 @@
     "large": "/assets/images/large.png",
     "small": "/assets/images/small.png"
   },
+  "support": "https://support.homey.app/",
+  "platforms": ["local"],
+  "brandColor": "#20C8DF",
   "flow": {
     "triggers": [
       {
@@ -764,6 +767,7 @@
         "large": "/assets/images/driver_large.png",
         "small": "/assets/images/driver_small.png"
       },
+      "platforms": ["local"],
       "class": "other",
       "capabilities": [],
       "pair": [
