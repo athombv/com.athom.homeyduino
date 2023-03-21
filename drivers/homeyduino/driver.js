@@ -206,7 +206,7 @@ class HomeyduinoDriver extends Homey.Driver {
 	    super.onPair( session );
         session.setHandler("pairManually", async ( data ) => {
         //session.setHandler("pairManually", async function ( data ) {
-			if (data.ip==="") return (Homey.__("pair.manual.ip_field_empty"));
+			if (data.ip==="") return (this.homey.__("pair.manual.ip_field_empty"));
 
 			this.log("onPair: Polling...");
 			this.homey.app.discovery.poll(data.ip, (err, res) => {
@@ -216,7 +216,7 @@ class HomeyduinoDriver extends Homey.Driver {
 					if (typeof err == 'object') {
 						if (typeof err.message == 'string') {
 							if (err.message=='ETIMEDOUT') {
-								return (Homey.__('pair.manual.error_timeout'));
+								return (this.homey.__('pair.manual.error_timeout'));
 							} else {
 								return (err.message);
 							}
