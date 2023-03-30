@@ -9,7 +9,7 @@
     "nl": "Maak je eigen apparaten met Arduino"
   },
   "category": "tools",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "compatibility": ">=5.0.0",
   "author": {
     "name": "Athom B.V.",
