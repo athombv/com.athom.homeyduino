@@ -23,6 +23,7 @@
   "platforms": [
     "local"
   ],
+  "homepage": "https://github.com/athombv/com.athom.homeyduino",
   "brandColor": "#20C8DF",
   "flow": {
     "triggers": [
