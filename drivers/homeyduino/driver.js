@@ -74,8 +74,8 @@ class HomeyduinoDriver extends Homey.Driver {
 		});
 
 		this.trigger.void = this.homey.flow.getDeviceTriggerCard("void_trigger");
-		this.trigger.void.registerRunListener(() => {
-			return true;
+		this.trigger.void.registerRunListener((args, state) => {
+			return args.trigger.value && state.name && args.trigger.value == state.name;
 		});
 		this.trigger.void.registerArgumentAutocompleteListener('trigger', async (query, args) => {
 			return args.device.onTriggerAutocomplete(query, args);
