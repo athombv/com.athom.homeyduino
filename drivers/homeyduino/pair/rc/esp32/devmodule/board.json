@@ -1,194 +1,100 @@
 {
-  "pins": [
-    {
-      "name": "0",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "2",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "4",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "5",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "12",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "13",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "14",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "15",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "16",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "17",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "18",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "19",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "21",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "22",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "23",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "25",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "26",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "27",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "32",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "33",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "34",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "35",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "36",
-      "modes": [
-        "di",
-        "dit"
-      ]
-    },
-    {
-      "name": "39",
-      "modes": [
-        "di",
-        "dit"
-      ]
-    }
-  ]
+	"pins": [
+		{
+			"name": "0",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "2",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "4",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "5",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "12",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "13",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "14",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "15",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "16",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "17",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "18",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "19",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "21",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "22",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "23",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "25",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "26",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "27",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "32",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "33",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "34",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "35",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "36",
+			"modes": ["di", "dit"]
+		},
+		{
+			"name": "39",
+			"modes": ["di", "dit"]
+		}
+	]
 }

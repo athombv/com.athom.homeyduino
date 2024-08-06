@@ -1,170 +1,72 @@
 {
-  "avr": [
-    {
-      "name": "Arduino Uno",
-      "folder": "avr/uno",
-      "numDigitalPins": 20,
-      "numAnalogInputs": 6
-    },
-    {
-      "name": "Arduino Mega",
-      "folder": "avr/mega",
-      "numDigitalPins": 70,
-      "numAnalogInputs": 16
-    },
-    {
-      "name": "Arduino Leonardo",
-      "folder": "avr/leonardo",
-      "numDigitalPins": 31,
-      "numAnalogInputs": 12
-    }
-  ],
-  "sam": [
-    {
-      "name": "Arduino Due",
-      "folder": "sam/due",
-      "numDigitalPins": 66,
-      "numAnalogInputs": 12
-    }
-  ],
-  "esp8266": [
-    {
-      "name": "Generic ESP8266",
-      "folder": "esp8266/generic",
-      "numDigitalPins": 17,
-      "numAnalogInputs": 1,
-      "nl": "Generieke ESP8266",
-      "da": "Generisk ESP8266",
-      "de": "Generischer ESP8266",
-      "es": "ESP8266 Genérico",
-      "fr": "ESP8266 Générique",
-      "it": "ESP8266 Generico",
-      "no": "Generisk ESP8266",
-      "sv": "Generisk ESP8266",
-      "pl": "Ogólny ESP8266",
-      "ru": "Общий ESP8266",
-      "ko": "일반 ESP8266"
-    },
-    {
-      "name": "NodeMCU 1.0/V2",
-      "folder": "esp8266/nodemcu",
-      "numDigitalPins": 17,
-      "numAnalogInputs": 1,
-      "nl": "NodeMCU 1.0/V2",
-      "da": "NodeMCU 1.0/V2",
-      "de": "NodeMCU 1.0/V2",
-      "es": "NodeMCU 1.0/V2",
-      "fr": "NodeMCU 1.0/V2",
-      "it": "NodeMCU 1.0/V2",
-      "no": "NodeMCU 1.0/V2",
-      "sv": "NodeMCU 1.0/V2",
-      "pl": "NodeMCU 1.0/V2",
-      "ru": "NodeMCU 1.0/V2",
-      "ko": "NodeMCU 1.0/V2"
-    },
-    {
-      "name": "WeMos D1 R1",
-      "folder": "esp8266/wemos_d1",
-      "numDigitalPins": 17,
-      "numAnalogInputs": 1,
-      "nl": "WeMos D1 R1",
-      "da": "WeMos D1 R1",
-      "de": "WeMos D1 R1",
-      "es": "WeMos D1 R1",
-      "fr": "WeMos D1 R1",
-      "it": "WeMos D1 R1",
-      "no": "WeMos D1 R1",
-      "sv": "WeMos D1 R1",
-      "pl": "WeMos D1 R1",
-      "ru": "WeMos D1 R1",
-      "ko": "WeMos D1 R1"
-    },
-    {
-      "name": "WeMos D1 R2",
-      "folder": "esp8266/wemos_d1-r2_mini",
-      "numDigitalPins": 17,
-      "numAnalogInputs": 1,
-      "nl": "WeMos D1 R2",
-      "da": "WeMos D1 R2",
-      "de": "WeMos D1 R2",
-      "es": "WeMos D1 R2",
-      "fr": "WeMos D1 R2",
-      "it": "WeMos D1 R2",
-      "no": "WeMos D1 R2",
-      "sv": "WeMos D1 R2",
-      "pl": "WeMos D1 R2",
-      "ru": "WeMos D1 R2",
-      "ko": "WeMos D1 R2"
-    },
-    {
-      "name": "WeMos D1 mini",
-      "folder": "esp8266/wemos_d1-r2_mini",
-      "numDigitalPins": 17,
-      "numAnalogInputs": 1,
-      "nl": "WeMos D1 mini",
-      "da": "WeMos D1 mini",
-      "de": "WeMos D1 mini",
-      "es": "WeMos D1 mini",
-      "fr": "WeMos D1 mini",
-      "it": "WeMos D1 mini",
-      "no": "WeMos D1 mini",
-      "sv": "WeMos D1 mini",
-      "pl": "WeMos D1 mini",
-      "ru": "WeMos D1 mini",
-      "ko": "WeMos D1 mini"
-    },
-    {
-      "name": "Sparkfun Thing",
-      "folder": "esp8266/thing",
-      "numDigitalPins": 17,
-      "numAnalogInputs": 1,
-      "nl": "Sparkfun Thing",
-      "da": "Sparkfun Thing",
-      "de": "Sparkfun Thing",
-      "es": "Sparkfun Thing",
-      "fr": "Sparkfun Thing",
-      "it": "Sparkfun Thing",
-      "no": "Sparkfun Thing",
-      "sv": "Sparkfun Thing",
-      "pl": "Sparkfun Thing",
-      "ru": "Sparkfun Thing",
-      "ko": "Sparkfun Thing"
-    }
-  ],
-  "esp32": [
-    {
-      "name": "Generic ESP32",
-      "folder": "esp32/generic",
-      "numDigitalPins": 40,
-      "numAnalogInputs": 16,
-      "nl": "Generieke ESP32",
-      "da": "Generisk ESP32",
-      "de": "Generischer ESP32",
-      "es": "ESP32 Genérico",
-      "fr": "ESP32 Générique",
-      "it": "ESP32 Generico",
-      "no": "Generisk ESP32",
-      "sv": "Generisk ESP32",
-      "pl": "Ogólny ESP32",
-      "ru": "Общий ESP32",
-      "ko": "일반 ESP32"
-    },
-    {
-      "name": "ESP32 Dev Module",
-      "folder": "esp32/devmodule",
-      "numDigitalPins": 40,
-      "numAnalogInputs": 16,
-      "nl": "ESP32 Dev-module",
-      "da": "ESP32 Dev-modul",
-      "de": "ESP32 Entwicklungsmodul",
-      "es": "Módulo Dev ESP32",
-      "fr": "Module de développement ESP32",
-      "it": "Modulo di sviluppo ESP32",
-      "no": "ESP32 Dev-modul",
-      "sv": "ESP32 Dev-modul",
-      "pl": "Moduł deweloperski ESP32",
-      "ru": "Модуль разработки ESP32",
-      "ko": "ESP32 개발 모듈"
-    }
-  ]
+	"avr": [{
+		"name": "Arduino Uno",
+		"folder": "avr/uno",
+		"numDigitalPins": 20,
+		"numAnalogInputs": 6
+	}, {
+		"name": "Arduino Mega",
+		"folder": "avr/mega",
+		"numDigitalPins": 70,
+		"numAnalogInputs": 16
+	}, {
+		"name": "Arduino Leonardo",
+		"folder": "avr/leonardo",
+		"numDigitalPins": 31,
+		"numAnalogInputs": 12
+	}],
+	"sam": [{
+		"name": "Arduino Due",
+		"folder": "sam/due",
+		"numDigitalPins": 66,
+		"numAnalogInputs": 12
+	}],
+	"esp8266": [{
+		"name": "Generic ESP8266",
+		"folder": "esp8266/generic",
+		"numDigitalPins": 17,
+		"numAnalogInputs": 1
+	},
+	{
+		"name": "NodeMCU 1.0/V2",
+		"folder": "esp8266/nodemcu",
+		"numDigitalPins": 17,
+		"numAnalogInputs": 1
+	},
+	{
+		"name": "WeMos D1 R1",
+		"folder": "esp8266/wemos_d1",
+		"numDigitalPins": 17,
+		"numAnalogInputs": 1
+	},
+	{
+		"name": "WeMos D1 R2",
+		"folder": "esp8266/wemos_d1-r2_mini",
+		"numDigitalPins": 17,
+		"numAnalogInputs": 1
+	},
+	{
+		"name": "WeMos D1 mini",
+		"folder": "esp8266/wemos_d1-r2_mini",
+		"numDigitalPins": 17,
+		"numAnalogInputs": 1
+	},
+	{
+		"name": "Sparkfun Thing",
+		"folder": "esp8266/thing",
+		"numDigitalPins": 17,
+		"numAnalogInputs": 1
+	}],
+	"esp32": [{
+		"name": "Generic ESP32",
+		"folder": "esp32/generic",
+		"numDigitalPins": 40,
+		"numAnalogInputs": 16
+	},
+	{
+		"name": "ESP32 Dev Module",
+		"folder": "esp32/devmodule",
+		"numDigitalPins": 40,
+		"numAnalogInputs": 16
+	}]
 }

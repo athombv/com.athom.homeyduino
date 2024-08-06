@@ -1,204 +1,79 @@
 {
-  "pins": [
-    {
-      "name": "0",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "1",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "2",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "3",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "4",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "5",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "6",
-      "notAvailable": {
-        "en": "In use by flash interface",
-        "nl": "In gebruik door flash-interface",
-        "da": "Bruges af flash interface",
-        "de": "Wird von der Flash-Schnittstelle verwendet",
-        "es": "En uso por la interfaz flash",
-        "fr": "Utilisé par l'interface flash",
-        "it": "In uso dall'interfaccia flash",
-        "no": "Brukes av flash-grensesnittet",
-        "sv": "Används av flash-gränssnittet",
-        "pl": "Używany przez interfejs flash",
-        "ru": "Используется интерфейсом флэш-памяти",
-        "ko": "플래시 인터페이스에서 사용 중"
-      }
-    },
-    {
-      "name": "7",
-      "notAvailable": {
-        "en": "In use by flash interface",
-        "nl": "In gebruik door flash-interface",
-        "da": "Bruges af flash interface",
-        "de": "Wird von der Flash-Schnittstelle verwendet",
-        "es": "En uso por la interfaz flash",
-        "fr": "Utilisé par l'interface flash",
-        "it": "In uso dall'interfaccia flash",
-        "no": "Brukes av flash-grensesnittet",
-        "sv": "Används av flash-gränssnittet",
-        "pl": "Używany przez interfejs flash",
-        "ru": "Используется интерфейсом флэш-памяти",
-        "ko": "플래시 인터페이스에서 사용 중"
-      }
-    },
-    {
-      "name": "8",
-      "notAvailable": {
-        "en": "In use by flash interface",
-        "nl": "In gebruik door flash-interface",
-        "da": "Bruges af flash interface",
-        "de": "Wird von der Flash-Schnittstelle verwendet",
-        "es": "En uso por la interfaz flash",
-        "fr": "Utilisé par l'interface flash",
-        "it": "In uso dall'interfaccia flash",
-        "no": "Brukes av flash-grensesnittet",
-        "sv": "Används av flash-gränssnittet",
-        "pl": "Używany przez interfejs flash",
-        "ru": "Используется интерфейсом флэш-памяти",
-        "ko": "플래시 인터페이스에서 사용 중"
-      }
-    },
-    {
-      "name": "9",
-      "notAvailable": {
-        "en": "In use by flash interface",
-        "nl": "In gebruik door flash-interface",
-        "da": "Bruges af flash interface",
-        "de": "Wird von der Flash-Schnittstelle verwendet",
-        "es": "En uso por la interfaz flash",
-        "fr": "Utilisé par l'interface flash",
-        "it": "In uso dall'interfaccia flash",
-        "no": "Brukes av flash-grensesnittet",
-        "sv": "Används av flash-gränssnittet",
-        "pl": "Używany przez interfejs flash",
-        "ru": "Используется интерфейсом флэш-памяти",
-        "ko": "플래시 인터페이스에서 사용 중"
-      }
-    },
-    {
-      "name": "10",
-      "notAvailable": {
-        "en": "In use by flash interface",
-        "nl": "In gebruik door flash-interface",
-        "da": "Bruges af flash interface",
-        "de": "Wird von der Flash-Schnittstelle verwendet",
-        "es": "En uso por la interfaz flash",
-        "fr": "Utilisé par l'interface flash",
-        "it": "In uso dall'interfaccia flash",
-        "no": "Brukes av flash-grensesnittet",
-        "sv": "Används av flash-gränssnittet",
-        "pl": "Używany przez interfejs flash",
-        "ru": "Используется интерфейсом флэш-памяти",
-        "ko": "플래시 인터페이스에서 사용 중"
-      }
-    },
-    {
-      "name": "11",
-      "notAvailable": {
-        "en": "In use by flash interface",
-        "nl": "In gebruik door flash-interface",
-        "da": "Bruges af flash interface",
-        "de": "Wird von der Flash-Schnittstelle verwendet",
-        "es": "En uso por la interfaz flash",
-        "fr": "Utilisé par l'interface flash",
-        "it": "In uso dall'interfaccia flash",
-        "no": "Brukes av flash-grensesnittet",
-        "sv": "Används av flash-gränssnittet",
-        "pl": "Używany przez interfejs flash",
-        "ru": "Используется интерфейсом флэш-памяти",
-        "ko": "플래시 인터페이스에서 사용 중"
-      }
-    },
-    {
-      "name": "12",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "13",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "14",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "15",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "16",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "A0",
-      "modes": [
-        "ai",
-        "ait"
-      ],
-      "range": {
-        "ai": 1023
-      }
-    }
-  ]
+	"pins": [
+		{
+			"name": "0",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "1",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "2",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "3",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "4",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "5",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "6",
+			"notAvailable": "In use by flash interface"
+		},
+		{
+			"name": "7",
+			"notAvailable": "In use by flash interface"
+		},
+		{
+			"name": "8",
+			"notAvailable": "In use by flash interface"
+		},
+		{
+			"name": "9",
+			"notAvailable": "In use by flash interface"
+		},
+		{
+			"name": "10",
+			"notAvailable": "In use by flash interface"
+		},
+		{
+			"name": "11",
+			"notAvailable": "In use by flash interface"
+		},
+		{
+			"name": "12",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "13",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "14",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "15",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "16",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "A0",
+			"modes": ["ai", "ait"],
+			"range": {
+				"ai": 1023
+			}
+		}
+	]
 }
