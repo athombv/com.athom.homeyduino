@@ -1,113 +1,297 @@
 {
-	"pins": [{
-			"name": "0",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "1",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "2",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "3",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ao"],
-			"range": {
-				"ao": 255
-			}
-		},
-		{
-			"name": "4",
-			"notAvailable": "SD card SPI chip-select"
-		},
-		{
-			"name": "5",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ao"],
-			"range": {
-				"ao": 255
-			}
-		},
-		{
-			"name": "6",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ao"],
-			"range": {
-				"ao": 255
-			}
-		},
-		{
-			"name": "7",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "8",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "9",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ao"],
-			"range": {
-				"ao": 255
-			}
-		},
-		{
-			"name": "10",
-			"notAvailable": "Wiznet SPI chip-select"
-		},
-		{
-			"name": "11",
-			"notAvailable": "SPI MOSI"
-		},
-		{
-			"name": "12",
-			"notAvailable": "SPI MISO"
-		},
-		{
-			"name": "13",
-			"notAvailable": "SPI SCK"
-		},
-		{
-			"name": "A0",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A1",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A2",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A3",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A4",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A5",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		}
-	]
+  "pins": [
+    {
+      "name": "0",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "1",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "2",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "3",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ao"
+      ],
+      "range": {
+        "ao": 255
+      }
+    },
+    {
+      "name": "4",
+      "notAvailable": {
+        "en": "SD card SPI chip-select",
+        "nl": "SD-kaart SPI chip-select",
+        "da": "SD kort SPI chip-select",
+        "de": "SD-Karte SPI Chipauswahl",
+        "es": "Selección de chip SPI de tarjeta SD",
+        "fr": "Sélection de puce SPI de carte SD",
+        "it": "Selezione chip SPI scheda SD",
+        "no": "SD-kort SPI chip-select",
+        "sv": "SD-kort SPI chip-select",
+        "pl": "Wybór chipu SPI karty SD",
+        "ru": "Выбор микросхемы SPI-карты SD",
+        "ko": "SD 카드 SPI 칩 선택"
+      }
+    },
+    {
+      "name": "5",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ao"
+      ],
+      "range": {
+        "ao": 255
+      }
+    },
+    {
+      "name": "6",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ao"
+      ],
+      "range": {
+        "ao": 255
+      }
+    },
+    {
+      "name": "7",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "8",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "9",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ao"
+      ],
+      "range": {
+        "ao": 255
+      }
+    },
+    {
+      "name": "10",
+      "notAvailable": {
+        "en": "Wiznet SPI chip-select",
+        "nl": "Wiznet SPI chip-select",
+        "da": "Wiznet SPI chip-select",
+        "de": "Wiznet SPI Chipauswahl",
+        "es": "Selección de chip SPI de Wiznet",
+        "fr": "Sélection de puce SPI de Wiznet",
+        "it": "Selezione chip SPI Wiznet",
+        "no": "Wiznet SPI chip-select",
+        "sv": "Wiznet SPI chip-select",
+        "pl": "Wybór chipu SPI Wiznet",
+        "ru": "Выбор чипа SPI Wiznet",
+        "ko": "Wiznet SPI 칩 선택"
+      }
+    },
+    {
+      "name": "11",
+      "notAvailable": {
+        "en": "SPI MOSI",
+        "nl": "SPI MOSI",
+        "da": "SPI MOSI",
+        "de": "SPI MOSI",
+        "es": "SPI MOSI",
+        "fr": "SPI MOSI",
+        "it": "SPI MOSI",
+        "no": "SPI MOSI",
+        "sv": "SPI MOSI",
+        "pl": "SPI MOSI",
+        "ru": "SPI MOSI",
+        "ko": "SPI MOSI"
+      }
+    },
+    {
+      "name": "12",
+      "notAvailable": {
+        "en": "SPI MISO",
+        "nl": "SPI MISO",
+        "da": "SPI MISO",
+        "de": "SPI MISO",
+        "es": "SPI MISO",
+        "fr": "SPI MISO",
+        "it": "SPI MISO",
+        "no": "SPI MISO",
+        "sv": "SPI MISO",
+        "pl": "SPI MISO",
+        "ru": "SPI MISO",
+        "ko": "SPI MISO"
+      }
+    },
+    {
+      "name": "13",
+      "notAvailable": {
+        "en": "SPI SCK",
+        "nl": "SPI SCK",
+        "da": "SPI SCK",
+        "de": "SPI SCK",
+        "es": "SPI SCK",
+        "fr": "SPI SCK",
+        "it": "SPI SCK",
+        "no": "SPI SCK",
+        "sv": "SPI SCK",
+        "pl": "SPI SCK",
+        "ru": "SPI SCK",
+        "ko": "SPI SCK"
+      }
+    },
+    {
+      "name": "A0",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A1",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A2",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A3",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A4",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A5",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    }
+  ]
 }

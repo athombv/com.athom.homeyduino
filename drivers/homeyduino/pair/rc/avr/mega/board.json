@@ -1,365 +1,880 @@
 {
-	"pins": [{
-			"name": "0",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "1",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "2",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ao"],
-			"range": {
-				"ao": 255
-			}
-		},
-		{
-			"name": "3",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ao"],
-			"range": {
-				"ao": 255
-			}
-		},
-		{
-			"name": "4",
-			"notAvailable": "SD card SPI chip-select"
-		},
-		{
-			"name": "5",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ao"],
-			"range": {
-				"ao": 255
-			}
-		},
-		{
-			"name": "6",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ao"],
-			"range": {
-				"ao": 255
-			}
-		},
-		{
-			"name": "7",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ao"],
-			"range": {
-				"ao": 255
-			}
-		},
-		{
-			"name": "8",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ao"],
-			"range": {
-				"ao": 255
-			}
-		},
-		{
-			"name": "9",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ao"],
-			"range": {
-				"ao": 255
-			}
-		},
-		{
-			"name": "10",
-			"notAvailable": "Wiznet SPI chip-select"
-		},
-		{
-			"name": "11",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ao"],
-			"range": {
-				"ao": 255
-			}
-		},
-		{
-			"name": "12",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ao"],
-			"range": {
-				"ao": 255
-			}
-		},
-		{
-			"name": "13",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ao"],
-			"range": {
-				"ao": 255
-			}
-		},
-		{
-			"name": "14",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "14",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "15",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "16",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "17",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "18",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "19",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "20",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "21",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "22",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "23",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "24",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "25",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "26",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "27",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "28",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "29",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "30",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "31",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "32",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "33",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "34",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "35",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "36",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "37",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "38",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "39",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "40",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "41",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "42",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "43",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "44",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "45",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "46",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "47",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "48",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "49",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "50",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "51",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "52",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "53",
-			"modes": ["di", "dip", "dit", "ditp", "do"]
-		},
-		{
-			"name": "A0",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A1",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A2",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A3",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A4",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A5",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A6",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A7",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A8",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A9",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A10",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A11",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A12",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A13",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A14",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		},
-		{
-			"name": "A15",
-			"modes": ["di", "dip", "dit", "ditp", "do", "ai", "aip", "ait", "aitp"],
-			"range": {
-				"ai": 1023
-			}
-		}
-	]
+  "pins": [
+    {
+      "name": "0",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "1",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "2",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ao"
+      ],
+      "range": {
+        "ao": 255
+      }
+    },
+    {
+      "name": "3",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ao"
+      ],
+      "range": {
+        "ao": 255
+      }
+    },
+    {
+      "name": "4",
+      "notAvailable": {
+        "en": "SD card SPI chip-select",
+        "nl": "SD-kaart SPI chip-select",
+        "da": "SD-kort SPI-chipvælger",
+        "de": "SD-Karte SPI-Chip-Auswahl",
+        "es": "Selección de chip SPI de tarjeta SD",
+        "fr": "Sélection de puce SPI de carte SD",
+        "it": "Selezione del chip SPI della scheda SD",
+        "no": "SD-kort SPI chip-select",
+        "sv": "SD-kort SPI chip-select",
+        "pl": "Wybór chipu SPI karty SD",
+        "ru": "Выбор чипа SPI карты SD",
+        "ko": "SD 카드 SPI 칩 선택"
+      }
+    },
+    {
+      "name": "5",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ao"
+      ],
+      "range": {
+        "ao": 255
+      }
+    },
+    {
+      "name": "6",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ao"
+      ],
+      "range": {
+        "ao": 255
+      }
+    },
+    {
+      "name": "7",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ao"
+      ],
+      "range": {
+        "ao": 255
+      }
+    },
+    {
+      "name": "8",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ao"
+      ],
+      "range": {
+        "ao": 255
+      }
+    },
+    {
+      "name": "9",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ao"
+      ],
+      "range": {
+        "ao": 255
+      }
+    },
+    {
+      "name": "10",
+      "notAvailable": {
+        "en": "Wiznet SPI chip-select",
+        "nl": "Wiznet SPI chip-select",
+        "da": "Wiznet SPI chip-select",
+        "de": "Wiznet SPI-Chip-Auswahl",
+        "es": "Selección de chip Wiznet SPI",
+        "fr": "Sélection de puce SPI Wiznet",
+        "it": "Selezione del chip SPI Wiznet",
+        "no": "Wiznet SPI chip-select",
+        "sv": "Wiznet SPI chip-select",
+        "pl": "Wybór chipu Wiznet SPI",
+        "ru": "Выбор чипа Wiznet SPI",
+        "ko": "Wiznet SPI 칩 선택"
+      }
+    },
+    {
+      "name": "11",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ao"
+      ],
+      "range": {
+        "ao": 255
+      }
+    },
+    {
+      "name": "12",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ao"
+      ],
+      "range": {
+        "ao": 255
+      }
+    },
+    {
+      "name": "13",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ao"
+      ],
+      "range": {
+        "ao": 255
+      }
+    },
+    {
+      "name": "14",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "14",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "15",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "16",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "17",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "18",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "19",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "20",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "21",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "22",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "23",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "24",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "25",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "26",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "27",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "28",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "29",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "30",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "31",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "32",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "33",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "34",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "35",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "36",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "37",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "38",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "39",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "40",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "41",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "42",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "43",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "44",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "45",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "46",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "47",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "48",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "49",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "50",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "51",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "52",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "53",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do"
+      ]
+    },
+    {
+      "name": "A0",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A1",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A2",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A3",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A4",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A5",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A6",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A7",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A8",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A9",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A10",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A11",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A12",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A13",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A14",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    },
+    {
+      "name": "A15",
+      "modes": [
+        "di",
+        "dip",
+        "dit",
+        "ditp",
+        "do",
+        "ai",
+        "aip",
+        "ait",
+        "aitp"
+      ],
+      "range": {
+        "ai": 1023
+      }
+    }
+  ]
 }
