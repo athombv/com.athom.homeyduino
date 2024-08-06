@@ -1,0 +1,65 @@
+{
+  "pair": {
+    "device_list": {
+      "title": "Tilføj en Homeyduino enhed...",
+      "instruction": "",
+      "name": "Navn",
+      "button": {
+        "add": "Tilføj enhed"
+      },
+      "no_devices_detected": "<span style='font-size: 20px; line-height: 30px;'>Ingen nye enheder blev fundet automatisk</span><br />Hvis du lige har tilsluttet dit Arduino-projekt, så luk parring guiden, vent ca. 30 sekunder og prøv at åbne parring guiden igen. Hvis ingen enheder vises, skal du tjekke, om din router tillader UDP broadcast meddelelser. Hvis UDP broadcasting er deaktiveret, så aktiver det for at tillade automatisk opdagelse.",
+      "manually_add": "&nbsp;Tilføj enhed manuelt..."
+    },
+    "manual": {
+      "title": "Tilføj en enhed manuelt...",
+      "error_title": "Der opstod en fejl",
+      "ip_field_empty": "IP-adressefeltet må ikke være tomt.",
+      "device_unreachable": "Enheden kunne ikke nås!",
+      "error_timeout": "Der opstod en timeout, mens der blev oprettet forbindelse til enheden. Kontroller, at din enhed er tilsluttet netværket."
+    },
+    "rc": {
+      "board": {
+        "title": "Vælg board type",
+        "info": "Enheden du parrer med er indstillet til fjernkonfiguration. Angiv board type for at fortsætte konfigurationen af din enhed.",
+        "label": "Board type",
+        "bug": {
+          "title": "Du har fundet en fejl!",
+          "message": "En intern fejl opstod. Kan ikke fortsætte."
+        },
+        "unknown": {
+          "title": "Ukendt board type",
+          "message": "Dit board er af en ukendt type. Send os venligst følgende oplysninger i en Github issue for at give os mulighed for at tilføje support for dit board:"
+        },
+        "jsonError": {
+          "title": "Der opstod en fejl",
+          "message": "Noget gik galt, mens der blev hentet eller fortolket board listen. Kan ikke fortsætte."
+        }
+      },
+      "pins": {
+        "title": "I/O konfiguration",
+        "info": "Konfigurer venligst pinnene på din %name%.",
+        "mode": {
+          "di": "Digital input",
+          "dip": "Digital input med pull-up",
+          "dit": "Digital input med trigger",
+          "ditp": "Digital input med pull-up og trigger",
+          "do": "Digital output",
+          "ao": "Analog output / PWM output",
+          "ai": "Analog input",
+          "aip": "Analog input med pull-up",
+          "ait": "Analog input med trigger",
+          "aitp": "Analog input med pull-up og trigger"
+        },
+        "jsonError": {
+          "title": "Der opstod en fejl",
+          "message": "Noget gik galt, mens der blev hentet eller fortolket board informationsfilen for det valgte board. Kan ikke fortsætte."
+        }
+      },
+      "apply": {
+        "error": {
+          "title": "Der opstod en fejl"
+        }
+      }
+    }
+  }
+}

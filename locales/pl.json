@@ -1,0 +1,65 @@
+{
+  "pair": {
+    "device_list": {
+      "title": "Dodaj urządzenie Homeyduino...",
+      "instruction": "",
+      "name": "Nazwa",
+      "button": {
+        "add": "Dodaj urządzenie"
+      },
+      "no_devices_detected": "<span style='font-size: 20px; line-height: 30px;'>Automatyczne wyszukiwanie nie znalazło nowych urządzeń</span><br />Jeśli dopiero podłączyłeś swój projekt Arduino, zamknij kreatora parowania, poczekaj około 30 sekund, a następnie spróbuj otworzyć kreatora parowania ponownie. Jeśli żadne urządzenia się nie pojawią, sprawdź, czy twój router zezwala na wiadomości UDP broadcast. Jeśli nadawanie UDP jest wyłączone, włącz je, aby umożliwić działanie automatycznego wyszukiwania.",
+      "manually_add": "&nbsp;Dodaj urządzenie ręcznie..."
+    },
+    "manual": {
+      "title": "Dodaj urządzenie ręcznie...",
+      "error_title": "Wystąpił błąd",
+      "ip_field_empty": "Pole adresu IP nie może być puste.",
+      "device_unreachable": "Nie udało się połączyć z urządzeniem!",
+      "error_timeout": "Podczas łączenia z urządzeniem wystąpił timeout. Sprawdź, czy urządzenie jest podłączone do sieci."
+    },
+    "rc": {
+      "board": {
+        "title": "Wybierz typ płytki",
+        "info": "Urządzenie, które chcesz sparować, jest skonfigurowane do zdalnej konfiguracji. Aby kontynuować konfigurację urządzenia, podaj typ płytki.",
+        "label": "Typ płytki",
+        "bug": {
+          "title": "Znalazłeś buga!",
+          "message": "Wystąpił błąd wewnętrzny. Nie można kontynuować."
+        },
+        "unknown": {
+          "title": "Nieznany typ płytki",
+          "message": "Twoja płytka jest nieznanego typu. Prześlij nam następujące informacje w zgłoszeniu na Github, abyśmy mogli dodać wsparcie dla twojej płytki:"
+        },
+        "jsonError": {
+          "title": "Wystąpił błąd",
+          "message": "Coś poszło nie tak podczas pobierania lub parsowania listy płytek. Nie można kontynuować."
+        }
+      },
+      "pins": {
+        "title": "Konfiguracja I/O",
+        "info": "Skonfiguruj piny swojego %name%.",
+        "mode": {
+          "di": "Cyfrowe wejście",
+          "dip": "Cyfrowe wejście z podciąganiem",
+          "dit": "Cyfrowe wejście z wyzwalaniem",
+          "ditp": "Cyfrowe wejście z podciąganiem i wyzwalaniem",
+          "do": "Cyfrowe wyjście",
+          "ao": "Analogowe wyjście / PWM wyjście",
+          "ai": "Analogowe wejście",
+          "aip": "Analogowe wejście z podciąganiem",
+          "ait": "Analogowe wejście z wyzwalaniem",
+          "aitp": "Analogowe wejście z podciąganiem i wyzwalaniem"
+        },
+        "jsonError": {
+          "title": "Wystąpił błąd",
+          "message": "Coś poszło nie tak podczas pobierania lub parsowania pliku informacji o płytce, którą wybrałeś. Nie można kontynuować."
+        }
+      },
+      "apply": {
+        "error": {
+          "title": "Wystąpił błąd"
+        }
+      }
+    }
+  }
+}
