@@ -46,18 +46,7 @@
     },
     {
       "name": "4",
-      "notAvailable": "SD card SPI chip-select",
-      "nl": "SD-kaart SPI chip-select",
-      "da": "SD-kort SPI chip-select",
-      "de": "SD-Karten SPI Chip-Select",
-      "es": "Selección de chip SPI de tarjeta SD",
-      "fr": "Sélection de puce SPI carte SD",
-      "it": "Selezione chip SPI scheda SD",
-      "no": "SD-kort SPI chip-select",
-      "sv": "SD-kortets SPI-chipselect",
-      "pl": "Wybór chipu SPI karty SD",
-      "ru": "Выбор чипа SPI карты SD",
-      "ko": "SD 카드 SPI 칩 선택"
+      "notAvailable": "SD card SPI chip-select"
     },
     {
       "name": "5",
@@ -123,63 +112,19 @@
     },
     {
       "name": "10",
-      "notAvailable": "Wiznet SPI chip-select",
-      "nl": "Wiznet SPI chip-select",
-      "da": "Wiznet SPI chip-select",
-      "de": "Wiznet SPI Chip-Select",
-      "es": "Selección de chip SPI de Wiznet",
-      "fr": "Sélection de puce SPI Wiznet",
-      "it": "Selezione chip SPI Wiznet",
-      "no": "Wiznet SPI chip-select",
-      "sv": "Wiznet SPI-chipselect",
-      "pl": "Wybór chipu SPI Wiznet",
-      "ru": "Выбор чипа SPI Wiznet",
-      "ko": "Wiznet SPI 칩 선택"
+      "notAvailable": "Wiznet SPI chip-select"
     },
     {
       "name": "11",
-      "notAvailable": "SPI MOSI",
-      "nl": "SPI MOSI",
-      "da": "SPI MOSI",
-      "de": "SPI MOSI",
-      "es": "SPI MOSI",
-      "fr": "SPI MOSI",
-      "it": "SPI MOSI",
-      "no": "SPI MOSI",
-      "sv": "SPI MOSI",
-      "pl": "SPI MOSI",
-      "ru": "SPI MOSI",
-      "ko": "SPI MOSI"
+      "notAvailable": "SPI MOSI"
     },
     {
       "name": "12",
-      "notAvailable": "SPI MISO",
-      "nl": "SPI MISO",
-      "da": "SPI MISO",
-      "de": "SPI MISO",
-      "es": "SPI MISO",
-      "fr": "SPI MISO",
-      "it": "SPI MISO",
-      "no": "SPI MISO",
-      "sv": "SPI MISO",
-      "pl": "SPI MISO",
-      "ru": "SPI MISO",
-      "ko": "SPI MISO"
+      "notAvailable": "SPI MISO"
     },
     {
       "name": "13",
-      "notAvailable": "SPI SCK",
-      "nl": "SPI SCK",
-      "da": "SPI SCK",
-      "de": "SPI SCK",
-      "es": "SPI SCK",
-      "fr": "SPI SCK",
-      "it": "SPI SCK",
-      "no": "SPI SCK",
-      "sv": "SPI SCK",
-      "pl": "SPI SCK",
-      "ru": "SPI SCK",
-      "ko": "SPI SCK"
+      "notAvailable": "SPI SCK"
     },
     {
       "name": "A0",

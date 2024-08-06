@@ -50,19 +50,7 @@
     },
     {
       "name": "4",
-      "notAvailable": {
-        "en": "SD card SPI chip-select",
-        "da": "SD-kort SPI chip-select",
-        "de": "SD-Karten-SPI-Auswahl",
-        "es": "Selección de chip SPI de tarjeta SD",
-        "fr": "Sélection de puce SPI de carte SD",
-        "it": "Selezione del chip SPI della scheda SD",
-        "no": "SD-kort SPI-brikkeseleksjon",
-        "sv": "SD-kort SPI-kretsval",
-        "pl": "Wybór chipu SPI karty SD",
-        "ru": "Выбор чипа SPI карты SD",
-        "ko": "SD 카드 SPI 칩 선택"
-      }
+      "notAvailable": "SD card SPI chip-select"
     },
     {
       "name": "5",
@@ -136,19 +124,7 @@
     },
     {
       "name": "10",
-      "notAvailable": {
-        "en": "Wiznet SPI chip-select",
-        "da": "Wiznet SPI chip-select",
-        "de": "Wiznet SPI-Auswahl",
-        "es": "Selección de chip SPI Wiznet",
-        "fr": "Sélection de puce SPI Wiznet",
-        "it": "Selezione del chip SPI Wiznet",
-        "no": "Wiznet SPI-brikkeseleksjon",
-        "sv": "Wiznet SPI-kretsval",
-        "pl": "Wybór chipu SPI Wiznet",
-        "ru": "Выбор чипа SPI Wiznet",
-        "ko": "Wiznet SPI 칩 선택"
-      }
+      "notAvailable": "Wiznet SPI chip-select"
     },
     {
       "name": "11",
