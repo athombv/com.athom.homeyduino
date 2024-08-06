@@ -16,5 +16,8 @@
   },
   "3.0.5": {
     "en": "Fix void triggers"
+  },
+  "3.1.0": {
+    "en": "Added translations."
   }
 }
