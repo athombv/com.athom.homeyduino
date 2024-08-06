@@ -1,142 +1,75 @@
 {
-  "pins": [
-    {
-      "name": "D0",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "D1",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "D2",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "D3",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "D4",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "D5",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "D6",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "D7",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "D8",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "D9",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "D10",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "D11",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "D12",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "D13",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "D14",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "D15",
-      "modes": [
-        "di",
-        "dit",
-        "do"
-      ]
-    },
-    {
-      "name": "A0",
-      "modes": [
-        "ai",
-        "ait"
-      ],
-      "range": {
-        "ai": 1023
-      }
-    }
-  ]
+	"pins": [
+		{
+			"name": "D0",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D1",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D2",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D3",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D4",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D5",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D6",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D7",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D8",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D9",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D10",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D11",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D12",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D13",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D14",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "D15",
+			"modes": ["di", "dit", "do"]
+		},
+		{
+			"name": "A0",
+			"modes": ["ai", "ait"],
+			"range": {
+				"ai": 1023
+			}
+		}
+	]
 }
