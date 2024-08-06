@@ -1,0 +1,65 @@
+{
+  "pair": {
+    "device_list": {
+      "title": "Agregar un dispositivo Homeyduino...",
+      "instruction": "",
+      "name": "Nombre",
+      "button": {
+        "add": "Agregar dispositivo"
+      },
+      "no_devices_detected": "<span style='font-size: 20px; line-height: 30px;'>No se encontraron nuevos dispositivos automáticamente</span><br />Si acabas de conectar tu proyecto Arduino, cierra el asistente de emparejamiento, espera unos 30 segundos e intenta abrir el asistente de nuevo. Si no aparece ningún dispositivo, verifica si tu router permite mensajes de difusión UDP. Si la difusión UDP está deshabilitada, habilítala para que funcione la detección automática.",
+      "manually_add": "&nbsp;Agregar un dispositivo manualmente..."
+    },
+    "manual": {
+      "title": "Agregar un dispositivo manualmente...",
+      "error_title": "Ocurrió un error",
+      "ip_field_empty": "El campo de la dirección IP no puede estar vacío.",
+      "device_unreachable": "¡No se pudo alcanzar el dispositivo!",
+      "error_timeout": "Se produjo un tiempo de espera al conectar con el dispositivo. Verifica que tu dispositivo esté conectado a la red."
+    },
+    "rc": {
+      "board": {
+        "title": "Seleccionar tipo de placa",
+        "info": "El dispositivo con el que estás emparejando está configurado para configuración remota. Proporcione el tipo de placa para continuar con la configuración de tu dispositivo.",
+        "label": "Tipo de placa",
+        "bug": {
+          "title": "¡Has encontrado un bug!",
+          "message": "Ocurrió un error interno. No se puede continuar."
+        },
+        "unknown": {
+          "title": "Tipo de placa desconocido",
+          "message": "Tu placa es de un tipo desconocido. Por favor, envíanos la siguiente información en un problema de Github para permitirnos agregar soporte para tu placa:"
+        },
+        "jsonError": {
+          "title": "Ocurrió un error",
+          "message": "Algo salió mal al obtener o analizar la lista de placas. No se puede continuar."
+        }
+      },
+      "pins": {
+        "title": "Configuración de I/O",
+        "info": "Por favor, configura los pines de tu %name%.",
+        "mode": {
+          "di": "Entrada digital",
+          "dip": "Entrada digital con pull-up",
+          "dit": "Entrada digital con disparo",
+          "ditp": "Entrada digital con pull-up y disparo",
+          "do": "Salida digital",
+          "ao": "Salida analógica / Salida PWM",
+          "ai": "Entrada analógica",
+          "aip": "Entrada analógica con pull-up",
+          "ait": "Entrada analógica con disparo",
+          "aitp": "Entrada analógica con pull-up y disparo"
+        },
+        "jsonError": {
+          "title": "Ocurrió un error",
+          "message": "Algo salió mal al obtener o analizar el archivo de información de la placa que seleccionaste. No se puede continuar."
+        }
+      },
+      "apply": {
+        "error": {
+          "title": "Ocurrió un error"
+        }
+      }
+    }
+  }
+}

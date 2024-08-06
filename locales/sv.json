@@ -1,0 +1,65 @@
+{
+  "pair": {
+    "device_list": {
+      "title": "Lägg till en Homeyduino-enhet...",
+      "instruction": "",
+      "name": "Namn",
+      "button": {
+        "add": "Lägg till enhet"
+      },
+      "no_devices_detected": "<span style='font-size: 20px; line-height: 30px;'>Automatisk sökning hittade inga nya enheter</span><br />Om du just kopplade in ditt Arduino-projekt, stäng parningsguiden, vänta ungefär 30 sekunder och försök sedan öppna parningsguiden igen. Om inga enheter dyker upp alls, kontrollera om din router tillåter UDP-broadcast-meddelanden. Om UDP-broadcasting är inaktiverat, aktivera det för att möjliggöra automatisk upptäckt.",
+      "manually_add": "&nbsp;Lägg till enhet manuellt..."
+    },
+    "manual": {
+      "title": "Lägg till enhet manuellt...",
+      "error_title": "Ett fel inträffade",
+      "ip_field_empty": "Fältet för IP-adress kan inte vara tomt.",
+      "device_unreachable": "Enheten kunde inte nås!",
+      "error_timeout": "En timeout inträffade vid anslutning till enheten. Kontrollera att din enhet är ansluten till nätverket."
+    },
+    "rc": {
+      "board": {
+        "title": "Välj korttyp",
+        "info": "Enheten du parar med är inställd för fjärrkonfiguration. Ange korttypen för att fortsätta med inställningen av din enhet.",
+        "label": "Korttyp",
+        "bug": {
+          "title": "Du har hittat en bugg!",
+          "message": "Ett internt fel inträffade. Kan inte fortsätta."
+        },
+        "unknown": {
+          "title": "Okänd korttyp",
+          "message": "Ditt kort är av en okänd typ. Skicka oss följande information i ett Github-ärende så att vi kan lägga till stöd för ditt kort:"
+        },
+        "jsonError": {
+          "title": "Ett fel inträffade",
+          "message": "Något gick fel vid hämtning eller tolkning av kortlistan. Kan inte fortsätta."
+        }
+      },
+      "pins": {
+        "title": "I/O-konfiguration",
+        "info": "Konfigurera pinnarna på din %name%.",
+        "mode": {
+          "di": "Digital ingång",
+          "dip": "Digital ingång med pull-up",
+          "dit": "Digital ingång med trigger",
+          "ditp": "Digital ingång med pull-up och trigger",
+          "do": "Digital utgång",
+          "ao": "Analog utgång / PWM utgång",
+          "ai": "Analog ingång",
+          "aip": "Analog ingång med pull-up",
+          "ait": "Analog ingång med trigger",
+          "aitp": "Analog ingång med pull-up och trigger"
+        },
+        "jsonError": {
+          "title": "Ett fel inträffade",
+          "message": "Något gick fel vid hämtning eller tolkning av kortinformationsfilen för det valda kortet. Kan inte fortsätta."
+        }
+      },
+      "apply": {
+        "error": {
+          "title": "Ett fel inträffade"
+        }
+      }
+    }
+  }
+}

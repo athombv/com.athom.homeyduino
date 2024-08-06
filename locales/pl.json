@@ -1,0 +1,65 @@
+{
+  "pair": {
+    "device_list": {
+      "title": "Dodaj urządzenie Homeyduino...",
+      "instruction": "",
+      "name": "Nazwa",
+      "button": {
+        "add": "Dodaj urządzenie"
+      },
+      "no_devices_detected": "<span style='font-size: 20px; line-height: 30px;'>Automatyczne wykrywanie nie znalazło nowych urządzeń</span><br />Jeśli dopiero podłączyłeś swój projekt Arduino, zamknij kreatora parowania, poczekaj około 30 sekund, a następnie spróbuj ponownie otworzyć kreatora parowania. Jeśli żadne urządzenia się nie wyświetlają, sprawdź, czy Twój router zezwala na wiadomości broadcast UDP. Jeśli broadcasting UDP jest wyłączony, włącz go, aby umożliwić automatyczne wykrywanie.",
+      "manually_add": "&nbsp;Ręcznie dodaj urządzenie..."
+    },
+    "manual": {
+      "title": "Ręcznie dodaj urządzenie...",
+      "error_title": "Wystąpił błąd",
+      "ip_field_empty": "Pole adresu IP nie może być puste.",
+      "device_unreachable": "Nie można osiągnąć urządzenia!",
+      "error_timeout": "Wystąpił timeout podczas łączenia się z urządzeniem. Sprawdź, czy Twoje urządzenie jest podłączone do sieci."
+    },
+    "rc": {
+      "board": {
+        "title": "Wybierz rodzaj płytki",
+        "info": "Urządzenie, które parujesz, jest skonfigurowane do zdalnej konfiguracji. Proszę podaj rodzaj płytki, aby kontynuować konfigurację urządzenia.",
+        "label": "Rodzaj płytki",
+        "bug": {
+          "title": "Znalazłeś błąd!",
+          "message": "Wystąpił błąd wewnętrzny. Nie można kontynuować."
+        },
+        "unknown": {
+          "title": "Nieznany rodzaj płytki",
+          "message": "Twoja płytka ma nieznany typ. Proszę wyślij nam następujące informacje w zgłoszeniu na Github, abyśmy mogli dodać wsparcie dla Twojej płytki:"
+        },
+        "jsonError": {
+          "title": "Wystąpił błąd",
+          "message": "Coś poszło nie tak podczas pobierania lub parsowania listy płytek. Nie można kontynuować."
+        }
+      },
+      "pins": {
+        "title": "Konfiguracja I/O",
+        "info": "Proszę skonfiguruj piny swojego %name%.",
+        "mode": {
+          "di": "Wejście cyfrowe",
+          "dip": "Wejście cyfrowe z pull-up",
+          "dit": "Wejście cyfrowe z wyzwalaniem",
+          "ditp": "Wejście cyfrowe z pull-up i wyzwalaniem",
+          "do": "Wyjście cyfrowe",
+          "ao": "Wyjście analogowe / PWM",
+          "ai": "Wejście analogowe",
+          "aip": "Wejście analogowe z pull-up",
+          "ait": "Wejście analogowe z wyzwalaniem",
+          "aitp": "Wejście analogowe z pull-up i wyzwalaniem"
+        },
+        "jsonError": {
+          "title": "Wystąpił błąd",
+          "message": "Coś poszło nie tak podczas pobierania lub parsowania pliku informacji o płytce, którą wybrałeś. Nie można kontynuować."
+        }
+      },
+      "apply": {
+        "error": {
+          "title": "Wystąpił błąd"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "pair": {
+    "device_list": {
+      "title": "Ein Homeyduino-Gerät hinzufügen...",
+      "instruction": "",
+      "name": "Name",
+      "button": {
+        "add": "Gerät hinzufügen"
+      },
+      "no_devices_detected": "<span style='font-size: 20px; line-height: 30px;'>Automatische Erkennung hat keine neuen Geräte gefunden</span><br />Wenn du dein Arduino-Projekt gerade erst eingesteckt hast, schließe den Pairing-Assistenten, warte etwa 30 Sekunden und versuche dann erneut, den Pairing-Assistenten zu öffnen. Wenn überhaupt keine Geräte angezeigt werden, überprüfe bitte, ob dein Router UDP-Broadcast-Nachrichten zulässt. Wenn UDP-Broadcasting deaktiviert ist, aktiviere es bitte, um die automatische Erkennung zu ermöglichen.",
+      "manually_add": "&nbsp;Gerät manuell hinzufügen..."
+    },
+    "manual": {
+      "title": "Gerät manuell hinzufügen...",
+      "error_title": "Ein Fehler ist aufgetreten",
+      "ip_field_empty": "Das Feld für die IP-Adresse darf nicht leer sein.",
+      "device_unreachable": "Das Gerät konnte nicht erreicht werden!",
+      "error_timeout": "Beim Verbinden mit dem Gerät ist ein Timeout aufgetreten. Bitte überprüfe, ob dein Gerät mit dem Netzwerk verbunden ist."
+    },
+    "rc": {
+      "board": {
+        "title": "Boardtyp auswählen",
+        "info": "Das Gerät, das du koppelst, ist für die Remote-Konfiguration eingerichtet. Bitte gib den Boardtyp an, um die Einrichtung deines Geräts fortzusetzen.",
+        "label": "Boardtyp",
+        "bug": {
+          "title": "Du hast einen Fehler gefunden!",
+          "message": "Ein interner Fehler ist aufgetreten. Kann nicht fortfahren."
+        },
+        "unknown": {
+          "title": "Unbekannter Boardtyp",
+          "message": "Dein Board ist von einem unbekannten Typ. Bitte sende uns die folgenden Informationen in einem Github-Issue, damit wir Unterstützung für dein Board hinzufügen können:"
+        },
+        "jsonError": {
+          "title": "Ein Fehler ist aufgetreten",
+          "message": "Beim Abrufen oder Parsen der Boardliste ist ein Fehler aufgetreten. Kann nicht fortfahren."
+        }
+      },
+      "pins": {
+        "title": "I/O-Konfiguration",
+        "info": "Bitte konfiguriere die Pins deines %name%.",
+        "mode": {
+          "di": "Digitaler Eingang",
+          "dip": "Digitaler Eingang mit Pull-up",
+          "dit": "Digitaler Eingang mit Trigger",
+          "ditp": "Digitaler Eingang mit Pull-up und Trigger",
+          "do": "Digitaler Ausgang",
+          "ao": "Analoger Ausgang / PWM Ausgang",
+          "ai": "Analoger Eingang",
+          "aip": "Analoger Eingang mit Pull-up",
+          "ait": "Analoger Eingang mit Trigger",
+          "aitp": "Analoger Eingang mit Pull-up und Trigger"
+        },
+        "jsonError": {
+          "title": "Ein Fehler ist aufgetreten",
+          "message": "Beim Abrufen oder Parsen der Boardinformationsdatei für das ausgewählte Board ist ein Fehler aufgetreten. Kann nicht fortfahren."
+        }
+      },
+      "apply": {
+        "error": {
+          "title": "Ein Fehler ist aufgetreten"
+        }
+      }
+    }
+  }
+}
