@@ -16,5 +16,17 @@
   },
   "3.0.5": {
     "en": "Fix void triggers"
+  },
+  "3.1.0": {
+    "en": "Added translations."
+  },
+  "3.1.1": {
+    "en": "Added translations to Description. "
+  },
+  "3.1.2": {
+    "en": "Updated Korean translation. "
+  },
+  "3.1.3": {
+    "en": "Fixed issue where requests from the Homey Arduino lib would not be accepted by Homey, causing Flows not to trigger."
   }
 }

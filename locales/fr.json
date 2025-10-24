@@ -1,0 +1,65 @@
+{
+  "pair": {
+    "device_list": {
+      "title": "Ajouter un appareil Homeyduino...",
+      "instruction": "",
+      "name": "Nom",
+      "button": {
+        "add": "Ajouter un appareil"
+      },
+      "no_devices_detected": "<span style='font-size: 20px; line-height: 30px;'>La découverte automatique n'a trouvé aucun nouvel appareil</span><br />Si vous venez de brancher votre projet Arduino, fermez l'assistant de jumelage, attendez environ 30 secondes, puis essayez de rouvrir l'assistant de jumelage. Si aucun appareil n'apparaît, vérifiez si votre routeur autorise les messages de diffusion UDP. Si la diffusion UDP est désactivée, veuillez l'activer pour permettre la découverte automatique.",
+      "manually_add": "&nbsp;Ajouter un appareil manuellement..."
+    },
+    "manual": {
+      "title": "Ajouter un appareil manuellement...",
+      "error_title": "Une erreur est survenue",
+      "ip_field_empty": "Le champ de l'adresse IP ne peut pas être vide.",
+      "device_unreachable": "L'appareil est inaccessible !",
+      "error_timeout": "Un délai d'attente est survenu lors de la connexion à l'appareil. Veuillez vérifier que votre appareil est connecté au réseau."
+    },
+    "rc": {
+      "board": {
+        "title": "Sélectionnez le type de carte",
+        "info": "L'appareil avec lequel vous jumeliez est configuré pour la configuration à distance. Veuillez fournir le type de carte pour continuer la configuration de votre appareil.",
+        "label": "Type de carte",
+        "bug": {
+          "title": "Vous avez trouvé un bug !",
+          "message": "Une erreur interne est survenue. Impossible de continuer."
+        },
+        "unknown": {
+          "title": "Type de carte inconnu",
+          "message": "Votre carte est d'un type inconnu. Veuillez nous envoyer les informations suivantes dans un problème Github pour nous permettre d'ajouter une prise en charge de votre carte :"
+        },
+        "jsonError": {
+          "title": "Une erreur est survenue",
+          "message": "Un problème est survenu lors de la récupération ou de l'analyse de la liste des cartes. Impossible de continuer."
+        }
+      },
+      "pins": {
+        "title": "Configuration I/O",
+        "info": "Veuillez configurer les broches de votre %name%.",
+        "mode": {
+          "di": "Entrée numérique",
+          "dip": "Entrée numérique avec pull-up",
+          "dit": "Entrée numérique avec déclencheur",
+          "ditp": "Entrée numérique avec pull-up et déclencheur",
+          "do": "Sortie numérique",
+          "ao": "Sortie analogique / Sortie PWM",
+          "ai": "Entrée analogique",
+          "aip": "Entrée analogique avec pull-up",
+          "ait": "Entrée analogique avec déclencheur",
+          "aitp": "Entrée analogique avec pull-up et déclencheur"
+        },
+        "jsonError": {
+          "title": "Une erreur est survenue",
+          "message": "Un problème est survenu lors de la récupération ou de l'analyse du fichier d'information de la carte que vous avez sélectionnée. Impossible de continuer."
+        }
+      },
+      "apply": {
+        "error": {
+          "title": "Une erreur est survenue"
+        }
+      }
+    }
+  }
+}

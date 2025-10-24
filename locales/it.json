@@ -1,0 +1,65 @@
+{
+  "pair": {
+    "device_list": {
+      "title": "Aggiungi un dispositivo Homeyduino...",
+      "instruction": "",
+      "name": "Nome",
+      "button": {
+        "add": "Aggiungi dispositivo"
+      },
+      "no_devices_detected": "<span style='font-size: 20px; line-height: 30px;'>La scoperta automatica non ha trovato nuovi dispositivi</span><br />Se hai appena collegato il tuo progetto Arduino, chiudi la procedura guidata di accoppiamento, aspetta circa 30 secondi, quindi prova a riaprire la procedura guidata. Se non vengono visualizzati dispositivi, controlla se il tuo router consente i messaggi di broadcast UDP. Se la trasmissione UDP è disabilitata, abilitala per consentire il funzionamento della scoperta automatica.",
+      "manually_add": "&nbsp;Aggiungi un dispositivo manualmente..."
+    },
+    "manual": {
+      "title": "Aggiungi un dispositivo manualmente...",
+      "error_title": "Si è verificato un errore",
+      "ip_field_empty": "Il campo dell'indirizzo IP non può essere vuoto.",
+      "device_unreachable": "Il dispositivo non può essere raggiunto!",
+      "error_timeout": "Si è verificato un timeout durante la connessione al dispositivo. Assicurati che il tuo dispositivo sia connesso alla rete."
+    },
+    "rc": {
+      "board": {
+        "title": "Seleziona il tipo di scheda",
+        "info": "Il dispositivo che stai accoppiando è configurato per la configurazione remota. Si prega di fornire il tipo di scheda per continuare a configurare il dispositivo.",
+        "label": "Tipo di scheda",
+        "bug": {
+          "title": "Hai trovato un bug!",
+          "message": "Si è verificato un errore interno. Impossibile continuare."
+        },
+        "unknown": {
+          "title": "Tipo di scheda sconosciuto",
+          "message": "Il tipo di scheda è sconosciuto. Inviaci le seguenti informazioni con una segnalazione su Github per consentirci di aggiungere il supporto per la tua scheda:"
+        },
+        "jsonError": {
+          "title": "Si è verificato un errore",
+          "message": "Qualcosa è andato storto durante il recupero o l'analisi dell'elenco delle schede. Impossibile continuare."
+        }
+      },
+      "pins": {
+        "title": "Configurazione I/O",
+        "info": "Configura i pin del tuo %name%.",
+        "mode": {
+          "di": "Ingresso digitale",
+          "dip": "Ingresso digitale con pull-up",
+          "dit": "Ingresso digitale con trigger",
+          "ditp": "Ingresso digitale con pull-up e trigger",
+          "do": "Uscita digitale",
+          "ao": "Uscita analogica / Uscita PWM",
+          "ai": "Ingresso analogico",
+          "aip": "Ingresso analogico con pull-up",
+          "ait": "Ingresso analogico con trigger",
+          "aitp": "Ingresso analogico con pull-up e trigger"
+        },
+        "jsonError": {
+          "title": "Si è verificato un errore",
+          "message": "Qualcosa è andato storto durante il recupero o l'analisi del file delle informazioni della scheda che hai selezionato. Impossibile continuare."
+        }
+      },
+      "apply": {
+        "error": {
+          "title": "Si è verificato un errore"
+        }
+      }
+    }
+  }
+}
