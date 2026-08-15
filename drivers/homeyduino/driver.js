@@ -102,6 +102,18 @@ class HomeyduinoDriver extends Homey.Driver {
 	async onPairListDevices( data ) {
         let deviceList = [];
 		let arduinoDevices = this.homey.app.discovery.getDevices();
+		let existingDevices = this.getDevices();
+		let existingIds = new Set();
+		for (let existingDevice of existingDevices) {
+			if (existingDevice.deviceId) existingIds.add(existingDevice.deviceId);
+			let settings = existingDevice.getSettings ? existingDevice.getSettings() : null;
+			if (settings && settings.id) existingIds.add(settings.id);
+			let data = existingDevice.getData ? existingDevice.getData() : null;
+			if (data && data.id) existingIds.add(data.id);
+		}
+
+		let now = new Date().getTime();
+		let timeoutInterval = 60 * 1000;
 
 		for (var deviceKey in arduinoDevices) {
 
@@ -109,6 +121,19 @@ class HomeyduinoDriver extends Homey.Driver {
 
 			var device = arduinoDevices[deviceKey];
 			let deviceName = device.getOpt('id');
+
+			// Filter out devices that are already paired in Homey
+			if (existingIds.has(deviceName)) {
+				this.log("Not showing device "+deviceName+" because it is already paired.");
+				continue;
+			}
+
+			// Filter out stale devices that have not been seen within timeout window
+			let lastSeen = device.getOpt('lastSeen');
+			if (lastSeen && (now - new Date(lastSeen).getTime() > timeoutInterval)) {
+				this.log("Not showing device "+deviceName+" because it has timed out.");
+				continue;
+			}
 
 			var libVersion = device.libVersion();
 
@@ -204,6 +229,9 @@ class HomeyduinoDriver extends Homey.Driver {
 
     async onPair(session) {
 	    super.onPair( session );
+		session.setHandler("list_devices", async ( data ) => {
+			return this.onPairListDevices(data);
+		});
         session.setHandler("pairManually", async ( data ) => {
         //session.setHandler("pairManually", async function ( data ) {
 			if (data.ip==="") return (this.homey.__("pair.manual.ip_field_empty"));

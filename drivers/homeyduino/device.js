@@ -101,6 +101,10 @@ class HomeyduinoDevice extends Homey.Device {
 
     onDeleted() {
         this.removeListeners();
+        if (this.device && !(this.device instanceof Error)) {
+            this.device.setOpt('paired', false);
+            this.device.unsubscribe();
+        }
     }
 
     available() {
