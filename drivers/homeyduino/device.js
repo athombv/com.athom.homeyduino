@@ -212,6 +212,7 @@ class HomeyduinoDevice extends Homey.Device {
         this._triggers = []; //Clear triggers
         this._capabilities = []; //Clear capabilities
         this.log('Info: device API changed');
+        if (!info || !info.api) return;
         for (let callId in info.api) {
             let callName = info.api[callId].name;
             let callType = info.api[callId].type;
@@ -224,11 +225,14 @@ class HomeyduinoDevice extends Homey.Device {
             } else if (callType === 'cap') {
                 this._capabilities.push(callName);
                 this.log('Info: added capability', callName);
-                //Note: this does NOT update the device entry.
-                //User needs to remove the device and pair again to update capabilities!
-                //It DOES update the listeners
-                this.registerCapabilityListener(callName, this.capability.bind(this, callName));
-                this.updateCapabilityValue(callName);
+                if (this.hasCapability(callName)) {
+                    try {
+                        this.registerCapabilityListener(callName, this.capability.bind(this, callName));
+                    } catch (e) {
+                        // Already registered or listener failed
+                    }
+                    this.updateCapabilityValue(callName);
+                }
             } else if (callType === 'rc') {
                 this.log('Info: detected RC interface', callName);
             } else {
@@ -242,35 +246,50 @@ class HomeyduinoDevice extends Homey.Device {
     }
 
     updateCapabilityValue(capability) {
+        if (!this.device || typeof this.device.query !== 'function') return;
         this.device.query(capability, 'cap', '', true).then((value) => {
             if (typeof value !== "undefined") {
-                this.log("Set initial capabilty value of", capability, "to", typeof value, value);
-                this.setCapabilityValue(capability, value).catch((err) => {
-                    this.log("Could not set initial capability value:", err);
-                });
+                this.log("Set initial capability value of", capability, "to", typeof value, value);
+                if (this.hasCapability(capability)) {
+                    this.setCapabilityValue(capability, value).catch((err) => {
+                        this.log("Could not set initial capability value:", err.message || err);
+                    });
+                }
             } else {
                 this.log("No initial value available for capability", capability);
             }
         }).catch((err) => {
-            this.log('Get capability value returned error:', err);
+            this.log('Get capability value returned error:', err.message || err);
         });
     }
 
-    async deviceUpdateLocalAddress(address) {
-        let cloud = this.homey.cloud;
-        let ipAddressLocal = await cloud.getLocalAddress();
-        this.device.setLocalAddress(ipAddressLocal.split(':')[0]);
-        return address(null, ipAddressLocal.split(':')[0]);
+    async deviceUpdateLocalAddress() {
+        try {
+            let cloud = this.homey.cloud;
+            let ipAddressLocal = await cloud.getLocalAddress();
+            if (ipAddressLocal && typeof ipAddressLocal === 'string') {
+                let localIp = ipAddressLocal.split(':')[0];
+                if (this.device && typeof this.device.setLocalAddress === 'function') {
+                    this.device.setLocalAddress(localIp);
+                }
+                return localIp;
+            }
+        } catch (e) {
+            this.log("Could not get local address from cloud:", e.message || e);
+        }
+        return null;
     }
 
     removeListeners() {
         if (this.listening) {
             this.listening = false;
-            this.device.removeListener('emit', this.onArduinoEmit);
-            this.device.removeListener('api', this.onApiChange);
-            this.device.removeListener('master', this.onMasterChange);
-            this.device.removeListener('debug', this.onDeviceDebug);
-            this.device.removeListener('network', this.onNetworkChange);
+            if (this.device && typeof this.device.removeListener === 'function') {
+                this.device.removeListener('emit', this.onArduinoEmit);
+                this.device.removeListener('api', this.onApiChange);
+                this.device.removeListener('master', this.onMasterChange);
+                this.device.removeListener('debug', this.onDeviceDebug);
+                this.device.removeListener('network', this.onNetworkChange);
+            }
             this.log("Removed event listeners.");
         } else {
             this.log("Not listening.");
@@ -278,25 +297,30 @@ class HomeyduinoDevice extends Homey.Device {
     }
 
     onNetworkChange(info) {
+        if (!info || !info.address) return;
         this.ipAddress = info.address;
         let settings = this.getSettings();
         settings.ip = this.ipAddress;
-        this.setSettings(settings);
+        this.setSettings(settings).catch(err => this.log("Error saving updated IP to settings:", err.message || err));
     }
 
     rcConfigure() {
         let settings = this.getSettings();
-        if (typeof settings.rc === "undefined") return;
+        if (typeof settings.rc === "undefined" || !settings.rc || !settings.rc.pins) return;
         this.log("Configuring RC parameters...");
-        this.log(" * Board:", settings.rc.board.name);
+        if (settings.rc.board && settings.rc.board.name) {
+            this.log(" * Board:", settings.rc.board.name);
+        }
 
         this._rcDigitalOutputPins = [];
         this._rcDigitalInputPins = [];
         this._rcAnalogOutputPins = [];
         this._rcAnalogInputPins = [];
 
+        let pinsArray = [];
         for (let key in settings.rc.pins) {
             let pin = settings.rc.pins[key];
+            if (!pin) continue;
             this.log(" * Pin", pin.name, "is identified as", pin.flowName, "and configured as", pin.mode);
             if ((pin.mode === "di") || (pin.mode === "dip") || (pin.mode === "dit") || (pin.mode === "ditp")) {
                 this._rcDigitalInputPins.push(pin);
@@ -307,13 +331,14 @@ class HomeyduinoDevice extends Homey.Device {
             } else if ((pin.mode === "ai") || (pin.mode === "aip") || (pin.mode === "ait") || (pin.mode === "aitp")) {
                 this._rcAnalogInputPins.push(pin);
             }
+            pinsArray.push(Object.assign({}, pin));
         }
 
-        this.rcModeSet(settings.rc.pins);
+        this.rcModeSet(pinsArray);
     }
 
     rcModeSet(pins, res = null) {
-        if (pins.length < 1) {
+        if (!pins || !Array.isArray(pins) || pins.length < 1) {
             this.log("All RC pins have been configured succesfully!");
             return;
         }
@@ -324,30 +349,32 @@ class HomeyduinoDevice extends Homey.Device {
 
         this.log("Configuring RC pin '" + pin.name + "' to '" + pin.mode + "'...");
 
-        this.device.query('mode', 'rc', cfg)
-            .then(rcModeSetNext)
-            .catch((err) => {
-                this.log('Mode set returned error:', err);
-            });
+        if (this.device && typeof this.device.query === 'function') {
+            this.device.query('mode', 'rc', cfg)
+                .then(rcModeSetNext)
+                .catch((err) => {
+                    this.log('Mode set returned error:', err.message || err);
+                });
+        }
     }
 
-    deviceInit() {
+    async deviceInit() {
         if (this.listening) {
             this.removeListeners(); //First remove the listeners
         }
         this.log("Searching for Arduino device " + this.deviceId + "...");
         this.device = this.homey.app.discovery.getDevice(this.deviceId);
 
-        if (this.device instanceof Error) {
+        if (this.device instanceof Error || !this.device) {
             this.log("Device ", this.deviceId, " is not available.");
-            this.setUnavailable("Offline");
+            this.setUnavailable("Offline").catch(err => this.log("setUnavailable error:", err.message || err));
             this.available = false;
 
-            if (this.polling) {
+            if (this.polling && this.ipAddress && this.ipAddress !== '0.0.0.0') {
                 this.log("Polling is enabled for device", this.deviceId, " at IP ", this.ipAddress);
                 this.homey.app.discovery.poll(this.ipAddress, (err, res) => {
                     if (err) {
-                        this.log("Poll returned error:", err);
+                        this.log("Poll returned error:", err.message || err);
                     } else {
                         this.log("Poll success!");
                     }
@@ -355,30 +382,29 @@ class HomeyduinoDevice extends Homey.Device {
             }
 
         } else {
-            this.deviceUpdateLocalAddress((err, res) => {
-                if (err) this.log("Could not get local address: ", err);
-                this.log("Device ", this.deviceId, " is available.");
-                this.setAvailable();
-                this.available = true;
-                this.device.setOpt('paired', true);
+            await this.deviceUpdateLocalAddress();
+            this.log("Device ", this.deviceId, " is available.");
+            this.setAvailable().catch(err => this.log("setAvailable error:", err.message || err));
+            this.available = true;
+            this.device.setOpt('paired', true);
 
-                this.device.subscribe().then((res) => {
-                    this.log('* Subscribed to triggers: ', res);
-                }).catch((err) => {
-                    this.log('* Could not subscribe:', err);
-                });
-
-                //Fill autocompletes
-                this.onApiChange({"device": this.device, "api": this.device.getOpt('api')});
-
-                //Add listeners
-                this.device.on('emit', this.onArduinoEmit);
-                this.device.on('api', this.onApiChange);
-                this.device.on('master', this.onMasterChange);
-                this.device.on('debug', this.onDeviceDebug);
-                this.device.on('network', this.onNetworkChange);
-                this.listening = true;
+            this.device.subscribe().then((res) => {
+                this.log('* Subscribed to triggers: ', res);
+            }).catch((err) => {
+                this.log('* Could not subscribe:', err.message || err);
             });
+
+            //Fill autocompletes
+            this.onApiChange({"device": this.device, "api": this.device.getOpt('api')});
+
+            //Add listeners
+            this.device.on('emit', this.onArduinoEmit);
+            this.device.on('api', this.onApiChange);
+            this.device.on('master', this.onMasterChange);
+            this.device.on('debug', this.onDeviceDebug);
+            this.device.on('network', this.onNetworkChange);
+            this.listening = true;
+
             this.rcConfigure();
         }
     }
@@ -407,7 +433,7 @@ class HomeyduinoDevice extends Homey.Device {
     }
 
     onArduinoEmit(info) {
-        //this.log("onEmit(",info.name,info.type,info.argument,")");
+        if (!info) return;
         if (info.emType === 'trg') {
             this.log("Trigger emit received:", info.name, info.type, info.argument);
             this.onTriggered(info);
@@ -417,16 +443,18 @@ class HomeyduinoDevice extends Homey.Device {
             this.onRcEmit(info);
         } else if (info.emType === 'cap') {
             this.log("Capability emit received:", info.name, info.type, info.argument);
-            this.setCapabilityValue(info.name, info.argument).catch((err) => {
-                this.log("Could not set capability value:", err);
-            });
+            if (this.hasCapability(info.name)) {
+                this.setCapabilityValue(info.name, info.argument).catch((err) => {
+                    this.log("Could not set capability value:", err.message || err);
+                });
+            }
         } else {
             this.log("Unknown emit received:", info.emType, "[", info.name, info.type, info.argument, "]");
         }
     }
 
     onTriggered(info) {
-        //this.log("INFO", util.inspect(info, {depth: null}));
+        if (!info || !info.name) return;
         if (!this._triggers.includes(info.name)) this._triggers.push(info.name);
 
         this.trigger.debug.trigger(this, {
@@ -437,24 +465,104 @@ class HomeyduinoDevice extends Homey.Device {
             "type": info.type
         }, {"name": info.name}).then((result) => {
             //this.log("Debug trigger result ",result);
-        }).catch(this.error);
+        }).catch((err) => this.log("debug trigger error:", err.message || err));
+
         if (info.type === 'Boolean') {
             this.trigger.boolean.trigger(this, {"value": info.argument}, {"name": info.name}).then((result) => {
                 //this.log("Boolean trigger result ",result);
-            }).catch(this.error);
+            }).catch((err) => this.log("boolean trigger error:", err.message || err));
         } else if (info.type === 'Number') {
             this.trigger.number.trigger(this, {"value": info.argument}, {"name": info.name}).then((result) => {
                 //this.log("Number trigger result ",result);
-            }).catch(this.error);
+            }).catch((err) => this.log("number trigger error:", err.message || err));
         } else if (info.type === 'String') {
             this.log("String trigger:", info.name, info.argument);
             this.trigger.string.trigger(this, {"value": info.argument}, {"name": info.name}).then((result) => {
                 //this.log("String trigger result ",result);
-            }).catch(this.error);
+            }).catch((err) => this.log("string trigger error:", err.message || err));
         } else if (info.type === 'null') {
             this.trigger.void.trigger(this, {"value": info.argument}, {"name": info.name}).then((result) => {
                 //this.log("Void trigger result ",result);
-            }).catch(this.error);
+            }).catch((err) => this.log("void trigger error:", err.message || err));
+        }
+    }
+
+    rcAnalogInputMap(name, input) {
+        let output = input;
+
+        let pin = null;
+
+        for (let key in this._rcAnalogInputPins) {
+            if (this._rcAnalogInputPins[key].name === name) {
+                pin = this._rcAnalogInputPins[key];
+                break;
+            }
+        }
+
+        if (pin === null) {
+            this.log("rcAnalogInputMap(", name, ") error: unknown pin");
+            return output;
+        }
+
+        let range = 1023; //Guess 10-bit
+        if (typeof pin.range === 'undefined') {
+            this.log("rcAnalogInputMap(", name, ") error: no range defined");
+        } else if (typeof pin.range.ai === 'undefined') {
+            this.log("rcAnalogInputMap(", name, ") error: no input range defined");
+        } else {
+            range = pin.range.ai;
+            this.log("rcAnalogInputMap(", name, ") range:", range);
+        }
+
+        output = output / range;
+        output = +output.toFixed(2);
+
+        return output;
+    }
+
+    rcAnalogInputGetFlownameForRealName(name) {
+        let pin = null;
+        for (let key in this._rcAnalogInputPins) {
+            if (this._rcAnalogInputPins[key].name === name) {
+                pin = this._rcAnalogInputPins[key];
+                break;
+            }
+        }
+        if (pin === null) {
+            this.log("rcGetAnalogInputFlownameForRealName: unknown pin");
+            return 'invalid_pin';
+        }
+        return pin.flowName;
+    }
+
+    rcDigitalInputGetFlownameForRealName(name) {
+        let pin = null;
+        for (let key in this._rcDigitalInputPins) {
+            if (this._rcDigitalInputPins[key].name === name) {
+                pin = this._rcDigitalInputPins[key];
+                break;
+            }
+        }
+        if (pin === null) {
+            this.log("rcGetDigitalInputFlownameForRealName: unknown pin");
+            return 'invalid_pin';
+        }
+        return pin.flowName;
+    }
+
+    onRcEmit(info) {
+        if (!info) return;
+        if (info.type === 'Boolean') {
+            this.log("onRcEmit: digital input", info.argument, info.name);
+            this.trigger.rc_digital.trigger(this, {"value": info.argument}, {"pin": info.name}).then((result) => {
+            }).catch((err) => this.log("rc_digital trigger error:", err.message || err));
+        } else if (info.type === 'Number') {
+            this.log("onRcEmit: analog input", info.argument, info.name);
+            let mappedValue = this.rcAnalogInputMap(info.name, info.argument);
+            this.trigger.rc_analog.trigger(this, {"value": mappedValue}, {"pin": info.name}).then((result) => {
+            }).catch((err) => this.log("rc_analog trigger error:", err.message || err));
+        } else {
+            this.log("onRcEmit: unsupported type", info.type, "ignored.");
         }
     }
 
