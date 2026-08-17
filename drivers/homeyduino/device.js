@@ -425,9 +425,13 @@ class HomeyduinoDevice extends Homey.Device {
         //this.log("INFO", util.inspect(info, {depth: null}));
         if (!this._triggers.includes(info.name)) this._triggers.push(info.name);
 
+        // Homey will not trigger the debug flow if `NaN` is passed as an argument, so we default to 0.
+        let debugNumber = Number(info.argument);
+        if (Number.isNaN(debugNumber)) debugNumber = 0;
+
         this.trigger.debug.trigger(this, {
             "trigger": info.name,
-            "number": Number(info.argument),
+            "number": debugNumber,
             "string": String(info.argument),
             "boolean": Boolean(info.argument),
             "type": info.type
