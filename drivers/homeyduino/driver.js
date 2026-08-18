@@ -33,7 +33,7 @@ class HomeyduinoDriver extends Homey.Driver {
 					if (typeof device.available === 'boolean' && device.available) {
 						this.log('Device already available?!');
 					} else {
-						device.deviceInit( arduinoDevice );
+						device.deviceInit(arduinoDevice);
 					}
 					break;
 				}
@@ -103,8 +103,8 @@ class HomeyduinoDriver extends Homey.Driver {
 
 	}
 
-	async onPairListDevices( data ) {
-        let deviceList = [];
+	async onPairListDevices(data) {
+		let deviceList = [];
 		let arduinoDevices = this.homey.app.discovery.getDevices();
 		let existingDevices = this.getDevices();
 		let existingIds = new Set();
@@ -143,8 +143,8 @@ class HomeyduinoDriver extends Homey.Driver {
 			var libVersion = device.libVersion();
 
 			var outdated = false;
-			if (libVersion!=this.homey.manifest.version) {
-				this.log("Warning: Device "+deviceName+" uses an outdated library version (Lib: "+libVersion+", App: "+this.homey.manifest.version+")");
+			if (libVersion != this.homey.manifest.version) {
+				this.log("Warning: Device " + deviceName + " uses an outdated library version (Lib: " + libVersion + ", App: " + this.homey.manifest.version + ")");
 				outdated = true;
 			}
 
@@ -156,8 +156,8 @@ class HomeyduinoDriver extends Homey.Driver {
 			// Filter: show only homeyduino devices
 			//(And also show Sonoff devices running Homeyduino firmware...)
 
-			if ((deviceType!="homeyduino")&&(deviceType!="sonoff")) {
-				this.log("Not showing device "+deviceName+" because type '"+deviceType+"' is not supported by this app.");
+			if ((deviceType != "homeyduino") && (deviceType != "sonoff")) {
+				this.log("Not showing device " + deviceName + " because type '" + deviceType + "' is not supported by this app.");
 				continue;
 			}
 
@@ -178,7 +178,7 @@ class HomeyduinoDriver extends Homey.Driver {
 			for (var id in deviceApi) {
 				let name = deviceApi[id].name;
 				let type = deviceApi[id].type;
-				if (type=="cap") {
+				if (type == "cap") {
 					capabilities.push(name);
 				}
 			}
@@ -186,26 +186,26 @@ class HomeyduinoDriver extends Homey.Driver {
 			// Create deviceDescriptor
 
 			var deviceDescriptor = {
-					"name": deviceName,
-					"data": { // only used during pair wizard
-						"id": deviceName,
-						"ip": deviceAddress
-					},
-					"settings": {
-						"id": deviceName,
-						"ip": deviceAddress,
-						"polling": false
-					},
-					"type": deviceType,
-					"class": deviceClass,
-					"capabilities": capabilities,
-					"api": deviceApi,
-					"rc": deviceRc,
-					"arch": deviceArch,
-					"numDigitalPins": deviceNumDigitalPins,
-					"numAnalogInputs": deviceNumAnalogInputs,
-					"outdated": outdated,
-					"libVersion": libVersion
+				"name": deviceName,
+				"data": { // only used during pair wizard
+					"id": deviceName,
+					"ip": deviceAddress
+				},
+				"settings": {
+					"id": deviceName,
+					"ip": deviceAddress,
+					"polling": false
+				},
+				"type": deviceType,
+				"class": deviceClass,
+				"capabilities": capabilities,
+				"api": deviceApi,
+				"rc": deviceRc,
+				"arch": deviceArch,
+				"numDigitalPins": deviceNumDigitalPins,
+				"numAnalogInputs": deviceNumAnalogInputs,
+				"outdated": outdated,
+				"libVersion": libVersion
 			};
 
 			if (deviceType=="sonoff") {
@@ -216,8 +216,8 @@ class HomeyduinoDriver extends Homey.Driver {
 			deviceList.push(deviceDescriptor);
 		}
 
-        return (deviceList);
-    }
+		return (deviceList);
+	}
 
     async onPair(session) {
 	    super.onPair( session );
@@ -307,8 +307,8 @@ class HomeyduinoDriver extends Homey.Driver {
 					return resolve(deviceDescriptor);
 				});
 			});
-        });
-    }
+		});
+	}
 }
 
 module.exports = HomeyduinoDriver;
