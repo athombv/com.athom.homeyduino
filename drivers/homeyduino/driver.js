@@ -206,7 +206,7 @@ class HomeyduinoDriver extends Homey.Driver {
 		super.onPair(session);
 		session.setHandler("pairManually", async (data) => {
 			//session.setHandler("pairManually", async function ( data ) {
-			if (data.ip === "") return (this.homey.__("pair.manual.ip_field_empty"));
+			if (data.ip === "") return Promise.reject(this.homey.__("pair.manual.ip_field_empty"));
 
 			this.log("onPair: Polling...");
 			return new Promise((resolve, reject) => {
