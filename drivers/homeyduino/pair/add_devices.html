@@ -2,10 +2,19 @@
 console.log('window.found_devices', JSON.stringify(window.found_devices, false, 2));
 console.log('window.selected_devices', JSON.stringify(window.selected_devices, false, 2));
 
-var devices = (window.selected_devices || []).map(function(deviceKey){
+var seenKeys = {};
+var seenDeviceIds = {};
+var devices = (window.selected_devices || []).filter(function(deviceKey){
+  if (!deviceKey || seenKeys[deviceKey]) return false;
+  seenKeys[deviceKey] = true;
+  return true;
+}).map(function(deviceKey){
   return window.found_devices[deviceKey];
 }).filter(function(device){
-  return device && device.data && device.data.id;
+  if (!device || !device.data || !device.data.id) return false;
+  if (seenDeviceIds[device.data.id]) return false;
+  seenDeviceIds[device.data.id] = true;
+  return true;
 });
 
 var total = devices.length;
