@@ -202,6 +202,28 @@ class HomeyduinoDevice extends Homey.Device {
         return results;
     }
 
+    /**
+     * Converts a raw sub-capability name to a human-readable title suffix.
+     * Examples:
+     *   "measure_temperature.bedroom"  → "Bedroom"
+     *   "onoff.relay_1"               → "Relay 1"
+     *   "measure_temperature"          → null  (no suffix, use Homey's default)
+     */
+    _subCapabilityTitle(name) {
+        const dotIndex = name.indexOf('.');
+        if (dotIndex === -1) return null; // No sub-identifier – keep Homey default title
+
+        const suffix = name.substring(dotIndex + 1);
+
+        // Convert the suffix: underscores → spaces, capitalize each word
+        const formattedSuffix = suffix
+            .split('_')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+
+        return formattedSuffix; // e.g. "Bedroom", "Relay 1"
+    }
+
     onApiChange(info) {
         this._actions = []; //Clear actions
         this._conditions = []; //Clear conditions
@@ -220,11 +242,47 @@ class HomeyduinoDevice extends Homey.Device {
             } else if (callType === 'cap') {
                 this._capabilities.push(callName);
                 this.log('Info: added capability', callName);
-                //Note: this does NOT update the device entry.
-                //User needs to remove the device and pair again to update capabilities!
-                //It DOES update the listeners
-                this.registerCapabilityListener(callName, this.capability.bind(this, callName));
-                this.updateCapabilityValue(callName);
+
+                // Helper to register the listener and fetch the initial value.
+                // Called after the capability is confirmed to exist on the device.
+                const setupCapabilityListenerAndValue = () => {
+                    // registerCapabilityListener returns a Promise; catch rejections gracefully
+                    // (read-only sensor capabilities will reject since Homey won't let them be set).
+                    Promise.resolve()
+                        .then(() => this.registerCapabilityListener(callName, this.capability.bind(this, callName)))
+                        .catch(err => {
+                            this.log('Note: no write listener for', callName, '(likely read-only):', err.message);
+                        });
+                    this.updateCapabilityValue(callName);
+                };
+
+                if (!this.hasCapability(callName)) {
+                    // Dynamically add the capability if not yet present on this device,
+                    // so sub-capabilities (e.g. measure_temperature.bedroom) appear without re-pairing.
+                    // Note: addCapability() only accepts the ID string in SDK3.
+                    this.addCapability(callName)
+                        .then(() => {
+                            this.log('Dynamically added capability:', callName);
+                            // Set a human-readable title suffix via setCapabilityOptions.
+                            // For plain capabilities (no dot) skip to keep Homey's built-in title.
+                            const title = this._subCapabilityTitle(callName);
+                            if (title) {
+                                return this.setCapabilityOptions(callName, { title })
+                                    .catch(err => {
+                                        // Not fatal: title is cosmetic only.
+                                        this.log('Could not set capability title for', callName, ':', err.message);
+                                    });
+                            }
+                        })
+                        .then(() => {
+                            setupCapabilityListenerAndValue();
+                        })
+                        .catch(err => {
+                            this.log('Could not add capability:', callName, err);
+                        });
+                } else {
+                    setupCapabilityListenerAndValue();
+                }
             } else if (callType === 'rc') {
                 this.log('Info: detected RC interface', callName);
             } else {
@@ -251,6 +309,7 @@ class HomeyduinoDevice extends Homey.Device {
             this.log('Get capability value returned error:', err);
         });
     }
+
 
     async deviceUpdateLocalAddress(address) {
         let cloud = this.homey.cloud;
@@ -310,6 +369,7 @@ class HomeyduinoDevice extends Homey.Device {
 
     rcModeSet(pins, res = null) {
         if (pins.length < 1) {
+
             this.log("All RC pins have been configured succesfully!");
             return;
         }
