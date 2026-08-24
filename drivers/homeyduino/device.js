@@ -251,7 +251,7 @@ class HomeyduinoDevice extends Homey.Device {
                     Promise.resolve()
                         .then(() => this.registerCapabilityListener(callName, this.capability.bind(this, callName)))
                         .catch(err => {
-                            this.log('Note: no write listener for', callName, '(likely read-only):', err.message);
+                            this.log('Note: no write listener for', callName, '(likely read-only):', err);
                         });
                     this.updateCapabilityValue(callName);
                 };
@@ -270,7 +270,7 @@ class HomeyduinoDevice extends Homey.Device {
                                 return this.setCapabilityOptions(callName, { title })
                                     .catch(err => {
                                         // Not fatal: title is cosmetic only.
-                                        this.log('Could not set capability title for', callName, ':', err.message);
+                                        this.log('Could not set capability title for', callName, ':', err);
                                     });
                             }
                         })
