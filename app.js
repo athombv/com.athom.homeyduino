@@ -16,6 +16,14 @@ class HomeyduinoApp extends Homey.App {
 
 		console.log('onInit HomeyduinoApp...');
 
+		process.on('unhandledRejection', (reason, p) => {
+			this.log('[HomeyduinoApp] Unhandled Rejection at:', p, 'reason:', reason);
+		});
+
+		process.on('uncaughtException', (err) => {
+			this.log('[HomeyduinoApp] Uncaught Exception:', err);
+		});
+
 		// Start discovery broadcast
 		this.discovery = new ArduinoDiscovery({
 			debugEmit: true,
@@ -23,8 +31,12 @@ class HomeyduinoApp extends Homey.App {
 		});
 
 		this.discovery.on('debug', this.onDiscoveryDebug.bind(this));
+		this.discovery.on('error', (err) => {
+			this.log('[HomeyduinoApp] Discovery error:', err.message || err);
+		});
 
-		this.discovery.on('discover', device => { }).start();
+		this.discovery.on('discover', device => { });
+		this.discovery.start();
 
 		const numberAction = this.homey.flow.getActionCard("number_action")
 			.registerRunListener(this.onAction.bind(this))

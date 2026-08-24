@@ -188,17 +188,17 @@ function selectDevice( element, checked ) {
 	if( checked ) {
 		if(inputType === 'radio'){
             window.selected_devices = [device_data];
-        } else {
+        } else if (window.selected_devices.indexOf(device_data) === -1) {
             window.selected_devices.push(device_data);
         }
 	} else {
 		window.selected_devices = window.selected_devices.filter(function(selected_device){
 			return (selected_device != device_data);
-	})
+		});
 	}
 	$(element)
 		.closest('.device')
-		.toggleClass( 'selected', checked )
+		.toggleClass( 'selected', checked );
 }
 function hideLoading() {
 	$('.list-devices-loading').fadeOut(200);

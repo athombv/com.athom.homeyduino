@@ -1,8 +1,11 @@
 <script type="text/javascript">
-console.log('window.found_devices', JSON.stringify(window.found_devices, false, 2))  
+console.log('window.found_devices', JSON.stringify(window.found_devices, false, 2));
+console.log('window.selected_devices', JSON.stringify(window.selected_devices, false, 2));
 
-var devices = Object.values(window.found_devices).filter(function(device){
-  return device.data.id;
+var devices = Array.from(new Set(window.selected_devices || [])).map(function(deviceKey){
+  return window.found_devices[deviceKey];
+}).filter(function(device){
+  return device && device.data && device.data.id;
 });
 
 var total = devices.length;
