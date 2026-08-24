@@ -31,5 +31,8 @@
   },
   "3.1.4": {
     "en": "Fixed bug where the \"All Triggers\" Flow card would not trigger with any type other than number. Also fixed an error that would sometimes occur during manual pairing."
+  },
+  "3.1.5": {
+    "en": "Fixed an issue causing the pairing screen to show and sometimes add old or unpowered devices."
   }
 }
