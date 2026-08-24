@@ -8,6 +8,7 @@
 "use strict";
 
 const Homey = require('homey');
+const ArduinoDevice = require('../../lib/ArduinoDevice');
 
 class HomeyduinoDriver extends Homey.Driver {
 
@@ -15,18 +16,21 @@ class HomeyduinoDriver extends Homey.Driver {
 		console.log('onInit driver...');
 		this._initFlows();
 		this.homey.app.discovery.on('discover', (arduinoDevice) => {
-			this.log("onDiscoverDevice", arduinoDevice.getOpt('id'));
+			if (!arduinoDevice || !(arduinoDevice instanceof ArduinoDevice)) return;
+			let devId = arduinoDevice.getOpt('id');
+			this.log("onDiscoverDevice", devId);
 			let devices = this.getDevices();
 
 			var found = false;
 			for (var deviceNo in devices) {
 				let device = devices[deviceNo];
+				if (!device) continue;
 
 				this.log("Device list: " + device.deviceId);
 
-				if (device.deviceId == arduinoDevice.getOpt("id")) {
+				if (device.deviceId === devId) {
 					found = true;
-					if (device.available) {
+					if (typeof device.available === 'boolean' && device.available) {
 						this.log('Device already available?!');
 					} else {
 						device.deviceInit(arduinoDevice);
@@ -102,13 +106,39 @@ class HomeyduinoDriver extends Homey.Driver {
 	async onPairListDevices(data) {
 		let deviceList = [];
 		let arduinoDevices = this.homey.app.discovery.getDevices();
+		let existingDevices = this.getDevices();
+		let existingIds = new Set();
+		for (let existingDevice of existingDevices) {
+			if (!existingDevice) continue;
+			if (existingDevice.deviceId) existingIds.add(existingDevice.deviceId);
+			let settings = existingDevice.getSettings ? existingDevice.getSettings() : null;
+			if (settings && settings.id) existingIds.add(settings.id);
+			let devData = existingDevice.getData ? existingDevice.getData() : null;
+			if (devData && devData.id) existingIds.add(devData.id);
+		}
+
+		let now = new Date().getTime();
+		let timeoutInterval = 60 * 1000;
 
 		for (var deviceKey in arduinoDevices) {
-
-			// Collect device information
-
 			var device = arduinoDevices[deviceKey];
+			if (!device || !(device instanceof ArduinoDevice)) continue;
+
 			let deviceName = device.getOpt('id');
+			if (!deviceName) continue;
+
+			// Filter out devices that are already paired in Homey
+			if (existingIds.has(deviceName)) {
+				this.log("Not showing device "+deviceName+" because it is already paired.");
+				continue;
+			}
+
+			// Filter out stale devices that have not been seen within timeout window
+			let lastSeen = device.getOpt('lastSeen');
+			if (lastSeen && (now - new Date(lastSeen).getTime() > timeoutInterval)) {
+				this.log("Not showing device "+deviceName+" because it has timed out.");
+				continue;
+			}
 
 			var libVersion = device.libVersion();
 
@@ -131,23 +161,17 @@ class HomeyduinoDriver extends Homey.Driver {
 				continue;
 			}
 
-			// Should you want to make your own version of this app and the library, for example for a custom product
-			// then please change the deviceType in both the Arduino library and your app to avoid conflicts with
-			// this app and it's devices
-
-			// Get capabilities from device API
-
 			var deviceRc = false;
 			var deviceArch = 'unknown';
 			var deviceNumDigitalPins = 0;
 			var deviceNumAnalogInputs = 0;
 
 			if (device.hasRc()) {
-				let rcInfo = device.getOpt('rc');
+				let rcInfo = device.getOpt('rc') || {};
 				deviceRc = true;
-				deviceArch = rcInfo.arch;
-				deviceNumDigitalPins = rcInfo.numDigitalPins;
-				deviceNumAnalogInputs = rcInfo.numAnalogInputs;
+				deviceArch = rcInfo.arch || 'unknown';
+				deviceNumDigitalPins = rcInfo.numDigitalPins || 0;
+				deviceNumAnalogInputs = rcInfo.numAnalogInputs || 0;
 			}
 
 			let capabilities = [];
@@ -157,9 +181,6 @@ class HomeyduinoDriver extends Homey.Driver {
 				if (type == "cap") {
 					capabilities.push(name);
 				}
-				//	if (type=="rc") { //Also works, but we now have the hasRc function...
-				//		deviceRc = true;
-				//	}
 			}
 
 			// Create deviceDescriptor
@@ -187,53 +208,53 @@ class HomeyduinoDriver extends Homey.Driver {
 				"libVersion": libVersion
 			};
 
-			if (deviceType == "sonoff") {
-				//this.log("Device is Sonoff device, adding icon...");
+			if (deviceType=="sonoff") {
 				deviceDescriptor.icon = "icon_sonoff.svg";
-			}// else {
-			//	this.log("device is not sonoff");
-			//}
+			}
 
 			// Add device to list
-
 			deviceList.push(deviceDescriptor);
 		}
 
 		return (deviceList);
 	}
 
-	async onPair(session) {
-		super.onPair(session);
-		session.setHandler("pairManually", async (data) => {
-			//session.setHandler("pairManually", async function ( data ) {
-			if (data.ip === "") return Promise.reject(this.homey.__("pair.manual.ip_field_empty"));
+    async onPair(session) {
+	    super.onPair( session );
+		session.setHandler("list_devices", async ( data ) => {
+			return this.onPairListDevices(data);
+		});
+        session.setHandler("pairManually", async ( data ) => {
+			if (!data || !data.ip || data.ip === "") {
+				throw new Error(this.homey.__("pair.manual.ip_field_empty") || "IP field is empty");
+			}
 
-			this.log("onPair: Polling...");
+			this.log("onPair: Polling IP " + data.ip + "...");
 			return new Promise((resolve, reject) => {
 				this.homey.app.discovery.poll(data.ip, (err, res) => {
-					//this.log("onPair: Poll result ", err, res);
 					if (err) {
-						//First try to give back usefull information
-						if (typeof err == 'object') {
-							if (typeof err.message == 'string') {
-								if (err.message == 'ETIMEDOUT') {
-									return resolve(this.homey.__('pair.manual.error_timeout'));
-								} else {
-									return reject(err.message);
-								}
+						let msg = "Connection error";
+						if (typeof err === 'object') {
+							if (err.message === 'ETIMEDOUT') {
+								msg = this.homey.__('pair.manual.error_timeout') || 'Connection timed out';
+							} else if (err.message) {
+								msg = err.message;
 							}
+						} else if (typeof err === 'string') {
+							msg = err;
 						}
-						//Then just return whatever we got...
-						return reject(err);
-					};
-					//this.log("onPair: success");
+						return reject(new Error(msg));
+					}
 
-					var device = res;
+					if (!res || !(res instanceof ArduinoDevice)) {
+						return reject(new Error("Invalid device response"));
+					}
+
+					let device = res;
 					let deviceName = device.getOpt('id');
 					let deviceClass = device.getOpt('class');
 					let deviceType = device.getOpt('type');
-					let deviceApi = device.getOpt('api');
-
+					let deviceApi = device.getOpt('api') || [];
 
 					var deviceRc = false;
 					var deviceArch = 'unknown';
@@ -241,35 +262,27 @@ class HomeyduinoDriver extends Homey.Driver {
 					var deviceNumAnalogInputs = 0;
 
 					if (device.hasRc()) {
-						let rcInfo = device.getOpt('rc');
+						let rcInfo = device.getOpt('rc') || {};
 						this.log("RC", rcInfo, rcInfo.arch);
 
-
 						deviceRc = true;
-						deviceArch = rcInfo.arch;
-						deviceNumDigitalPins = rcInfo.numDigitalPins;
-						deviceNumAnalogInputs = rcInfo.numAnalogInputs;
+						deviceArch = rcInfo.arch || 'unknown';
+						deviceNumDigitalPins = rcInfo.numDigitalPins || 0;
+						deviceNumAnalogInputs = rcInfo.numAnalogInputs || 0;
 					} else {
 						this.log("No RC");
-					};
+					}
 
 					let deviceAddress = data.ip;
-
-					//Get capabilities from device API
-
-					//var deviceRc = false;
 
 					let capabilities = [];
 					for (var id in deviceApi) {
 						let name = deviceApi[id].name;
 						let type = deviceApi[id].type;
-						if (type == "cap") {
+						if (type=="cap") {
 							capabilities.push(name);
 						}
-						//	if (type=="rc") {
-						//	deviceRc = true;
-						//	}
-					};
+					}
 
 					// create deviceDescriptor
 					var deviceDescriptor = {
@@ -286,7 +299,6 @@ class HomeyduinoDriver extends Homey.Driver {
 						"class": deviceClass,
 						"capabilities": capabilities,
 						"api": deviceApi,
-
 						"rc": deviceRc,
 						"arch": deviceArch,
 						"numDigitalPins": deviceNumDigitalPins,
@@ -300,3 +312,4 @@ class HomeyduinoDriver extends Homey.Driver {
 }
 
 module.exports = HomeyduinoDriver;
+
