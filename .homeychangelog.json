@@ -34,5 +34,8 @@
   },
   "3.1.5": {
     "en": "Fixed an issue causing the pairing screen to show and sometimes add old or unpowered devices."
+  },
+  "3.1.6": {
+    "en": "Update support URL"
   }
 }
