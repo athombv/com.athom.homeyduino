@@ -29,7 +29,7 @@
     "large": "/assets/images/large.png",
     "small": "/assets/images/small.png"
   },
-  "support": "https://support.homey.app/",
+  "support": "https://homey.app/support/",
   "platforms": [
     "local"
   ],
