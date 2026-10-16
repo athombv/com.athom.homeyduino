@@ -15,7 +15,7 @@ class HomeyduinoDriver extends Homey.Driver {
 	async onInit() {
 		console.log('onInit driver...');
 		this._initFlows();
-		this.homey.app.discovery.on('discover', (arduinoDevice) => {
+		const onDeviceFound = (arduinoDevice) => {
 			if (!arduinoDevice || !(arduinoDevice instanceof ArduinoDevice)) return;
 			let devId = arduinoDevice.getOpt('id');
 			this.log("onDiscoverDevice", devId);
@@ -42,7 +42,9 @@ class HomeyduinoDriver extends Homey.Driver {
 			if (!found) {
 				this.log('Device has not been paired.');
 			}
-		});
+		};
+		this.homey.app.discovery.on('discover', onDeviceFound);
+		this.homey.app.discovery.on('update', onDeviceFound);
 	}
 
 	_initFlows() {

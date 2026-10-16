@@ -358,25 +358,26 @@ class HomeyduinoDevice extends Homey.Device {
         }
     }
 
-    async deviceInit() {
+    async deviceInit(arduinoDevice = null) {
         if (this.listening) {
             this.removeListeners(); //First remove the listeners
         }
         this.log("Searching for Arduino device " + this.deviceId + "...");
-        this.device = this.homey.app.discovery.getDevice(this.deviceId);
+        this.device = (arduinoDevice && !(arduinoDevice instanceof Error)) ? arduinoDevice : this.homey.app.discovery.getDevice(this.deviceId);
 
         if (this.device instanceof Error || !this.device) {
             this.log("Device ", this.deviceId, " is not available.");
             this.setUnavailable("Offline").catch(err => this.log("setUnavailable error:", err.message || err));
             this.available = false;
 
-            if (this.polling && this.ipAddress && this.ipAddress !== '0.0.0.0') {
-                this.log("Polling is enabled for device", this.deviceId, " at IP ", this.ipAddress);
+            if (this.ipAddress && this.ipAddress !== '0.0.0.0') {
+                this.log("Probing device " + this.deviceId + " at known IP " + this.ipAddress + "...");
                 this.homey.app.discovery.poll(this.ipAddress, (err, res) => {
                     if (err) {
                         this.log("Poll returned error:", err.message || err);
-                    } else {
-                        this.log("Poll success!");
+                    } else if (res && !(res instanceof Error) && res.getOpt('id') === this.deviceId) {
+                        this.log("Poll success, reconnecting device " + this.deviceId + "!");
+                        this.deviceInit(res);
                     }
                 });
             }
