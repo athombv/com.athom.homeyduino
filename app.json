@@ -862,6 +862,26 @@
                 "nl": "Actief zoeken over TCP"
               },
               "value": false
+            },
+            {
+              "id": "offline_timeout",
+              "type": "number",
+              "label": {
+                "en": "Offline alarm timeout (minutes)",
+                "nl": "Offline alarm time-out (minuten)",
+                "no": "Tidsavbrudd for frakoblet-alarm (minutter)"
+              },
+              "hint": {
+                "en": "Raise an alarm if no values are received within this time. Set to 0 to disable.",
+                "nl": "Activeer een alarm als er binnen deze tijd geen waarden zijn ontvangen. Stel in op 0 om uit te schakelen.",
+                "no": "Utløs en alarm hvis ingen verdier mottas innen denne tiden. Sett til 0 for å deaktivere."
+              },
+              "value": 60,
+              "attr": {
+                "min": 0,
+                "max": 10080,
+                "step": 1
+              }
             }
           ]
         }

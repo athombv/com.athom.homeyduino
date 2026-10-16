@@ -194,7 +194,8 @@ class HomeyduinoDriver extends Homey.Driver {
 				"settings": {
 					"id": deviceName,
 					"ip": deviceAddress,
-					"polling": false
+					"polling": false,
+					"offline_timeout": 60
 				},
 				"type": deviceType,
 				"class": deviceClass,
@@ -294,7 +295,8 @@ class HomeyduinoDriver extends Homey.Driver {
 						"settings": {
 							"id": deviceName,
 							"ip": deviceAddress,
-							"polling": true
+							"polling": true,
+							"offline_timeout": 60
 						},
 						"class": deviceClass,
 						"capabilities": capabilities,
